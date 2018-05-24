@@ -4,7 +4,7 @@
 \alias{metaclipR.DatasetSubset}
 \title{Directed metadata graph construction for DatasetSubsets}
 \usage{
-metaclipR.DatasetSubset(package = "transformeR", version = "1.3.2",
+metaclipR.DatasetSubset(package = "transformeR", version = "1.3.3",
   graph = NULL, fun = NULL, arg.list = NULL, output = NULL,
   disable.command = FALSE)
 }

@@ -84,7 +84,7 @@
 #' plot(dsgraph$graph, vertex.size = 5, edge.arrow.size=0.1)
 
 metaclipR.DatasetSubset <- function(package = "transformeR",
-                                    version = "1.3.2",
+                                    version = "1.3.3",
                                     graph = NULL,
                                     fun = NULL,
                                     arg.list = NULL,
