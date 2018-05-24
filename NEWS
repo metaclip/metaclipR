@@ -17,7 +17,7 @@
    - ENSO plume (`metaclip.graph.EnsoPlume`) 
 * Add compression and serialization (`embedFig`)
 
-## v1.0.0 (in devel)
+## v1.0.0 
 
 * Renamed all exported functions: `metaclip.graph*` --> `metaclipR.*`
 * New ETCCDI Climate Index definition (`metaclipR.etccdi`)

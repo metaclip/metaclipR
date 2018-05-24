@@ -12,24 +12,26 @@ Extends:
     easyVerification,
     climate4R.climdex,
     loadeR,
+    loadeR.ECOMS,
+    downscaleR,
     visualizeR
 Suggests: 
     knitr,
     rmarkdown,
     devtools
 Type: Package
-Title: A climate4R extension for METACLIP provenance description
+Title: A climate4R package for METACLIP provenance description
 Version: 1.0.0
-Date: 2018-05-11
+Date: 2018-05-24
 Authors@R: as.person(c(
     "Predictia [cph]",
     "Joaquín Bedia <bediaj@predictia.es> [aut, cre]",
     "Daniel San Martín <daniel@predictia.es> [aut]",
     "Nicolau Manubens <nicolau.manubens@bsc.es> [ctb]"))
-BugReports: https://earth.bsc.es/gitlab/external/QA4Seas/issues
-URL: http://metaclip.predictia.es/
+BugReports: https://github.com/metaclip/metaclipR/issues
+URL: http://www.metaclip.org
 Encoding: UTF-8
-Description: Encode climate product provenance according to the Metaclip Metadata Model <http://metaclip.predictia.es/>. 
+Description: Encode climate product provenance according to the METACLIP semantic framework <http://www.metaclip.org>. 
 License: file LICENSE
 LazyData: true
 RoxygenNote: 6.0.1
