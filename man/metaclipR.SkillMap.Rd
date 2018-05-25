@@ -33,7 +33,7 @@ Build a directed metadata graph describing a skill map
 }
 \details{
 This function takes as reference the semantics defined in the Data Source and Transformation ontology
-defined in the Metaclip Framework (\url{http://metaclip.predictia.es/}).
+defined in the Metaclip Framework (\url{http://www.metaclip.org/}).
 }
 \references{
 \href{https://docs.google.com/presentation/d/1Bn7M7IIFVvOoKG7YymXkDnNH4vJOqO6xmimeUI6Uxc0/view#slide=id.g23b883c69b_0_194}{Visual schema of the graphical product ontology}

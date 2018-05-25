@@ -42,19 +42,12 @@
 #' @param Run Optional. When relevant, a character string (length one) indicating the model run (e.g. \code{"r1i1p1"})
 #' 
 #' @details This function takes as reference the semantics defined in the Data Source and Transformation ontology
-#' defined in the Metaclip Framework (\url{http://metaclip.predictia.es/}).
+#' defined in the Metaclip Framework (\url{http://www.metaclip.org/}).
 #'  Many of the classes represented have individuals defined that can be directly instantiated instead of the Class itself. This has the advantage
 #'  of providing further annotations relevant for provenance description (e.g. references, relevant URLs, comments etc.).
 #'   This is automatically handled by the function when there is perfect match between the argument value and the known individual name.
 #'    To ensure consistency, the use of the helper function \code{\link{knownClassIndividuals}} is recommended.
 #'   
-#' @references 
-#' 
-#' \href{https://github.com/Predictia/metaclip}{METACLIP Overview}
-#' 
-#' \href{http://visualdataweb.de/webvowl/#iri=http://metaclip.predictia.es/datasource/datasource.owl}{Visual schema of the data transformation ontology} 
-#' 
-#' \href{http://www.meteo.unican.es/en/climate4r}{Climate4R page at University of Cantabria}
 #' 
 #' @family transformation
 #' @export

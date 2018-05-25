@@ -24,12 +24,7 @@ Build a directed metadata graph describing R calls generating outputs
 }
 \details{
 This function takes as reference the semantics defined in the Seasonal Forecast Verification ontology
-defined in the Metaclip Framework (\url{http://metaclip.predictia.es/}).
-}
-\references{
-\itemize{
-\item \href{https://docs.google.com/presentation/d/1CQyxVIj501N7VylMR9i_T_XwFDId6MDNvpPnuaLXgnI/present#slide=id.g1f8b6ebe3d_0_196}{Visual schema of the Command Step Definition}
-}
+defined in the Metaclip Framework (\url{http://www.metaclip.org}).
 }
 \seealso{
 Other transformation: \code{\link{metaclipR.Aggregation}},

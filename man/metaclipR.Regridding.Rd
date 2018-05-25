@@ -24,7 +24,7 @@ climate4R grid
 }
 \details{
 This function takes as reference the semantics defined in the Data Source and Transformation ontology
-defined in the Metaclip Framework (\url{http://metaclip.predictia.es/}).
+defined in the Metaclip Framework (\url{http://www.metaclip.org}).
 
 \strong{Argument list}
 
@@ -75,10 +75,6 @@ graph <- metaclipR.Regridding(package = pkg,
                               arg.list = arg.list)
 # This is the graph structure containing the metadata:
 plot(graph$graph)
-}
-\references{
-\href{http://www.meteo.unican.es/en/climate4r}{Climate4R page at University of Cantabria}
-\url{metaclip.predictia.es}
 }
 \seealso{
 Other transformation: \code{\link{metaclip.graph.Command}},

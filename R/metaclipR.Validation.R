@@ -26,7 +26,7 @@
 #' @param PredictionGraph metaclipR output containing the Predictions/Projections to validate
 #' @param ReferenceGraph metaclipR output containing the reference (observations) 
 #' @details This function takes as reference the semantics defined in the Verification ontology defined in the 
-#' Metaclip Framework (\url{http://metaclip.predictia.es/}).
+#' Metaclip Framework (\url{http://www.metaclip.org}).
 #' @export
 #' @importFrom igraph make_empty_graph add_vertices add_edges 
 #' @author D. San Martín, J. Bedia

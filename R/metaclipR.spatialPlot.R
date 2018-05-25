@@ -40,10 +40,7 @@
 #'  subsequent operations.
 #' 
 #' This function takes as reference the semantics defined in the Data Source and Transformation ontology
-#' defined in the Metaclip Framework (\url{http://metaclip.predictia.es/}).
-#' 
-#' @references 
-#' \href{http://www.meteo.unican.es/en/climate4r}{climate4R page at University of Cantabria}
+#' defined in the Metaclip Framework (\url{http://www.metaclip.org}).
 #' @family graphical.products
 #' @export
 #' @importFrom igraph make_empty_graph add_vertices add_edges 

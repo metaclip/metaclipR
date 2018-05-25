@@ -40,10 +40,7 @@ Build a directed metadata graph describing a ENSO plume plot
 }
 \details{
 This function takes as reference the semantics defined in the Graphical Product ontology
-defined in the Metaclip Framework (\url{http://metaclip.predictia.es/}).
-}
-\references{
-\href{http://www.meteo.unican.es/en/climate4r}{Climate4R page at University of Cantabria}
+defined in the Metaclip Framework (\url{http://www.metaclip.org}).
 }
 \seealso{
 Other graphical.products: \code{\link{metaclipR.AnomalyMap}},

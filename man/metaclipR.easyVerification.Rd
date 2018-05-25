@@ -27,7 +27,7 @@ Build a directed metadata graph from veriApply calls, and other verification rou
 }
 \details{
 This function takes as reference the semantics defined in the Seasonal Forecast Verification ontology
-defined in the Metaclip Framework (\url{http://metaclip.predictia.es/}).
+defined in the Metaclip Framework (\url{http://www.metaclip.org}).
 }
 \seealso{
 Other validation: \code{\link{metaclipR.Validation}}

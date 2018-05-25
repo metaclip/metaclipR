@@ -26,13 +26,7 @@
 #' @param output Optional. The output R object name, as character string
 #' @param arg.list Argument list. See details
 #' @details This function takes as reference the semantics defined in the Data Source and Transformation ontology
-#' defined in the Metaclip Framework (\url{http://metaclip.predictia.es/}).
-#' @references 
-#' 
-#' \href{https://github.com/Predictia/metaclip}{METACLIP Overview}
-#' 
-#' \href{http://www.meteo.unican.es/en/climate4r}{Climate4R page at University of Cantabria}
-#' 
+#' defined in the Metaclip Framework (\url{http://www.metaclip.org}).
 #' @family transformation
 #' @export
 #' @importFrom igraph add_vertices add_edges 

@@ -84,7 +84,7 @@ knownClassIndividuals <- function(classname, vocabulary = "datasource") {
         "verification" = "verification/verification.owl",
         "graphical_output" = "graphical_output/graphical_output.owl"
     )
-    refURL <- paste0("http://metaclip-interpreter.predictia.es/individuals?vocab=http://metaclip.predictia.es/", voc, "&class=")
+    refURL <- paste0("http://metaclip-interpreter.predictia.es/individuals?vocab=http://www.metaclip.org/", voc, "&class=")
     message("Reading remote ", vocabulary, " ontology file ...")
     destURL <- paste0(refURL, classname) %>% URLencode() %>% url() 
     on.exit(close(destURL))
@@ -129,7 +129,7 @@ getIndividualClass <- function(individual.name, vocabulary = "datasource") {
                   "verification" = "verification/verification.owl",
                   "graphical_output" = "graphical_output/graphical_output.owl"
     )
-    refURL <- paste0("http://metaclip-interpreter.predictia.es/individual?vocab=http://metaclip.predictia.es/", voc, "&id=")
+    refURL <- paste0("http://metaclip-interpreter.predictia.es/individual?vocab=http://www.metaclip.org/", voc, "&id=")
     message("Reading remote ", vocabulary, " ontology file ...")
     destURL <- paste0(refURL, individual.name) %>% URLencode() %>% url() 
     on.exit(close(destURL))
@@ -138,7 +138,7 @@ getIndividualClass <- function(individual.name, vocabulary = "datasource") {
         return(er)
     })
     if (!is.null(out)) {
-        a <- gsub("\"|\\[|]", "", out) %>% strsplit(split = ",") %>% unlist() %>% extract2(1) %>% gsub(pattern = "http://metaclip.predictia.es/.*\\.owl#", replacement = "")
+        a <- gsub("\"|\\[|]", "", out) %>% strsplit(split = ",") %>% unlist() %>% extract2(1) %>% gsub(pattern = "http://www.metaclip.org/.*\\.owl#", replacement = "")
         if (length(a) == 0) warning("No class found:\nEither the individual does not exist or there are no associated classes to it")
         return(a)
     } else {

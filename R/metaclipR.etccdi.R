@@ -27,7 +27,7 @@
 #' from which the climate index step hangs.
 #' \code{transformeR} indicated in argument \code{fun}.
 #' @details This function takes as reference the semantics defined in the Data Source and Transformation ontology
-#' defined in the Metaclip Framework (\url{http://metaclip.predictia.es/}).
+#' defined in the Metaclip Framework (\url{http://www.metaclip.org}).
 #' 
 #' \strong{Argument list}
 #' 
@@ -38,14 +38,6 @@
 #' 
 #' Further optional arguments can be passed to \code{arg.list} for a more detailed description of the command call.
 #' The different arguments are explained in the the help page of \code{\link[climate4R.climdex]{climdexGrid}}. 
-#' 
-#' @references 
-#' 
-#' \href{https://github.com/Predictia/metaclip}{METACLIP Overview}
-#' 
-#' \href{http://visualdataweb.de/webvowl/#iri=http://metaclip.predictia.es/datasource/datasource.owl}{Visual schema of the data transformation ontology} 
-#' 
-#' \href{http://www.meteo.unican.es/en/climate4r}{Climate4R page at University of Cantabria}
 #' 
 #' @family transformation
 #' @export

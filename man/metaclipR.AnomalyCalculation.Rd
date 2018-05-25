@@ -29,7 +29,7 @@ climate4R grid
 }
 \details{
 This function takes as reference the semantics defined in the Data Source and Transformation ontology
-defined in the Metaclip Framework (\url{http://metaclip.predictia.es/}).
+defined in the Metaclip Framework (\url{http://www.metaclip.org}).
 
 \strong{Argument list}
 

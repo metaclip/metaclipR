@@ -45,7 +45,7 @@ step to build METACLIP graphs
 }
 \details{
 This function takes as reference the semantics defined in the Data Source and Transformation ontology
-defined in the Metaclip Framework (\url{http://metaclip.predictia.es/}).
+defined in the Metaclip Framework (\url{http://www.metaclip.org/}).
  Many of the classes represented have individuals defined that can be directly instantiated instead of the Class itself. This has the advantage
  of providing further annotations relevant for provenance description (e.g. references, relevant URLs, comments etc.).
   This is automatically handled by the function when there is perfect match between the argument value and the known individual name.
@@ -74,13 +74,6 @@ plot(rcm.dataset$graph)
 metadata <- metaclipR.Dataset(Dataset.name = "E-OBS_v14_0.25regular",
                               DataProvider = "KNMI")
 plot(metadata$graph)
-}
-\references{
-\href{https://github.com/Predictia/metaclip}{METACLIP Overview}
-
-\href{http://visualdataweb.de/webvowl/#iri=http://metaclip.predictia.es/datasource/datasource.owl}{Visual schema of the data transformation ontology} 
-
-\href{http://www.meteo.unican.es/en/climate4r}{Climate4R page at University of Cantabria}
 }
 \seealso{
 Other transformation: \code{\link{metaclip.graph.Command}},

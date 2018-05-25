@@ -27,7 +27,7 @@
 #' @param referenceGraph An output from a previous \pkg{metaclipR} function containing a list with the i-graph class object containing the reference Transformation-class object
 #' used as base to compute the climatology, plus the name of its terminal node
 #' @details This function takes as reference the semantics defined in the Data Source and Transformation ontology
-#' defined in the Metaclip Framework (\url{http://metaclip.predictia.es/}).
+#' defined in the Metaclip Framework (\url{http://www.metaclip.org}).
 #' 
 #' \strong{Argument list}
 #' 
@@ -41,11 +41,6 @@
 #' The different arguments are explained in the the help page of \code{\link[transformeR]{localScaling}}. 
 #' More complex setups are possible with \code{localScaling}, as well as local bias correction if a \code{ref} is supplied,
 #' but these cases are not addressed in the particular case of anomaly calculation.
-#' 
-#' @references 
-#' \href{http://metaclip.predictia.es/}{METACLIP web page at Predictia} 
-#' 
-#' \href{http://www.meteo.unican.es/en/climate4r}{Climate4R page at University of Cantabria}
 #' @family transformation
 #' @export
 #' @importFrom igraph add_vertices add_edges 

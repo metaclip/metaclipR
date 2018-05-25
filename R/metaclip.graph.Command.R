@@ -25,10 +25,7 @@
 #' @param origin.node.name Name of the origin node of the previously existing graph.
 #' @family transformation
 #' @details This function takes as reference the semantics defined in the Seasonal Forecast Verification ontology
-#' defined in the Metaclip Framework (\url{http://metaclip.predictia.es/}).
-#' @references \itemize{
-#' \item \href{https://docs.google.com/presentation/d/1CQyxVIj501N7VylMR9i_T_XwFDId6MDNvpPnuaLXgnI/present#slide=id.g1f8b6ebe3d_0_196}{Visual schema of the Command Step Definition}
-#' }
+#' defined in the Metaclip Framework (\url{http://www.metaclip.org}).
 #' @keywords internal
 #' @importFrom igraph add_vertices add_edges 
 #' @author D. San Martín, J. Bedia

@@ -28,7 +28,7 @@ climate4R grid
 }
 \details{
 This function takes as reference the semantics defined in the Data Source and Transformation ontology
-defined in the Metaclip Framework (\url{http://metaclip.predictia.es/}).
+defined in the Metaclip Framework (\url{http://www.metaclip.org}).
 
 \strong{Argument list}
 
@@ -66,13 +66,6 @@ spatialPlot(climatology(tx10p),
 metadata <- metaclipR.etccdi(graph = a, arg.list = arg.list)            
 plot(metadata$graph)
 }
-}
-\references{
-\href{https://github.com/Predictia/metaclip}{METACLIP Overview}
-
-\href{http://visualdataweb.de/webvowl/#iri=http://metaclip.predictia.es/datasource/datasource.owl}{Visual schema of the data transformation ontology} 
-
-\href{http://www.meteo.unican.es/en/climate4r}{Climate4R page at University of Cantabria}
 }
 \seealso{
 Other transformation: \code{\link{metaclip.graph.Command}},

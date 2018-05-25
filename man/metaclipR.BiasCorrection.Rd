@@ -53,7 +53,7 @@ Build a directed metadata graph from bias correction routines
 }
 \details{
 This function takes as reference the semantics defined in the Calibration ontology defined in the 
-Metaclip Framework (\url{http://metaclip.predictia.es/}). These in turn are partially based on the VALUE Framewrok (Gutiérrez et al. 2018)
+Metaclip Framework (\url{http://www.metaclip.org/}). These in turn are partially based on the VALUE Framewrok (Gutiérrez et al. 2018)
 }
 \references{
 Gutiérrez et al, 2018. An intercomparison of a large ensemble of statistical downscaling methods over Europe: 

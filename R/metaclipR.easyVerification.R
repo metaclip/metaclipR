@@ -26,7 +26,7 @@
 #' @param ReferenceForecastGraph Optional. metaclipR output containing the reference forecast definition
 
 #' @details This function takes as reference the semantics defined in the Seasonal Forecast Verification ontology
-#' defined in the Metaclip Framework (\url{http://metaclip.predictia.es/}).
+#' defined in the Metaclip Framework (\url{http://www.metaclip.org}).
 #' @export
 #' @importFrom igraph make_empty_graph add_vertices add_edges 
 #' @author D. San Martín, J. Bedia

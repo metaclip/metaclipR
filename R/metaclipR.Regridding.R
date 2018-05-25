@@ -24,7 +24,7 @@
 #' @param fun function name. Unused (set to \code{"interpGrid"})
 #' @param arg.list Argument list. See details
 #' @details This function takes as reference the semantics defined in the Data Source and Transformation ontology
-#' defined in the Metaclip Framework (\url{http://metaclip.predictia.es/}).
+#' defined in the Metaclip Framework (\url{http://www.metaclip.org}).
 #' 
 #' \strong{Argument list}
 #' 
@@ -37,9 +37,6 @@
 #' 
 #' The different arguments are explained in the the help page of \code{\link[transformeR]{interpGrid}}. 
 #' 
-#' @references 
-#' \href{http://www.meteo.unican.es/en/climate4r}{Climate4R page at University of Cantabria}
-#' \url{metaclip.predictia.es}
 #' @family transformation
 #' @export
 #' @importFrom igraph make_empty_graph add_vertices add_edges 

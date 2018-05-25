@@ -29,11 +29,7 @@
 #' @param withInput The name of the parent node from which the aggregation step hangs.
 #' \code{transformeR} indicated in argument \code{fun}.
 #' @details This function takes as reference the semantics defined in the Data Source and Transformation ontology
-#' defined in the Metaclip Framework (\url{http://metaclip.predictia.es/}).
-#' 
-#' @references 
-#' \href{https://docs.google.com/presentation/d/1Bn7M7IIFVvOoKG7YymXkDnNH4vJOqO6xmimeUI6Uxc0/view#slide=id.g23b883c69b_0_194}{Visual schema of the graphical product ontology}
-#' \href{http://www.meteo.unican.es/en/climate4r}{Climate4R page at University of Cantabria}
+#' defined in the Metaclip Framework (\url{http://www.metaclip.org/}).
 #' @family graphical.products
 #' @export
 #' @importFrom igraph make_empty_graph add_vertices add_edges 

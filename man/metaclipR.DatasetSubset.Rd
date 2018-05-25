@@ -48,7 +48,7 @@ Build a directed metadata graph from climate4R grids that are subsets of Dataset
 }
 \details{
 This function takes as reference the semantics defined in the Data Source and Transformation ontology
-defined in the Metaclip Framework (\url{http://metaclip.predictia.es/}).
+defined in the Metaclip Framework (\url{http://www.metaclip.org/}).
 }
 \examples{
 data(S4_tas_iberia)

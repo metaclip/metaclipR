@@ -17,7 +17,7 @@
    - ENSO plume (`metaclip.graph.EnsoPlume`) 
 * Add compression and serialization (`embedFig`)
 
-## v1.0.0 
+## v1.0.0 (24 May 2018)
 
 * Renamed all exported functions: `metaclip.graph*` --> `metaclipR.*`
 * New ETCCDI Climate Index definition (`metaclipR.etccdi`)
@@ -33,4 +33,8 @@
    - For identifying individual instances of specific METACLIP vocabularies (`isIndividualInstance`)
    - For identifying the class belonging of a named individual (`getIndividualClass`)
    - Internal adapation of `graph2json` to incorporate references to individuals
-* Other changes and class/property renaming for full compatibility with [datasource.owl v0.3](http://metaclip.predictia.es/datasource/0.3/datasource.owl)
+* Other changes and class/property renaming for full compatibility with [datasource.owl v0.3](http://www.metaclip.org/datasource/0.3/datasource.owl)
+
+## v1.0.1 (devel)
+
+* Internal changes pointing to the new domain http://www.metaclip.org

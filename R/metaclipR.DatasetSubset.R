@@ -25,7 +25,7 @@
 #' @param output A climate4R grid, resulting from the application of \code{\link[transformeR]{subsetGrid}}.
 #' @param disable.command Better not to touch. For internal usage only (used to re-use most of the code in other functions, but skipping command tracking)
 #' @details This function takes as reference the semantics defined in the Data Source and Transformation ontology
-#' defined in the Metaclip Framework (\url{http://metaclip.predictia.es/}).
+#' defined in the Metaclip Framework (\url{http://www.metaclip.org/}).
 #' 
 #' @return A named list with the updated graph in element \code{"graph"} and the parent node name,
 #' sometimes needed for linking subsequent operations.

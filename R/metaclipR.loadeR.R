@@ -32,7 +32,7 @@
 #' @param output A climate4R grid, resulting from the application of the specified \code{fun} function. 
 #' The name of the grid is passed as a character string
 #' @details This function takes as reference the semantics defined in the Data Source and Transformation ontology
-#' defined in the Metaclip Framework (\url{http://metaclip.predictia.es/}).
+#' defined in the Metaclip Framework (\url{http://www.metaclip.org/}).
 #' 
 #' @return A named list with the updated graph in element \code{graph} and the terminal node in \code{parentnodename},
 #' needed for linking subsequent operations.
@@ -51,11 +51,6 @@
 #' \item \code{members = NULL} 
 #' \item \code{years = NULL} 
 #' }
-#' 
-#' @references 
-#' \href{http://http://metaclip.predictia.es/}{The METACLIP web page at Predictia}
-#' 
-#' \href{http://www.meteo.unican.es/en/climate4r}{Climate4R page at University of Cantabria}
 #' @export
 #' @importFrom igraph add_vertices add_edges 
 #' @importFrom transformeR getShape getSeason getRefDates getGrid
