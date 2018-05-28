@@ -139,11 +139,6 @@ out <- metaclipR.AnomalyCalculation(graph = metadata2,
 
 plot.igraph(out$graph, vertex.size = 5, edge.arrow.size = 0.1)
 }
-\references{
-\href{http://metaclip.predictia.es/}{METACLIP web page at Predictia} 
-
-\href{http://www.meteo.unican.es/en/climate4r}{Climate4R page at University of Cantabria}
-}
 \seealso{
 Other transformation: \code{\link{metaclip.graph.Command}},
   \code{\link{metaclipR.Aggregation}},

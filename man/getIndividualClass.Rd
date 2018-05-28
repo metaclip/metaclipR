@@ -13,7 +13,7 @@ getIndividualClass(individual.name, vocabulary = "datasource")
 \code{"calibration"}, \code{"verification"} and \code{"graphical_output"}.}
 }
 \value{
-A character string with the most direct class belonging (other superclasses are ignored)
+A character string with the most direct class belonging (superclasses are not indicated)
 }
 \description{
 Identifies the class belonging of an individual. Superclasses are ignored
@@ -25,6 +25,10 @@ ontology release
 \note{
 The function won't work if there is no internet connection, or any other connection problem prevents
  read access to the ontology file.
+}
+\examples{
+getIndividualClass("UDG") # The default vocabulary is datasource (can be omitted)
+getIndividualClass("EQM", vocabulary = "calibration")
 }
 \seealso{
 Other ontology.helpers: \code{\link{knownClassIndividuals}}

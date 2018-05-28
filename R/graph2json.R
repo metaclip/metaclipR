@@ -36,13 +36,13 @@ graph2json <- function(graph, output.file) {
     cat(c("{","\n"), sep = "", file = z)
     cat(c("\t\"@context\": {", "\n"), sep = "", file = z)    
     # Metaclip imports
-    cat(c("\t\t\"ds\": ", "\"http://metaclip.predictia.es/datasource/datasource.owl#\",\n"), 
+    cat(c("\t\t\"ds\": ", "\"http://www.metaclip.org/datasource/datasource.owl#\",\n"), 
         sep = "", file = z)    
-    cat(c("\t\t\"veri\": ", "\"http://metaclip.predictia.es/verification/verification.owl#\",\n"), 
+    cat(c("\t\t\"veri\": ", "\"http://www.metaclip.org/verification/verification.owl#\",\n"), 
         sep = "", file = z)    
-    cat(c("\t\t\"cal\": ", "\"http://metaclip.predictia.es/calibration/calibration.owl#\",\n"), 
+    cat(c("\t\t\"cal\": ", "\"http://www.metaclip.org/calibration/calibration.owl#\",\n"), 
         sep = "", file = z)    
-    cat(c("\t\t\"go\": ", "\"http://metaclip.predictia.es/graphical_output/graphical_output.owl#\",\n"), 
+    cat(c("\t\t\"go\": ", "\"http://www.metaclip.org/graphical_output/graphical_output.owl#\",\n"), 
         sep = "", file = z)    
     # other imports -not really needed as they are indirectly imported-, but don't harm
     # prov-o

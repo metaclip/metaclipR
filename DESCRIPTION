@@ -21,8 +21,8 @@ Suggests:
     devtools
 Type: Package
 Title: A climate4R package for METACLIP provenance description
-Version: 1.0.0
-Date: 2018-05-24
+Version: 1.0.1
+Date: 2018-05-28
 Authors@R: as.person(c(
     "Predictia [cph]",
     "Joaquín Bedia <bediaj@predictia.es> [aut, cre]",

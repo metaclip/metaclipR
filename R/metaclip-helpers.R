@@ -78,13 +78,7 @@ knownClassIndividuals <- function(classname, vocabulary = "datasource") {
                                                     "calibration",
                                                     "verification",
                                                     "graphical_output"))
-    voc <- switch(vocabulary,
-        "datasource" = "datasource/datasource.owl",
-        "calibration" = "calibration/calibration.owl",
-        "verification" = "verification/verification.owl",
-        "graphical_output" = "graphical_output/graphical_output.owl"
-    )
-    refURL <- paste0("http://metaclip-interpreter.predictia.es/individuals?vocab=http://www.metaclip.org/", voc, "&class=")
+    refURL <- paste0("http://www.metaclip.org/individuals?vocab=", vocabulary, "&class=")
     message("Reading remote ", vocabulary, " ontology file ...")
     destURL <- paste0(refURL, classname) %>% URLencode() %>% url() 
     on.exit(close(destURL))
@@ -111,25 +105,22 @@ knownClassIndividuals <- function(classname, vocabulary = "datasource") {
 #' @importFrom magrittr %>% extract2
 #' @details The function will check the existing individuals in the latest stable target 
 #' ontology release
-#' @return A character string with the most direct class belonging (other superclasses are ignored)
+#' @return A character string with the most direct class belonging (superclasses are not indicated)
 #' @note The function won't work if there is no internet connection, or any other connection problem prevents
 #'  read access to the ontology file.
 #' @export
 #' @author J Bedia, D. San-Martín
 #' @family ontology.helpers
+#' @examples
+#' getIndividualClass("UDG") # The default vocabulary is datasource (can be omitted)
+#' getIndividualClass("EQM", vocabulary = "calibration")
 
 getIndividualClass <- function(individual.name, vocabulary = "datasource") {
     vocabulary <- match.arg(vocabulary, choices = c("datasource",
                                                     "calibration",
                                                     "verification",
                                                     "graphical_output"))
-    voc <- switch(vocabulary,
-                  "datasource" = "datasource/datasource.owl",
-                  "calibration" = "calibration/calibration.owl",
-                  "verification" = "verification/verification.owl",
-                  "graphical_output" = "graphical_output/graphical_output.owl"
-    )
-    refURL <- paste0("http://metaclip-interpreter.predictia.es/individual?vocab=http://www.metaclip.org/", voc, "&id=")
+    refURL <- paste0("http://www.metaclip.org/individual?vocab=", vocabulary, "&id=")
     message("Reading remote ", vocabulary, " ontology file ...")
     destURL <- paste0(refURL, individual.name) %>% URLencode() %>% url() 
     on.exit(close(destURL))
