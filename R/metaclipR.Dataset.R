@@ -114,7 +114,8 @@ metaclipR.Dataset <- function(Dataset.name = NULL,
                                                                 "ShortRangeForecast"))
     graph <- make_empty_graph(directed = TRUE)
     # Dataset node ------------------
-    Dataset.nodename <- paste0("Dataset.", randomName())
+    isKnownDatasetClass <- ifelse(Dataset.name %in% suppressMessages(knownClassIndividuals(Dataset.subclass)), TRUE, FALSE) 
+    Dataset.nodename <- ifelse(isKnownDatasetClass, paste0("ds:", Dataset.name), paste0("Dataset.", randomName()))
     graph <- my_add_vertices(graph,
                              nv = 1,
                              name = Dataset.nodename,
