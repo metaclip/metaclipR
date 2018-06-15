@@ -5,7 +5,7 @@
 \title{Directed metadata graph construction for Anomaly transformations}
 \usage{
 metaclipR.AnomalyCalculation(graph, package = "transformeR",
-  version = "1.3.2", fun = "localScaling", arg.list = NULL,
+  version = "1.4.1", fun = "scaleGrid", arg.list = NULL,
   referenceGraph = NULL)
 }
 \arguments{
@@ -117,13 +117,13 @@ metadata2 <- metaclipR.DatasetSubset(package = pkg,
                                           
 plot.igraph(metadata2$graph, vertex.size = 5, edge.arrow.size = 0.1)
 
-# The function localScaling is used to compute anomalies. 
+# The function scaleGrid is used to compute anomalies. 
 # In its default setup, it subtracts the climatology (mean) of the input grid:
-anom <- localScaling(grid = fcst,
-                     base = ref,
-                     ref = NULL,
-                     time.frame = "none",
-                     by.member = TRUE)
+anom <- scaleGrid(grid = fcst,
+                  base = ref,
+                  ref = NULL,
+                  time.frame = "none",
+                  by.member = TRUE)
 # This is the argument list (the data arrays are indicated as character 
      # strings to avoid  a congested graph):
 arg.list = list("grid" = "fcst",
@@ -142,7 +142,7 @@ arg.list = list("grid" = "fcst",
 out <- metaclipR.AnomalyCalculation(graph = metadata2,
                                     package = pkg,
                                     version = v,
-                                    fun = "localScaling",
+                                    fun = "scaleGrid",
                                     arg.list = arg.list,
                                     referenceGraph = metadata)
 
