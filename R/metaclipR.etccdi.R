@@ -20,6 +20,7 @@
 #' climate4R grid 
 #' @param package package
 #' @param version version
+#' @param index.code Character string, indicating the specific code of the index according to the ETCCDI definitions (see Details)
 #' @param fun function name. Unused (set to \code{"climdexGrid"})
 #' @param output Optional. The output R object name, as character string
 #' @template template_arglistParam
@@ -29,8 +30,11 @@
 #' \code{transformeR} indicated in argument \code{fun}.
 #' @details This function takes as reference the semantics defined in the Data Source and Transformation ontology
 #' defined in the Metaclip Framework (\url{http://www.metaclip.org}).
-#' Further optional arguments can be passed to \code{arg.list} for a more detailed description of the command call.
-#' The different arguments are explained in the the help page of \code{\link[climate4R.climdex]{climdexGrid}}. 
+#' 
+#' The index codes are those presented in the TCDDI web page, giving the definition of the 27 core indices: http://etccdi.pacificclimate.org/list_27_indices.shtml
+#' 
+#' Alternatively, the function \code{climdexShow} from package \pkg{climate4R.climdex} will display on screen a
+#'  full list of ETCCDI Core indices and their codes. 
 #' 
 #' @family transformation
 #' @export
@@ -58,20 +62,33 @@
 #' spatialPlot(climatology(tx10p),
 #'             backdrop.theme = "countries",
 #'             main = "Mean percentage of days when TX < 10 degC (1991-2010)")
-#' metadata <- metaclipR.etccdi(graph = a, arg.list = arg.list)            
+#' metadata <- metaclipR.etccdi(graph = a, index.code = "TX10p", arg.list = arg.list)            
 #' plot(metadata$graph)
+#' 
+#' # Alternatively, since metaclipR 1.1.0 the literal command call can be used:
+#' metadata2 <- metaclipR.etccdi(graph = a, index.code = "TX10p",
+#'                              arg.list = "tx10p <- climdexGrid(index.code = \"TX10p\", tx = tasmax.eobs, index.arg.list = list(freq = \"annual\")))")            
+#' plot(metadata2$graph)
 #' }
  
-
 metaclipR.etccdi <- function(graph,
                              package = "climate4R.climdex",
                              version = "0.1.2",
                              output = NULL,
+                             index.code,
                              fun = "climdexGrid",
                              arg.list = NULL) {
     if (class(graph$graph) != "igraph") stop("Invalid input graph (not an 'igraph-class' object)")
-    if (is.null(arg.list$index.code)) {
+    if (is.null(index.code)) {
         stop("The 'index.code' argument is missing in the argument list, with no default")
+    }
+    index.code <- match.arg(index.code,
+                            choices = c("FD", "SU", "ID", "TR", "GSL", "TXx", "TNx", "TXn",
+                                        "TNn", "TN10p", "TX10p", "TN90p", "TX90p", "WSDI", "CSDI",
+                                        "DTR", "Rx1day", "Rx5day", "SDII", "R10mm", "R20mm",
+                                        "Rnnmm", "CDD", "CWD", "R95pTOT", "R99pTOT", "PRCPTOT"))
+    if (is.list(arg.list) && ("index.code" %in% names(arg.list))) {
+        if (arg.list$index.code != index.code) stop("Conflicting \'arg.list$index.code\' and \'index.code\' argument values")
     }
     orig.node <- graph$parentnodename
     graph <- graph$graph
@@ -87,9 +104,9 @@ metaclipR.etccdi <- function(graph,
                          getNodeIndexbyName(graph, cicalc.node)),
                        label = "ds:hadClimateIndexCalculation")
     # Climate index node
-    isKnownIndex <- ifelse(arg.list$index.code %in% suppressMessages(knownClassIndividuals("ETCCDI")), TRUE, FALSE)
+    isKnownIndex <- ifelse(index.code %in% suppressMessages(knownClassIndividuals("ETCCDI")), TRUE, FALSE)
     if (isKnownIndex) {
-        nodename <- paste0("ds:", arg.list$index.code)
+        nodename <- paste0("ds:", index.code)
         cn <- "ds:ETCCDI"
     } else {
         nodename <- paste0("CimateIndex.", randomName())
@@ -98,7 +115,7 @@ metaclipR.etccdi <- function(graph,
     graph <- my_add_vertices(graph,
                              nv = 1,
                              name = nodename,
-                             label = paste("ClimateIndex", arg.list$index.code, sep = "."),
+                             label = paste("ClimateIndex", index.code, sep = "."),
                              className = cn)
     graph <- add_edges(graph,
                        c(getNodeIndexbyName(graph, cicalc.node),
@@ -111,7 +128,7 @@ metaclipR.etccdi <- function(graph,
         output$Data <- NULL
         time.step <- getHasTimeStep(output)
         output <- NULL
-        cell.method <- arg.list$index.code
+        cell.method <- index.code
         timeres.nodename <- paste("TemporalResolution", randomName(), sep = ".")
         graph <- add_vertices(graph,
                               nv = 1,

@@ -5,7 +5,7 @@
 \title{Directed metadata graph construction for ETCDDI climate index transformations}
 \usage{
 metaclipR.etccdi(graph, package = "climate4R.climdex", version = "0.1.2",
-  output = NULL, fun = "climdexGrid", arg.list = NULL)
+  output = NULL, index.code, fun = "climdexGrid", arg.list = NULL)
 }
 \arguments{
 \item{graph}{Output from previous metaclipR function. A list with an i-graph class object plus the name of the parent node 
@@ -18,6 +18,8 @@ from which the climate index step hangs.
 
 \item{output}{Optional. The output R object name, as character string}
 
+\item{index.code}{Character string, indicating the specific code of the index according to the ETCCDI definitions (see Details)}
+
 \item{fun}{function name. Unused (set to \code{"climdexGrid"})}
 
 \item{arg.list}{Either a character string containing a literal command call or a key-value pair list of arguments-values. See the dedicated section more for details.}
@@ -29,8 +31,11 @@ climate4R grid
 \details{
 This function takes as reference the semantics defined in the Data Source and Transformation ontology
 defined in the Metaclip Framework (\url{http://www.metaclip.org}).
-Further optional arguments can be passed to \code{arg.list} for a more detailed description of the command call.
-The different arguments are explained in the the help page of \code{\link[climate4R.climdex]{climdexGrid}}.
+
+The index codes are those presented in the TCDDI web page, giving the definition of the 27 core indices: http://etccdi.pacificclimate.org/list_27_indices.shtml
+
+Alternatively, the function \code{climdexShow} from package \pkg{climate4R.climdex} will display on screen a
+ full list of ETCCDI Core indices and their codes.
 }
 \section{About argument lists}{
 
@@ -77,8 +82,13 @@ require(visualizeR)
 spatialPlot(climatology(tx10p),
             backdrop.theme = "countries",
             main = "Mean percentage of days when TX < 10 degC (1991-2010)")
-metadata <- metaclipR.etccdi(graph = a, arg.list = arg.list)            
+metadata <- metaclipR.etccdi(graph = a, index.code = "TX10p", arg.list = arg.list)            
 plot(metadata$graph)
+
+# Alternatively, since metaclipR 1.1.0 the literal command call can be used:
+metadata2 <- metaclipR.etccdi(graph = a, index.code = "TX10p",
+                             arg.list = "tx10p <- climdexGrid(index.code = \\"TX10p\\", tx = tasmax.eobs, index.arg.list = list(freq = \\"annual\\")))")            
+plot(metadata2$graph)
 }
 }
 \seealso{
