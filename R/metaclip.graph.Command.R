@@ -35,17 +35,91 @@ metaclip.graph.Command <- function(graph, package, version, fun, arg.list, origi
     pkgVersionCheck(package, version)
     if (!is.null(fun)) {
         cmd.node.name <- paste("Command", fun, randomName(), sep = ".")
-        graph <- add_vertices(graph, 1, 
-                              name = cmd.node.name, 
-                              className = "ds:Command",
-                              label = fun,
-                              attr = list("prov:value" = fun))
-        # Add the edge linking the verification step with the command 
-        for (i in 1:length(origin.node.name)) {
-            graph <- add_edges(graph, 
-                               c(getNodeIndexbyName(graph, origin.node.name[i]),
-                                 getNodeIndexbyName(graph, cmd.node.name)),
-                               label = "ds:hadCommandCall")    
+        # Argument and ArgumentValue
+        if (is.list(arg.list)) {
+            graph <- add_vertices(graph, 1, 
+                                  name = cmd.node.name, 
+                                  className = "ds:Command",
+                                  label = fun,
+                                  attr = list("prov:value" = fun))
+            # Add the edge linking the verification step with the command 
+            for (i in 1:length(origin.node.name)) {
+                graph <- add_edges(graph, 
+                                   c(getNodeIndexbyName(graph, origin.node.name[i]),
+                                     getNodeIndexbyName(graph, cmd.node.name)),
+                                   label = "ds:hadCommandCall")    
+            }
+            arg.names <- names(arg.list)
+            if (!is.null(arg.names)) {
+                for (i in 1:length(arg.list)) {
+                    arg.node.name <- paste("Argument", arg.names[i], randomName(), sep = ".")
+                    graph <- add_vertices(graph, 1,
+                                          name = arg.node.name, 
+                                          className = "ds:Argument",
+                                          label = arg.names[i],
+                                          attr = list("prov:value" = arg.names[i]))
+                    graph <- add_edges(graph, 
+                                       c(getNodeIndexbyName(graph, cmd.node.name),
+                                         getNodeIndexbyName(graph, arg.node.name)),
+                                       label = "ds:usedArgument")
+                    if (length(arg.list[[i]]) > 0) {
+                        for (j in 1:length(arg.list[[i]])) {
+                            argval.node.name <- paste0("ArgumentValue.", arg.names[i], ".", j, ".", randomName())
+                            arg.val <- if (is.list(arg.list[[i]])) {
+                                arg.list[[i]][[j]]
+                            } else {
+                                arg.list[[i]][j]
+                            }
+                            if (is.function(arg.val)) {
+                                arg.val <- paste(deparse(arg.val), collapse = "")
+                                arg.val <- gsub("\"","'", arg.val)
+                            }
+                            tipo <- as.character(typeof(arg.val))
+                            arg.val <- gsub("\n", "-", arg.val)
+                            if (is.null(arg.val) | length(arg.val) == 0) arg.val <- "NULL"
+                            graph <- add_vertices(graph, 1, name = argval.node.name, 
+                                                  className = "ds:ArgumentValue",
+                                                  label = arg.val,
+                                                  attr = list("prov:value" = arg.val,
+                                                              "ds:withDataType" = tipo))
+                            ### Revisar este nodo de donde a donde va el valor del argumento
+                            graph <- add_edges(graph,
+                                               c(getNodeIndexbyName(graph, arg.node.name),
+                                                 getNodeIndexbyName(graph, argval.node.name)),
+                                               label = "ds:hadArgumentValue")
+                        }
+                    } else {
+                        argval.node.name <- paste("ArgumentValue", arg.names[i], randomName(), sep = ".")
+                        graph <- add_vertices(graph, 1, name = argval.node.name, 
+                                              className = "ds:ArgumentValue",
+                                              label = "NULL",
+                                              attr = list("prov:value" = "NULL",
+                                                          "ds:withDataType" = typeof(arg.list[[i]])))
+                        graph <- add_edges(graph,
+                                           c(getNodeIndexbyName(graph, arg.node.name),
+                                             getNodeIndexbyName(graph, argval.node.name)),
+                                           label = "ds:hasArgumentValue")
+                    }
+                }
+            }
+        } else {
+            if (is.character(arg.list)) {
+                if (length(arg.list) > 1) stop("Invalid literal command call definition (should be of length one)")
+                graph <- add_vertices(graph, 1, 
+                                      name = cmd.node.name, 
+                                      className = "ds:Command",
+                                      label = fun,
+                                      attr = list("prov:value" = fun,
+                                                  "ds:hadLiteralCommandCall" = arg.list))
+                # Add the edge linking the verification step with the command 
+                for (i in 1:length(origin.node.name)) {
+                    graph <- add_edges(graph, 
+                                       c(getNodeIndexbyName(graph, origin.node.name[i]),
+                                         getNodeIndexbyName(graph, cmd.node.name)),
+                                       label = "ds:hadCommandCall")    
+                }
+                
+            }
         }
         # Package ----------------------
         pkg.node.name <- ifelse(package %in% suppressMessages(knownClassIndividuals("Package")),
@@ -59,60 +133,7 @@ metaclip.graph.Command <- function(graph, package, version, fun, arg.list, origi
                            c(getNodeIndexbyName(graph, cmd.node.name),
                              getNodeIndexbyName(graph, pkg.node.name)),
                            label = "ds:fromPackage")
-        # Argument and ArgumentValue
-        arg.names <- names(arg.list)
-        if (!is.null(arg.names)) {
-            for (i in 1:length(arg.list)) {
-                arg.node.name <- paste("Argument", arg.names[i], randomName(), sep = ".")
-                graph <- add_vertices(graph, 1,
-                                      name = arg.node.name, 
-                                      className = "ds:Argument",
-                                      label = arg.names[i],
-                                      attr = list("prov:value" = arg.names[i]))
-                graph <- add_edges(graph, 
-                                   c(getNodeIndexbyName(graph, cmd.node.name),
-                                     getNodeIndexbyName(graph, arg.node.name)),
-                                   label = "ds:usedArgument")
-                if (length(arg.list[[i]]) > 0) {
-                    for (j in 1:length(arg.list[[i]])) {
-                        argval.node.name <- paste0("ArgumentValue.", arg.names[i], ".", j, ".", randomName())
-                        arg.val <- if (is.list(arg.list[[i]])) {
-                            arg.list[[i]][[j]]
-                        } else {
-                            arg.list[[i]][j]
-                        }
-                        if (is.function(arg.val)) {
-                            arg.val <- paste(deparse(arg.val), collapse = "")
-                            arg.val <- gsub("\"","'", arg.val)
-                        }
-                        tipo <- as.character(typeof(arg.val))
-                        arg.val <- gsub("\n", "-", arg.val)
-                        if (is.null(arg.val) | length(arg.val) == 0) arg.val <- "NULL"
-                        graph <- add_vertices(graph, 1, name = argval.node.name, 
-                                              className = "ds:ArgumentValue",
-                                              label = arg.val,
-                                              attr = list("prov:value" = arg.val,
-                                                          "ds:withDataType" = tipo))
-                        ### Revisar este nodo de donde a donde va el valor del argumento
-                        graph <- add_edges(graph,
-                                           c(getNodeIndexbyName(graph, arg.node.name),
-                                             getNodeIndexbyName(graph, argval.node.name)),
-                                           label = "ds:hadArgumentValue")
-                    }
-                } else {
-                    argval.node.name <- paste("ArgumentValue", arg.names[i], randomName(), sep = ".")
-                    graph <- add_vertices(graph, 1, name = argval.node.name, 
-                                          className = "ds:ArgumentValue",
-                                          label = "NULL",
-                                          attr = list("prov:value" = "NULL",
-                                                      "ds:withDataType" = typeof(arg.list[[i]])))
-                    graph <- add_edges(graph,
-                                       c(getNodeIndexbyName(graph, arg.node.name),
-                                         getNodeIndexbyName(graph, argval.node.name)),
-                                       label = "ds:hasArgumentValue")
-                }
-            }
-        }
     }
     return(graph)
 }
+    
