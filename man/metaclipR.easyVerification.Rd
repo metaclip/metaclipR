@@ -14,7 +14,7 @@ metaclipR.easyVerification(package = "easyVerification", version = "0.4.4",
 
 \item{fun}{Verification function. Default to \code{"veriApply"}.}
 
-\item{arg.list}{argument list passed by \code{\link{metaclip.graph}}.}
+\item{arg.list}{Either a character string containing a literal command call or a key-value pair list of arguments-values. See the dedicated section more for details.}
 
 \item{ForecastGraph}{metaclipR output containing the forecast (hindcast) definition}
 
@@ -29,6 +29,22 @@ Build a directed metadata graph from veriApply calls, and other verification rou
 This function takes as reference the semantics defined in the Seasonal Forecast Verification ontology
 defined in the Metaclip Framework (\url{http://www.metaclip.org}).
 }
+\section{About argument lists}{
+
+Argument lists are key-value list in which the different arguments and their valus are passed 
+to the command description. These were initially conceived as an adequate means of describing
+command calls to interpreted languajes (R, python...) using both the Argument and Argument 
+classes from the datasource vocabulary of METACLIP.
+Alternatively, and in order to accomodate the description of the source code to other environments
+and languajes (e.g. shell scripts, calls to CDOs etc.), the use of literal command calls 
+seems like a more convenient choice. Literal command calls also allow for a more straightforward
+reproducibility by just "copying and pasting" the code used to generate each step. Literal
+command calls are encoded in METACLIP using the \emph{hadLiteralCommandCall} data property
+from the datasource vocabulary, that is attached to the command description. 
+To apply this second alternative, the \code{arg.list} argument is specified as a character string
+containing the command call.
+}
+
 \seealso{
 Other validation: \code{\link{metaclipR.Validation}}
 }

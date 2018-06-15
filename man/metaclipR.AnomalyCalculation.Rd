@@ -18,7 +18,7 @@ the input grid whose anomaly is to be computed, plus the terminal node from whic
 
 \item{fun}{function name. Unused (set to \code{"localScaling"})}
 
-\item{arg.list}{Argument list. See details}
+\item{arg.list}{Either a character string containing a literal command call or a key-value pair list of arguments-values. See the dedicated section more for details.}
 
 \item{referenceGraph}{An output from a previous \pkg{metaclipR} function containing a list with the i-graph class object containing the reference Transformation-class object
 used as base to compute the climatology, plus the name of its terminal node}
@@ -30,20 +30,23 @@ climate4R grid
 \details{
 This function takes as reference the semantics defined in the Data Source and Transformation ontology
 defined in the Metaclip Framework (\url{http://www.metaclip.org}).
-
-\strong{Argument list}
-
-The following list of arguments is required to define an anomaly:
-\itemize{
-\item \code{base}
-\item \code{time.frame}
-\item \code{clim.fun}
-\item \code{by.member}
 }
-The different arguments are explained in the the help page of \code{\link[transformeR]{localScaling}}. 
-More complex setups are possible with \code{localScaling}, as well as local bias correction if a \code{ref} is supplied,
-but these cases are not addressed in the particular case of anomaly calculation.
+\section{About argument lists}{
+
+Argument lists are key-value list in which the different arguments and their valus are passed 
+to the command description. These were initially conceived as an adequate means of describing
+command calls to interpreted languajes (R, python...) using both the Argument and Argument 
+classes from the datasource vocabulary of METACLIP.
+Alternatively, and in order to accomodate the description of the source code to other environments
+and languajes (e.g. shell scripts, calls to CDOs etc.), the use of literal command calls 
+seems like a more convenient choice. Literal command calls also allow for a more straightforward
+reproducibility by just "copying and pasting" the code used to generate each step. Literal
+command calls are encoded in METACLIP using the \emph{hadLiteralCommandCall} data property
+from the datasource vocabulary, that is attached to the command description. 
+To apply this second alternative, the \code{arg.list} argument is specified as a character string
+containing the command call.
 }
+
 \examples{
 require(transformeR)
 require(igraph)

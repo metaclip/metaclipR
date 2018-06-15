@@ -25,7 +25,8 @@
 #' @param epsg.code A character string indicating the EPSG code of the map projection. Default to \code{"4979"}
 #' (the most widely used WGS84 proj).
 #' @param fun function name. Default to \code{spatialPlot}, from package \code{visualizeR}.
-#' @param arg.list Argument list (A named list in key-value format).
+#' @template template_arglistParam
+#' @template template_arglist
 #' @param withInput The name of the parent node from which the aggregation step hangs.
 #' \code{transformeR} indicated in argument \code{fun}.
 #' @details This function takes as reference the semantics defined in the Data Source and Transformation ontology

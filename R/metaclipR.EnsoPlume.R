@@ -27,7 +27,8 @@
 #' @param multimodel Logical. Is the forecast done with a multimodel ensemble dataset?. Default
 #' to \code{FALSE} (This is needed to ascertain the subtypes of ForecastSystemUncertainty communicated
 #' by the product, i.e. FSi/FSm).
-#' @param arg.list Argument list (A named list in key-value format).
+#' @template template_arglistParam
+#' @template template_arglist
 #' @param FcstMetadata The metadata structure containing the step describing the forecast data provenance
 #' @param ObsMetadata The metadata structure containing the step describing the observation data provenance
 #' @param VerificationMetadata The metadata structure containing the step describing the verification provenance.

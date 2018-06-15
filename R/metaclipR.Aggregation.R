@@ -22,25 +22,10 @@
 #' @param graph A previous metaclipR data structure from which the current step follows
 #' @param version version
 #' @param fun function name. Unused (set to \code{"aggregateGrid"})
-#' @param arg.list Argument list. See details
+#' @template template_arglistParam
+#' @template template_arglist
 #' @details This function takes as reference the semantics defined in the Data Source and Transformation ontology
 #' defined in the Metaclip Framework (\url{http://www.metaclip.org}).
-#' 
-#' \strong{Argument list}
-#' 
-#' The following list of arguments is required to define an aggregation:
-#' \itemize{
-#' \item \code{aggr.mem = list(FUN = NULL)}
-#' \item \code{aggr.d = list(FUN = NULL)}
-#' \item \code{aggr.m = list(FUN = NULL)}
-#' \item \code{aggr.y = list(FUN = NULL)}
-#' \item \code{aggr.lat = list(FUN = NULL)}
-#' \item \code{weight.by.lat = TRUE}
-#' \item \code{aggr.lon = list(FUN = NULL)}
-#' }
-#' 
-#' The different arguments are explained in the the help page of \code{\link[transformeR]{aggregateGrid}}
-#' 
 #' @references 
 #' \href{http://www.meteo.unican.es/en/climate4r}{Climate4R page at University of Cantabria}
 #' @family transformation

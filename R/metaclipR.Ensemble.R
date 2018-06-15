@@ -24,7 +24,8 @@
 #' @param graph.list A \code{metaclipR} object data list, each element being the
 #' graph defining each ensemble member
 #' @param output Optional. The output R object name, as character string
-#' @param arg.list Argument list. See details
+#' @template template_arglistParam
+#' @template template_arglist
 #' @details This function takes as reference the semantics defined in the Data Source and Transformation ontology
 #' defined in the Metaclip Framework (\url{http://www.metaclip.org}).
 #' @family transformation

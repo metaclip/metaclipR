@@ -22,20 +22,13 @@
 #' @param version version
 #' @param fun function name. Unused (set to \code{"climdexGrid"})
 #' @param output Optional. The output R object name, as character string
-#' @param arg.list Argument list. See details
+#' @template template_arglistParam
+#' @template template_arglist
 #' @param graph Output from previous metaclipR function. A list with an i-graph class object plus the name of the parent node 
 #' from which the climate index step hangs.
 #' \code{transformeR} indicated in argument \code{fun}.
 #' @details This function takes as reference the semantics defined in the Data Source and Transformation ontology
 #' defined in the Metaclip Framework (\url{http://www.metaclip.org}).
-#' 
-#' \strong{Argument list}
-#' 
-#' The following (minimal) list of arguments is required to define an ETCCDI climate index transformation:
-#' \itemize{
-#' \item \code{index.code}
-#' }
-#' 
 #' Further optional arguments can be passed to \code{arg.list} for a more detailed description of the command call.
 #' The different arguments are explained in the the help page of \code{\link[climate4R.climdex]{climdexGrid}}. 
 #' 

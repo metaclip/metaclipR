@@ -18,7 +18,7 @@ metaclipR.loadeR(package = "loadeR", version = "1.4.0", graph, fun = NULL,
 loadStationData from package \pkg{loadeR}, \code{loadECOMS}, from package \pkg{loadeR.ECOMS} or \code{loadValueStations}
  and \code{loadValuePredictions} from package \pkg{R.VALUE}.}
 
-\item{arg.list}{arg.list. See details}
+\item{arg.list}{Either a character string containing a literal command call or a key-value pair list of arguments-values. See the dedicated section more for details.}
 
 \item{index.name}{Xharacter string (default to "none"). In case of using loadGridData, it exists the possibility of
 applying filters to monthly aggregations, leading to specific climate indices with particular names.
@@ -31,21 +31,6 @@ The name of the grid is passed as a character string}
 \value{
 A named list with the updated graph in element \code{graph} and the terminal node in \code{parentnodename},
 needed for linking subsequent operations.
-
-\strong{Argument list}
-
-A list of arguments passed to \code{fun} is required. The different 
-arguments are explained in the the help menu of the corresponding functions.
-The following list need to be specified. The default values are also indicated:
-
-\itemize{
-\item \code{var = NULL}
-\item \code{lonLim = NULL}
-\item \code{latLim = NULL} 
-\item \code{season = NULL}
-\item \code{members = NULL} 
-\item \code{years = NULL} 
-}
 }
 \description{
 Build a directed metadata graph from loadeR outputs, that are subsets (and possibly 
@@ -55,6 +40,22 @@ aggregations and/or climate indices) of Datasets.
 This function takes as reference the semantics defined in the Data Source and Transformation ontology
 defined in the Metaclip Framework (\url{http://www.metaclip.org/}).
 }
+\section{About argument lists}{
+
+Argument lists are key-value list in which the different arguments and their valus are passed 
+to the command description. These were initially conceived as an adequate means of describing
+command calls to interpreted languajes (R, python...) using both the Argument and Argument 
+classes from the datasource vocabulary of METACLIP.
+Alternatively, and in order to accomodate the description of the source code to other environments
+and languajes (e.g. shell scripts, calls to CDOs etc.), the use of literal command calls 
+seems like a more convenient choice. Literal command calls also allow for a more straightforward
+reproducibility by just "copying and pasting" the code used to generate each step. Literal
+command calls are encoded in METACLIP using the \emph{hadLiteralCommandCall} data property
+from the datasource vocabulary, that is attached to the command description. 
+To apply this second alternative, the \code{arg.list} argument is specified as a character string
+containing the command call.
+}
+
 \seealso{
 Other subsetting: \code{\link{metaclipR.DatasetSubset}}
 }

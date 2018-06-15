@@ -24,7 +24,8 @@
 #' @param fun function name. Default to \code{"loadGridData"}, but other loading functions are accepted, namely 
 #' loadStationData from package \pkg{loadeR}, \code{loadECOMS}, from package \pkg{loadeR.ECOMS} or \code{loadValueStations}
 #'  and \code{loadValuePredictions} from package \pkg{R.VALUE}.
-#' @param arg.list arg.list. See details
+#' @template template_arglistParam
+#' @template template_arglist
 #' @param index.name Xharacter string (default to "none"). In case of using loadGridData, it exists the possibility of
 #' applying filters to monthly aggregations, leading to specific climate indices with particular names.
 #'  Some of these are instances of the ds:ClimateIndex class (e.g. "SU", for the ETCCDI index 'summer days'). 
@@ -37,20 +38,6 @@
 #' @return A named list with the updated graph in element \code{graph} and the terminal node in \code{parentnodename},
 #' needed for linking subsequent operations.
 #' 
-#' \strong{Argument list}
-#' 
-#' A list of arguments passed to \code{fun} is required. The different 
-#' arguments are explained in the the help menu of the corresponding functions.
-#' The following list need to be specified. The default values are also indicated:
-#' 
-#' \itemize{
-#' \item \code{var = NULL}
-#' \item \code{lonLim = NULL}
-#' \item \code{latLim = NULL} 
-#' \item \code{season = NULL}
-#' \item \code{members = NULL} 
-#' \item \code{years = NULL} 
-#' }
 #' @export
 #' @importFrom igraph add_vertices add_edges 
 #' @importFrom transformeR getShape getSeason getRefDates getGrid

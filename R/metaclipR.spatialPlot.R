@@ -27,7 +27,8 @@
 #' @param epsg.code A character string indicating the EPSG code of the map projection. Default to \code{"4979"}
 # (the most widely used WGS84 proj).
 #' @param fun function name. Default to \code{spatialPlot}, from package \code{visualizeR}.
-#' @param arg.list Argument list (A named list in key-value format).
+#' @template template_arglistParam
+#' @template template_arglist
 #' @param stipplingInputGraph Currently unused. The graph containing the step from which the stippling is derived (default to \code{NULL},
 #'  and no stippling is indicated)
 #' @param isBranchStep Logical flag. For internal usage only, and rarely needed. It indicates wheter the GraphicalOutput is the

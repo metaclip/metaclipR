@@ -21,7 +21,8 @@
 #' @param version version
 #' @param graph A previously initialized metaclipR output list ($graph + $parentnodename). Default to \code{NULL}, which starts a new empty graph
 #' @param fun function name (default, and only value accepted is \code{"subsetGrid"})
-#' @param arg.list arg.list. See details
+#' @template template_arglistParam
+#' @template template_arglist
 #' @param output A climate4R grid, resulting from the application of \code{\link[transformeR]{subsetGrid}}.
 #' @param disable.command Better not to touch. For internal usage only (used to re-use most of the code in other functions, but skipping command tracking)
 #' @details This function takes as reference the semantics defined in the Data Source and Transformation ontology
@@ -30,25 +31,8 @@
 #' @return A named list with the updated graph in element \code{"graph"} and the parent node name,
 #' sometimes needed for linking subsequent operations.
 #' 
-#' \strong{Argument list}
-#' 
-#' A list of arguments passed to \code{\link{subsetGrid}} is required. The different 
-#' arguments are explained in the the help menu of \code{subsetGrid}.
-#' The following list need to be specified. The default values are also indicated:
-#' 
-#' \itemize{
-#' \item \code{var = NULL}
-#' \item \code{lonLim = NULL}
-#' \item \code{latLim = NULL} 
-#' \item \code{members = NULL} 
-#' \item \code{years = NULL} 
-#' \item \code{outside = FALSE}
-#' \item \code{drop = TRUE}
-#' }
 #' 
 #' @references 
-#' \href{https://docs.google.com/presentation/d/1CQyxVIj501N7VylMR9i_T_XwFDId6MDNvpPnuaLXgnI/present}{Visual schema of the data transformation ontology}
-#' 
 #' \href{http://www.meteo.unican.es/en/climate4r}{Climate4R page at University of Cantabria}
 #' @export
 #' @importFrom igraph make_empty_graph add_vertices add_edges 

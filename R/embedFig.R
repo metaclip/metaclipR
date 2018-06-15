@@ -19,8 +19,8 @@
 #' @description The function calls a plotting function, and writes to a user-defined bitmap file, including
 #' the full metadata description provided by the user. This information is a compressed JSON representation.
 #' @param plot.fun Character. Name of the plotting function
-#' @param arg.list List of arguments passed to the plotting function. The list is functional, and not 
-#' merely descriptive, so all arguments (including required input grids) need to be passed here.
+#' @template template_arglistParam
+#' @template template_arglist
 #' @param full.metadata An igraph-class containing the RDF graph with the full metadata structure.
 #' @param format Format of the bitmap file. Currently only the \code{"png"} option is available
 #' @param filename The name of the output file.

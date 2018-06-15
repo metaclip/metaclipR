@@ -20,7 +20,8 @@
 #' @param version A character string of the package version (e.g. as returned by \code{\link[utils]{packageVersion}})
 #' @param package Validation package. 
 #' @param fun Validation function.
-#' @param arg.list argument list passed by \code{fun}.
+#' @template template_arglistParam
+#' @template template_arglist
 #' @param QualityAspect Class name. Quality Aspect addressed by the Validation. Possible values are 
 #' \code{"Bias"}, \code{"Accuracy"}, \code{"Association"}, \code{"Reliability"}, \code{"Discrimination"} and \code{"Resolution"}.
 #' @param PredictionGraph metaclipR output containing the Predictions/Projections to validate

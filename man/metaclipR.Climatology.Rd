@@ -16,7 +16,7 @@ metaclipR.Climatology(package = "transformeR", version = "1.3.2", graph,
 
 \item{fun}{function name. Unused (set to \code{"climatology"})}
 
-\item{arg.list}{Argument list. See details.}
+\item{arg.list}{Either a character string containing a literal command call or a key-value pair list of arguments-values. See the dedicated section more for details.}
 }
 \value{
 A named list with the updated graph in element \code{"graph"} and the parent node name (\code{"parentnodename"}),
@@ -29,22 +29,23 @@ climate4R grid that is a Climatology
 \details{
 This function takes as reference the semantics defined in the Data Source and Transformation ontology
 defined in the Metaclip Framework (\url{http://www.metaclip.org}).
+}
+\section{About argument lists}{
 
-\strong{Argument list}
-
-The following list of arguments is required to define an aggregation:
-\itemize{
-\item \code{clim.fun}
-\item \code{by.member}
+Argument lists are key-value list in which the different arguments and their valus are passed 
+to the command description. These were initially conceived as an adequate means of describing
+command calls to interpreted languajes (R, python...) using both the Argument and Argument 
+classes from the datasource vocabulary of METACLIP.
+Alternatively, and in order to accomodate the description of the source code to other environments
+and languajes (e.g. shell scripts, calls to CDOs etc.), the use of literal command calls 
+seems like a more convenient choice. Literal command calls also allow for a more straightforward
+reproducibility by just "copying and pasting" the code used to generate each step. Literal
+command calls are encoded in METACLIP using the \emph{hadLiteralCommandCall} data property
+from the datasource vocabulary, that is attached to the command description. 
+To apply this second alternative, the \code{arg.list} argument is specified as a character string
+containing the command call.
 }
 
-The climatology function will be encoded as the ds:hasCellMethod data property of the Climatology.
-Further optional arguments can be included in orde to enrich the provenance information. 
-The different arguments are explained in the the help page of \code{\link[transformeR]{climatology}}.
-
-Note that if no argument list is provided at all, the default argument values (i.e. a mean cell method and by members),
- will be assumed.
-}
 \references{
 \href{http://www.meteo.unican.es/en/climate4r}{Climate4R page at University of Cantabria}
 }

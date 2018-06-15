@@ -22,25 +22,10 @@
 #' @param graph A previous metaclipR data structure from which the current step follows
 #' @param version version
 #' @param fun function name. Unused (set to \code{"climatology"})
-#' @param arg.list Argument list. See details.
 #' @details This function takes as reference the semantics defined in the Data Source and Transformation ontology
 #' defined in the Metaclip Framework (\url{http://www.metaclip.org}).
-#' 
-#' \strong{Argument list}
-#' 
-#' The following list of arguments is required to define an aggregation:
-#' \itemize{
-#' \item \code{clim.fun}
-#' \item \code{by.member}
-#' }
-#' 
-#' The climatology function will be encoded as the ds:hasCellMethod data property of the Climatology.
-#' Further optional arguments can be included in orde to enrich the provenance information. 
-#' The different arguments are explained in the the help page of \code{\link[transformeR]{climatology}}.
-#' 
-#' Note that if no argument list is provided at all, the default argument values (i.e. a mean cell method and by members),
-#'  will be assumed.
-#' 
+#' @template template_arglistParam
+#' @template template_arglist
 #' @references 
 #' \href{http://www.meteo.unican.es/en/climate4r}{Climate4R page at University of Cantabria}
 #' @family transformation

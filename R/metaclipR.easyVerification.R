@@ -20,7 +20,8 @@
 #' @param version A character string of the package version (e.g. as returned by \code{\link[utils]{packageVersion}})
 #' @param package Verification package. Default to \code{"easyVerification"}
 #' @param fun Verification function. Default to \code{"veriApply"}.
-#' @param arg.list argument list passed by \code{\link{metaclip.graph}}.
+#' @template template_arglistParam
+#' @template template_arglist
 #' @param ForecastGraph metaclipR output containing the forecast (hindcast) definition
 #' @param ReferenceGraph metaclipR output  containing the reference (observations) definition
 #' @param ReferenceForecastGraph Optional. metaclipR output containing the reference forecast definition

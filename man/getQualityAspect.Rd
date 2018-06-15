@@ -10,7 +10,7 @@
 getQualityAspect(verifun)
 }
 \arguments{
-\item{arg.list}{Argument list passed to \code{veriApply}}
+\item{verifun}{A character string with the verifun argument value}
 }
 \value{
 A character string of the QualityAspect Class

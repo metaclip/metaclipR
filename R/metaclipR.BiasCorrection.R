@@ -20,7 +20,8 @@
 #' @param version A character string of the package version (e.g. as returned by \code{\link[utils]{packageVersion}})
 #' @param package bias correction package. Default to \code{"downscaleR"}
 #' @param fun Validation function. Default to \code{"biasCorrection"}.
-#' @param arg.list argument list passed by \code{fun}.
+#' @template template_arglistParam
+#' @template template_arglist
 #' @param hasProbCharacter Default to NULL (unspecified). It referes to the probabilistic nature of the method. 
 #' Two possible disjoint values: \code{"deterministic"} or \code{"stochastic"}
 #' @param isMultisite Default to NULL (unspecified), otherwise logical. Is the bias correction method envisaged to 

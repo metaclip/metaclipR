@@ -17,7 +17,7 @@
 
 #' @title Get Forecast Representation
 #' @description Infer the Class inheriting from Abstract Class ForecastRepresentation from the value of verifun argument
-#' @param arg.list Argument list passed to \code{veriApply}
+#' @param verifun A character string with the verifun argument value
 #' @return A character string of the ForecastRepresentation Class
 #' @source \url{https://docs.google.com/presentation/d/1-H-d5X2kdA6-0nqnCd5yLs_V1DeTzuTGw2g3bLhtj7I/present#slide=id.g23b883c69b_0_194}
 #' @keywords internal
@@ -54,7 +54,7 @@ getForecastRepresentation <- function(verifun) {
 
 #' @title Get QualityAspect class value
 #' @description Infer the Class inheriting from Abstract Class QualityAspect from the value of verifun argument
-#' @param arg.list Argument list passed to \code{veriApply}
+#' @param verifun A character string with the verifun argument value
 #' @return A character string of the QualityAspect Class
 #' @source \url{https://docs.google.com/presentation/d/1-H-d5X2kdA6-0nqnCd5yLs_V1DeTzuTGw2g3bLhtj7I/present#slide=id.g23b883c69b_0_194}
 #' @keywords internal
@@ -90,7 +90,7 @@ getQualityAspect <- function(verifun) {
 
 #' @title Get Verification class node label
 #' @description Give a label to the specific measure used for the Verification node, as inferred from the value of verifun argument
-#' @param arg.list Argument list passed to \code{veriApply}
+#' @param verifun A character string with the verifun argument value
 #' @return A character string of the verification measure label
 #' @keywords internal
 #' @family getLabel.helpers

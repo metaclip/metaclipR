@@ -17,7 +17,7 @@ metaclipR.DatasetSubset(package = "transformeR", version = "1.3.3",
 
 \item{fun}{function name (default, and only value accepted is \code{"subsetGrid"})}
 
-\item{arg.list}{arg.list. See details}
+\item{arg.list}{Either a character string containing a literal command call or a key-value pair list of arguments-values. See the dedicated section more for details.}
 
 \item{output}{A climate4R grid, resulting from the application of \code{\link[transformeR]{subsetGrid}}.}
 
@@ -26,22 +26,6 @@ metaclipR.DatasetSubset(package = "transformeR", version = "1.3.3",
 \value{
 A named list with the updated graph in element \code{"graph"} and the parent node name,
 sometimes needed for linking subsequent operations.
-
-\strong{Argument list}
-
-A list of arguments passed to \code{\link{subsetGrid}} is required. The different 
-arguments are explained in the the help menu of \code{subsetGrid}.
-The following list need to be specified. The default values are also indicated:
-
-\itemize{
-\item \code{var = NULL}
-\item \code{lonLim = NULL}
-\item \code{latLim = NULL} 
-\item \code{members = NULL} 
-\item \code{years = NULL} 
-\item \code{outside = FALSE}
-\item \code{drop = TRUE}
-}
 }
 \description{
 Build a directed metadata graph from climate4R grids that are subsets of Datasets
@@ -50,6 +34,22 @@ Build a directed metadata graph from climate4R grids that are subsets of Dataset
 This function takes as reference the semantics defined in the Data Source and Transformation ontology
 defined in the Metaclip Framework (\url{http://www.metaclip.org/}).
 }
+\section{About argument lists}{
+
+Argument lists are key-value list in which the different arguments and their valus are passed 
+to the command description. These were initially conceived as an adequate means of describing
+command calls to interpreted languajes (R, python...) using both the Argument and Argument 
+classes from the datasource vocabulary of METACLIP.
+Alternatively, and in order to accomodate the description of the source code to other environments
+and languajes (e.g. shell scripts, calls to CDOs etc.), the use of literal command calls 
+seems like a more convenient choice. Literal command calls also allow for a more straightforward
+reproducibility by just "copying and pasting" the code used to generate each step. Literal
+command calls are encoded in METACLIP using the \emph{hadLiteralCommandCall} data property
+from the datasource vocabulary, that is attached to the command description. 
+To apply this second alternative, the \code{arg.list} argument is specified as a character string
+containing the command call.
+}
+
 \examples{
 data(S4_tas_iberia)
 require(transformeR)
@@ -78,8 +78,6 @@ dsgraph <- metaclipR.DatasetSubset(package = "transformeR",
 plot(dsgraph$graph, vertex.size = 5, edge.arrow.size=0.1)
 }
 \references{
-\href{https://docs.google.com/presentation/d/1CQyxVIj501N7VylMR9i_T_XwFDId6MDNvpPnuaLXgnI/present}{Visual schema of the data transformation ontology}
-
 \href{http://www.meteo.unican.es/en/climate4r}{Climate4R page at University of Cantabria}
 }
 \seealso{

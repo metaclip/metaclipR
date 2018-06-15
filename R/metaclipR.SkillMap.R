@@ -25,7 +25,8 @@
 #' @param epsg.code A character string indicating the EPSG code of the map projection. Default to \code{"4979"}
 #' (the most widely used WGS84 proj).
 #' @param fun function name. Default to \code{spatialPlot}, from package \code{visualizeR}.
-#' @param arg.list Argument list (A named list in key-value format).
+#' @template template_arglistParam
+#' @template template_arglist
 #' @param StipplingInputGraph Currently unused. The metaclipR output containing the step from which the stippling is derived (default to \code{NULL},
 #'  and no stippling is indicated)
 #' @details This function takes as reference the semantics defined in the Data Source and Transformation ontology

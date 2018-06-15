@@ -18,7 +18,8 @@
 #' @title Get the hasProbabilityValue property
 #' @description Infer the hasProbabilityValue property from the arguments passed to \code{veriApply}
 #' @param ForecastRepresentation Character string designating the ForecastRepresentation Class
-#' @param arg.list Argument list passed to \code{veriApply}
+#' @template template_arglistParam
+#' @template template_arglist
 #' @return Either \code{NULL} (if the property does not apply), or a list of attributes to be appended to the node.
 #' @family getProperty.helpers
 #' @keywords internal
@@ -38,7 +39,8 @@ getHasProbabilityThreshold <- function(ForecastRepresentation, arg.list) {
 #' @title Get the hasAbsoluteThreshold property
 #' @description Infer the hasAbsoluteThreshold property from the arguments passed to \code{veriApply}
 #' @param ForecastRepresentation Character string designating the ForecastRepresentation Class
-#' @param arg.list Argument list passed to \code{veriApply}
+#' @template template_arglistParam
+#' @template template_arglist
 #' @keywords internal
 #' @return Either \code{NULL} (if the property does not apply), or a list of attributes to be appended to the node.
 #' @family getProperty.helpers

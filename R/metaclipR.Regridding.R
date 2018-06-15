@@ -22,21 +22,10 @@
 #' @param version version
 #' @param graph A previous metaclipR data structure from which the current step follows
 #' @param fun function name. Unused (set to \code{"interpGrid"})
-#' @param arg.list Argument list. See details
+#' @template template_arglistParam
+#' @template template_arglist
 #' @details This function takes as reference the semantics defined in the Data Source and Transformation ontology
 #' defined in the Metaclip Framework (\url{http://www.metaclip.org}).
-#' 
-#' \strong{Argument list}
-#' 
-#' The following list of arguments is required to define an aggregation:
-#' \itemize{
-#' \item \code{new.coordinates}
-#' \item \code{method}
-#' \item \code{bilin.method}
-#' }
-#' 
-#' The different arguments are explained in the the help page of \code{\link[transformeR]{interpGrid}}. 
-#' 
 #' @family transformation
 #' @export
 #' @importFrom igraph make_empty_graph add_vertices add_edges 
