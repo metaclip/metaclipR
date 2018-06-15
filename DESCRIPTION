@@ -6,7 +6,7 @@ Imports:
     Rgraphviz,
     magrittr,
     utils,
-    transformeR,
+    transformeR(>= 1.4.1),
     png
 Extends:
     easyVerification,
@@ -21,8 +21,8 @@ Suggests:
     devtools
 Type: Package
 Title: A climate4R package for METACLIP provenance description
-Version: 1.0.1
-Date: 2018-06-07
+Version: 1.1.0
+Date: 2018-06-15
 Authors@R: as.person(c(
     "Predictia <http://www.predictia.es/en> [cph]",
     "Joaquín Bedia <bediaj@predictia.es> [aut, cre]",

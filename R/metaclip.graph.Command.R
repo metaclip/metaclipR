@@ -21,7 +21,9 @@
 #' @param package Character string. Package name
 #' @param version Character string. Package version
 #' @param fun Character string. Function name
-#' @param arg.list Argument list, passed by the upper level function.
+#' @param arg.list Argument list, passed by the upper level function. Note that this can be either a key-value list (old version),
+#' ar a character string containing a literal command call (new provenance format). The latter choice is preferred due to its much
+#' better readability from the METACLIP Interpreter.
 #' @param origin.node.name Name of the origin node of the previously existing graph.
 #' @family transformation
 #' @details This function takes as reference the semantics defined in the Seasonal Forecast Verification ontology

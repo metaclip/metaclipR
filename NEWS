@@ -34,9 +34,13 @@
    - For identifying the class belonging of a named individual (`getIndividualClass`)
    - Internal adapation of `graph2json` to incorporate references to individuals
 * Other changes and class/property renaming for full compatibility with [datasource.owl v0.3](http://www.metaclip.org/datasource/0.3/datasource.owl)
+* METACLIP paper version submitted to EMS
 
-## v1.0.1 (devel)
+## v1.1.0 (devel)
 
 * Internal changes pointing to the new domain http://www.metaclip.org
 * Define individual instances of ds:Dataset
+* Include longname as node name in ds:Variable nodes. Moved short name to ds:hasShortName data property
+* Literal command calls replacing former Argument --> ArgumentValue for easier graph readability
+* Update package version support
 * Minor documentation updates

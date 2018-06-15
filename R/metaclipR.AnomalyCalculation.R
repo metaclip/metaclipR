@@ -41,6 +41,7 @@
 #' The different arguments are explained in the the help page of \code{\link[transformeR]{localScaling}}. 
 #' More complex setups are possible with \code{localScaling}, as well as local bias correction if a \code{ref} is supplied,
 #' but these cases are not addressed in the particular case of anomaly calculation.
+#' 
 #' @family transformation
 #' @export
 #' @importFrom igraph add_vertices add_edges 

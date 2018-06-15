@@ -15,7 +15,9 @@ metaclip.graph.Command(graph, package, version, fun, arg.list, origin.node.name)
 
 \item{fun}{Character string. Function name}
 
-\item{arg.list}{Argument list, passed by the upper level function.}
+\item{arg.list}{Argument list, passed by the upper level function. Note that this can be either a key-value list (old version),
+ar a character string containing a literal command call (new provenance format). The latter choice is preferred due to its much
+better readability from the METACLIP Interpreter.}
 
 \item{origin.node.name}{Name of the origin node of the previously existing graph.}
 }
