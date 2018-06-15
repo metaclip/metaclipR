@@ -52,7 +52,7 @@
 #' \href{http://www.meteo.unican.es/en/climate4r}{Climate4R page at University of Cantabria}
 #' @export
 #' @importFrom igraph make_empty_graph add_vertices add_edges 
-#' @importFrom transformeR getShape getSeason getRefDates getGrid
+#' @importFrom transformeR getShape getSeason getRefDates getGrid getVarNames getGridUnits
 #' @importFrom utils tail
 #' @author D. San Martín, J. Bedia
 #' @family subsetting
