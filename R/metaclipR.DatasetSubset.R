@@ -121,8 +121,9 @@ metaclipR.DatasetSubset <- function(package = "transformeR",
                            label = paste0("ds:hadDatasetSubset"))    
     }
     # Variable  ---------------------
-    var.name <- output$Variable$varName
-    units <- attr(output$Variable, "units")
+    var.name <- getVarNames(output, "long")
+    shortname <- getVarNames(output, "short")
+    units <- getGridUnits(output)
     vlevel <- ifelse(is.null(output$Variable$level), -9999, output$Variable$level)
     grd <- getGrid(output)
     var.nodename <- paste("Variable", randomName(), sep = ".")
@@ -133,6 +134,7 @@ metaclipR.DatasetSubset <- function(package = "transformeR",
                           className = "ds:Variable",
                           description = "Encode metadata of a Variable",
                           attr = list("ds:withUnits" = units,
+                                      "ds:hasShortName" = shortname,
                                       "ds:hasVerticalLevel" = vlevel,
                                       "ds:hasHorizontalResX" = attr(grd, "resX"),
                                       "ds:hasHorizontalResY" = attr(grd, "resY")))
