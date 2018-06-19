@@ -4,8 +4,9 @@
 \alias{metaclipR.AnomalyMap}
 \title{Directed metadata graph construction for Map graphical products}
 \usage{
-metaclipR.AnomalyMap(package = "visualizeR", version = "1.1.1",
-  graph = NULL, input.grid = NULL, fun = "spatialPlot", arg.list = NULL,
+metaclipR.AnomalyMap(package = "visualizeR",
+  version = as.character(packageVersion(package)), graph = NULL,
+  input.grid = NULL, fun = "spatialPlot", arg.list = NULL,
   withInput = NULL, epsg.code = "EPSG:4979")
 }
 \arguments{

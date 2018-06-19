@@ -6,6 +6,8 @@
 \usage{
 metaclipR.DatasetSubset(package = "transformeR", version = "1.3.3",
   graph = NULL, fun = NULL, arg.list = NULL, output = NULL,
+  RefSpatialExtent = NULL, xmin = NULL, xmax = NULL, ymin = NULL,
+  ymax = NULL, proj = NULL, resX = NULL, resY = NULL,
   disable.command = FALSE)
 }
 \arguments{
@@ -20,6 +22,25 @@ metaclipR.DatasetSubset(package = "transformeR", version = "1.3.3",
 \item{arg.list}{Either a character string containing a literal command call or a key-value pair list of arguments-values. See the dedicated section more for details.}
 
 \item{output}{A climate4R grid, resulting from the application of \code{\link[transformeR]{subsetGrid}}.}
+
+\item{RefSpatialExtent}{A reference spatial extent used for spatial subset definition.
+The reference spatial extent can be initiated with \code{\link{metaclipR.SpatialExtent}}, to be used in subsequent operations 
+(e.g., regridding ...)}
+
+\item{xmin}{Optional. When neither \code{obj}, nor \code{RefSpatialExtent} arguments are passed, this is the minimum
+x coordinate defining the spatial extent}
+
+\item{xmax}{Same as \code{xmin}, but the maximum}
+
+\item{ymin}{Same as \code{xmin}, but for the Y coordinates}
+
+\item{ymax}{Same as \code{ymin}, but for the maximum Y coordinate.}
+
+\item{proj}{A projection string}
+
+\item{resX}{Spatial reslution of the grid in the X-coordinates}
+
+\item{resY}{Same as \code{resX}, but for the Y-coordinates}
 
 \item{disable.command}{Better not to touch. For internal usage only (used to re-use most of the code in other functions, but skipping command tracking)}
 }
@@ -57,31 +78,41 @@ by the user.
 }
 
 \examples{
+\dontrun{
 data(S4_tas_iberia)
 require(transformeR)
 require(igraph)
 # An example subset from S4_tas_iberia
-arg.list <- list(grid = S4_tas_iberia,
-                 members = 1:3, # First three members (out of 15)
-                 season = NULL,
-                 years = 1991:1995, # Period 1991-1995
-                 lonLim = c(-5,3), # longitudinal extent
-                 latLim = c(37,43),
-                 drop = FALSE) # latitudinal extent
+arg.list <- list() # latitudinal extent
 # Dataset subset is applied using subsetGrid:
-dataset.subset <- do.call("subsetGrid", args = arg.list)
+dataset.subset <- subsetGrid(grid = S4_tas_iberia,
+                             members = 1:3, 
+                             season = NULL,
+                             years = 1991:1995, 
+                             lonLim = c(-5,3), 
+                             latLim = c(37,43),
+                             drop = FALSE)
+                             
+command.call <- "subsetGrid(grid = S4_tas_iberia,
+                            members = 1:3, 
+                            season = NULL,
+                            years = 1991:1995, 
+                            lonLim = c(-5,3), 
+                            latLim = c(37,43),
+                            drop = FALSE)"
 # Just for illustration, visualization of the climatology:
-plotClimatology(climatology(dataset.subset, by.member = FALSE),
-                 backdrop.theme = "countries")
+require(visualizeR)
+spatialPlot(climatology(dataset.subset, by.member = FALSE),
+            backdrop.theme = "countries", rev.colors = TRUE)
 # Encoding provenance: 
 dsgraph <- metaclipR.DatasetSubset(package = "transformeR",
-                                   version = "1.1.1",
                                    fun = "subsetGrid",
-                                   arg.list = arg.list,
+                                   arg.list = command.call,
                                    output = "dataset.subset")
 # The Graph containing the metadata has been created.
 # This is a bit congested, but note that it is not conceived to be visualized in R
 plot(dsgraph$graph, vertex.size = 5, edge.arrow.size=0.1)
+}
 }
 \references{
 \href{http://www.meteo.unican.es/en/climate4r}{Climate4R page at University of Cantabria}

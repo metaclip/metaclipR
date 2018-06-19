@@ -51,7 +51,7 @@
 #' @importFrom utils tail
 #' @author D. San Martín, J. Bedia
 #' @family subsetting
-#' @examples 
+#' @examples \dontrun{
 #' data(S4_tas_iberia)
 #' require(transformeR)
 #' require(igraph)
@@ -85,6 +85,7 @@
 #' # The Graph containing the metadata has been created.
 #' # This is a bit congested, but note that it is not conceived to be visualized in R
 #' plot(dsgraph$graph, vertex.size = 5, edge.arrow.size=0.1)
+#' }
 
 metaclipR.DatasetSubset <- function(package = "transformeR",
                                     version = "1.3.3",

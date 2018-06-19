@@ -38,9 +38,12 @@
 
 ## v1.1.0 (devel)
 
-* Internal changes pointing to the new domain http://www.metaclip.org
-* Define individual instances of ds:Dataset
-* Include longname as node name in ds:Variable nodes. Moved short name to ds:hasShortName data property
-* Literal command calls replacing former Argument --> ArgumentValue for easier graph readability
+* Internal changes pointing to the new domain <http://www.metaclip.org>
+* Define individual instances of *ds:Dataset*
+* Include longname as node name in *ds:Variable* nodes. Moved short name to *ds:hasShortName* data property
+* Literal command calls replacing former `Argument --> ArgumentValue` for easier graph readability. 
+   * Updated some functions' arguments accordingly
+* Update *ds:HorizontalExtent* class data properties and allow for definition of independent HorizontalExtent graphs used as reference in subsequent steps (i.e. interpolation)
+* Replace `metaclipR.Regridding` (deprecated) by `metaclipR.Interpolation`, in accordance with vocabulary renaming (*datasource v0.7*)
 * Update package version support
 * Minor documentation updates

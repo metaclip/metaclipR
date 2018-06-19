@@ -22,7 +22,7 @@
 #' @param graph A previous metaclipR data structure from which the current step follows
 #' @param RefSpatialExtent A reference spatial extent used for interpolation. The reference spatial extent can be initiated with \code{\link{metaclipR.SpatialExtent}}
 #' @param fun function name. Unused (set to \code{"interpGrid"})
-#' @param interp.method Interpolation method. Current possible choices include \code{"nearest"}, \code{"bilinear"}, \code{"bicubic"},
+#' @param InterpolationMethod Interpolation method. Current possible choices include \code{"nearest"}, \code{"bilinear"}, \code{"bicubic"},
 #'  \code{"IDW"} and \code{"spline"}, but these will be probably updated in the future to accommodate further methods.
 #' @template template_arglistParam
 #' @template template_arglist
@@ -33,7 +33,7 @@
 #' @importFrom igraph make_empty_graph add_vertices add_edges 
 #' @importFrom utils packageVersion
 #' @author D. San Martín, J. Bedia
-#' @examples 
+#' @examples \dontrun{
 #' require(transformeR)
 #' require(igraph)
 #' pkg <- "transformeR"
@@ -70,6 +70,7 @@
 #'                                  arg.list = comcall)
 #' # This is the graph structure containing the metadata:
 #' plot(graph$graph)
+#' }
 
 metaclipR.Interpolation <- function(graph,
                                     package = "transformeR",
