@@ -29,6 +29,7 @@
 #' defined in the Metaclip Framework (\url{http://www.metaclip.org}).
 #' @keywords internal
 #' @importFrom igraph add_vertices add_edges 
+#' @importFrom magrittr %<>% 
 #' @author D. San Martín, J. Bedia
 
 metaclip.graph.Command <- function(graph, package, version, fun, arg.list, origin.node.name) {
@@ -106,6 +107,7 @@ metaclip.graph.Command <- function(graph, package, version, fun, arg.list, origi
         } else {
             if (is.character(arg.list)) {
                 if (length(arg.list) > 1) stop("Invalid literal command call definition (should be of length one)")
+                arg.list %<>% formatCommandCallString()
                 graph <- add_vertices(graph, 1, 
                                       name = cmd.node.name, 
                                       className = "ds:Command",
@@ -119,7 +121,6 @@ metaclip.graph.Command <- function(graph, package, version, fun, arg.list, origi
                                          getNodeIndexbyName(graph, cmd.node.name)),
                                        label = "ds:hadCommandCall")    
                 }
-                
             }
         }
         # Package ----------------------
@@ -137,4 +138,18 @@ metaclip.graph.Command <- function(graph, package, version, fun, arg.list, origi
     }
     return(graph)
 }
-    
+
+
+#' @title Format literal command calls
+#' @description Prepare character strings to be adequately displayed by the METACLIP Interpreter
+#' @param text A literal command call given as a character string
+#' @return A literal command call, without blank spaces or line returns
+#' @importFrom magrittr %>% 
+#' @keywords internal
+#' @author J Bedia
+
+formatCommandCallString <- function(text) {
+    gsub(" ","", text) %>% gsub(pattern = "\n", replacement = "") %>% gsub(pattern = "\"", replacement = "\\\"", fixed = TRUE) 
+}
+
+
