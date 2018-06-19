@@ -4,11 +4,11 @@
 \alias{metaclipR.DatasetSubset}
 \title{Directed metadata graph construction for DatasetSubsets}
 \usage{
-metaclipR.DatasetSubset(package = "transformeR", version = "1.3.3",
-  graph = NULL, fun = NULL, arg.list = NULL, output = NULL,
-  RefSpatialExtent = NULL, xmin = NULL, xmax = NULL, ymin = NULL,
-  ymax = NULL, proj = NULL, resX = NULL, resY = NULL,
-  disable.command = FALSE)
+metaclipR.DatasetSubset(package = "transformeR",
+  version = as.character(packageVersion(package)), graph = NULL,
+  fun = NULL, arg.list = NULL, output = NULL, RefSpatialExtent = NULL,
+  xmin = NULL, xmax = NULL, ymin = NULL, ymax = NULL, proj = NULL,
+  resX = NULL, resY = NULL, disable.command = FALSE)
 }
 \arguments{
 \item{package}{package}

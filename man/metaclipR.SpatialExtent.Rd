@@ -4,13 +4,31 @@
 \alias{metaclipR.SpatialExtent}
 \title{Set a reference SpatialExtent}
 \usage{
-metaclipR.SpatialExtent(xyCoords, region = NULL)
+metaclipR.SpatialExtent(xyCoords, region = NULL, xmin = NULL, xmax = NULL,
+  ymin = NULL, ymax = NULL, proj = NULL, resX = NULL, resY = NULL)
 }
 \arguments{
 \item{xyCoords}{Grid coordinates (i.e., the \code{$xyCoords} element of a \pkg{climate4R} object)}
 
 \item{region}{An optional character string designating a known region. See \code{knownClassIndividuals("HorizontalExtent")}
-for a list of regions defined in the current stable vocabulary version. Default to \code{NULL} and unused.}
+for a list of regions defined in the current stable vocabulary version. Default to \code{NULL} and unused. When
+a known region is used, the spatial extent is already known, but resolution and projections details might be still needed (see the next arguments).
+Otherwise, the latter data properties are set to \code{NULL}.}
+
+\item{xmin}{Optional. When neither \code{obj}, nor \code{RefSpatialExtent} arguments are passed, this is the minimum
+x coordinate defining the spatial extent}
+
+\item{xmax}{Same as \code{xmin}, but the maximum}
+
+\item{ymin}{Same as \code{xmin}, but for the Y coordinates}
+
+\item{ymax}{Same as \code{ymin}, but for the maximum Y coordinate.}
+
+\item{proj}{A projection string}
+
+\item{resX}{Spatial reslution of the grid in the X-coordinates}
+
+\item{resY}{Same as \code{resX}, but for the Y-coordinates}
 }
 \value{
 A metaclipR list (igraph-class structure + terminal node name)

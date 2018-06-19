@@ -72,7 +72,7 @@
  
 metaclipR.etccdi <- function(graph,
                              package = "climate4R.climdex",
-                             version = "0.1.2",
+                             version = as.character(packageVersion(package)),
                              output = NULL,
                              index.code,
                              fun = "climdexGrid",

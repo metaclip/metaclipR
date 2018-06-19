@@ -88,7 +88,7 @@
 #' }
 
 metaclipR.DatasetSubset <- function(package = "transformeR",
-                                    version = "1.3.3",
+                                    version = as.character(packageVersion(package)),
                                     graph = NULL,
                                     fun = NULL,
                                     arg.list = NULL,

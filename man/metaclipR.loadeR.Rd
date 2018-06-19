@@ -4,7 +4,8 @@
 \alias{metaclipR.loadeR}
 \title{Directed metadata graph construction for loadeR outputs}
 \usage{
-metaclipR.loadeR(package = "loadeR", version = "1.4.0", graph, fun = NULL,
+metaclipR.loadeR(package = "loadeR",
+  version = as.character(packageVersion(package)), graph, fun = NULL,
   arg.list = NULL, index.name = "none", output = NULL)
 }
 \arguments{

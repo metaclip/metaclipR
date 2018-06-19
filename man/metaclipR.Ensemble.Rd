@@ -4,8 +4,9 @@
 \alias{metaclipR.Ensemble}
 \title{Construct a METACLIP representation of the ds:Ensemble class}
 \usage{
-metaclipR.Ensemble(package = "transformeR", version = "1.3.3",
-  output = NULL, fun = "bindGrid.member", arg.list = NULL, graph.list)
+metaclipR.Ensemble(package = "transformeR",
+  version = as.character(packageVersion(package)), output = NULL,
+  fun = "bindGrid.member", arg.list = NULL, graph.list)
 }
 \arguments{
 \item{package}{package name. Default to \code{"transformeR"}}

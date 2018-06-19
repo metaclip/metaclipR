@@ -4,8 +4,9 @@
 \alias{metaclipR.etccdi}
 \title{Directed metadata graph construction for ETCDDI climate index transformations}
 \usage{
-metaclipR.etccdi(graph, package = "climate4R.climdex", version = "0.1.2",
-  output = NULL, index.code, fun = "climdexGrid", arg.list = NULL)
+metaclipR.etccdi(graph, package = "climate4R.climdex",
+  version = as.character(packageVersion(package)), output = NULL,
+  index.code, fun = "climdexGrid", arg.list = NULL)
 }
 \arguments{
 \item{graph}{Output from previous metaclipR function. A list with an i-graph class object plus the name of the parent node 

@@ -4,7 +4,8 @@
 \alias{metaclipR.Climatology}
 \title{Directed metadata graph construction for Climatology transformations}
 \usage{
-metaclipR.Climatology(package = "transformeR", version = "1.3.2", graph,
+metaclipR.Climatology(package = "transformeR",
+  version = as.character(packageVersion(package)), graph,
   fun = "climatology", arg.list = NULL)
 }
 \arguments{

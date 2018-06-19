@@ -46,7 +46,7 @@
 #' @family subsetting
 
 metaclipR.loadeR <- function(package = "loadeR",
-                             version = "1.4.0",
+                             version = as.character(packageVersion(package)),
                              graph,
                              fun = NULL,
                              arg.list = NULL,

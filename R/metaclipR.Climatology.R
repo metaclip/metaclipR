@@ -36,7 +36,7 @@
 #' @author D. San Martín, J. Bedia
 
 metaclipR.Climatology <- function(package = "transformeR",
-                                  version = "1.3.2",
+                                  version = as.character(packageVersion(package)),
                                   graph,
                                   fun = "climatology",
                                   arg.list = NULL) {

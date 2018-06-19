@@ -34,7 +34,7 @@
 #' @family validation
 
 metaclipR.easyVerification <- function(package = "easyVerification",
-                                       version = "0.4.4",
+                                       version = as.character(packageVersion(package)),
                                        fun,
                                        arg.list, 
                                        ForecastGraph,
