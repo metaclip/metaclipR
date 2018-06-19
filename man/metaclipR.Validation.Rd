@@ -4,7 +4,8 @@
 \alias{metaclipR.Validation}
 \title{Directed metadata graph construction for validation steps}
 \usage{
-metaclipR.Validation(package, version, fun, QualityAspect, arg.list,
+metaclipR.Validation(package, version, fun, measure.name = NULL,
+  type = c("validation", "verification"), QualityAspect, arg.list,
   PredictionGraph, ReferenceGraph)
 }
 \arguments{
@@ -13,6 +14,14 @@ metaclipR.Validation(package, version, fun, QualityAspect, arg.list,
 \item{version}{A character string of the package version (e.g. as returned by \code{\link[utils]{packageVersion}})}
 
 \item{fun}{Validation function.}
+
+\item{measure.name}{Character string describing the name of the validation measure (e.g. \code{"Correlation"}).
+If omitted, the \code{QualityAspect} value will be assigned. This will affect the name of the validation node in the 
+METACLIP Interpreter graph (thus, it is recommended its usage for better provenance readability).}
+
+\item{type}{Validation type. Current choices are \code{"validation"} and \code{"verification"}.
+In essence, this argument maps the step to the general \emph{ds:Validation} class, or to the more
+specific \emph{ForecastVerification} subclass, when relevant}
 
 \item{QualityAspect}{Class name. Quality Aspect addressed by the Validation. Possible values are 
 \code{"Bias"}, \code{"Accuracy"}, \code{"Association"}, \code{"Reliability"}, \code{"Discrimination"} and \code{"Resolution"}.}
@@ -27,7 +36,10 @@ metaclipR.Validation(package, version, fun, QualityAspect, arg.list,
 Build a directed metadata graph from validation routines
 }
 \details{
-This function takes as reference the semantics defined in the Verification ontology defined in the 
+This function takes as reference the semantics defined in the Verification ontology defined in the
+}
+\note{
+This function supersedes the more specific \code{metaclipR.easyVerification}, deprecated since \pkg{metaclipR} v1.1.0.
 Metaclip Framework (\url{http://www.metaclip.org}).
 }
 \section{About argument lists}{

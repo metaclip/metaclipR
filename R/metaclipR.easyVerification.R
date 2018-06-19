@@ -40,6 +40,7 @@ metaclipR.easyVerification <- function(package = "easyVerification",
                                        ForecastGraph,
                                        ReferenceGraph,
                                        ReferenceForecastGraph = NULL) {
+    .Deprecated(new = "metaclipR.Validation")
     if (is.null(arg.list)) stop("Argument list required to encode 'easyVerification' metadata", call. = FALSE)
     if (fun == "veriApply") {
         arg.names <- c("verifun", "tdim", "ensdim", "na.rm", "fcst.ref", "prob", "threshold", "strategy")

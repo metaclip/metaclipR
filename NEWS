@@ -41,9 +41,11 @@
 * Internal changes pointing to the new domain <http://www.metaclip.org>
 * Define individual instances of *ds:Dataset*
 * Include longname as node name in *ds:Variable* nodes. Moved short name to *ds:hasShortName* data property
-* Literal command calls replacing former `Argument --> ArgumentValue` for easier graph readability. 
+* Literal command calls replacing former `Argument --> ArgumentValue` for improved graph readability. 
    * Updated some functions' arguments accordingly
 * Update *ds:HorizontalExtent* class data properties and allow for definition of independent HorizontalExtent graphs used as reference in subsequent steps (i.e. interpolation)
+   * New object property *ds:usedReferenceCoordinates* linking *ds:Interpolation* with *ds:HorizontalExtent*
 * Replace `metaclipR.Regridding` (deprecated) by `metaclipR.Interpolation`, in accordance with vocabulary renaming (*datasource v0.7*)
+* Bug fix in JSON-LD double-quote representation of character string arguments in literal command calls
 * Update package version support
 * Minor documentation updates
