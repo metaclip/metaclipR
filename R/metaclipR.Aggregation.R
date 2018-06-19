@@ -33,6 +33,7 @@
 #' needed for linking subsequent operations.
 #' @export
 #' @importFrom igraph make_empty_graph add_vertices add_edges 
+#' @importFrom utils packageVersion
 #' @author D. San Martín, J. Bedia
 #' @examples \dontrun{
 #' require(transformeR)
@@ -78,7 +79,7 @@
 #' }
 
 metaclipR.Aggregation <- function(package = "transformeR",
-                                  version = "1.3.2",
+                                  version = as.character(packageVersion(package)),
                                   graph,
                                   fun = "aggregateGrid",
                                   arg.list = NULL) {

@@ -35,10 +35,11 @@
 #' @export
 #' @importFrom igraph make_empty_graph add_vertices add_edges 
 #' @importFrom transformeR getGrid
+#' @importFrom utils packageVersion
 #' @author D. San Martín, J. Bedia
 
 metaclipR.AnomalyMap <- function(package = "visualizeR",
-                                 version = "1.1.1",
+                                 version = as.character(packageVersion(package)),
                                  graph = NULL,
                                  input.grid = NULL,
                                  fun = "spatialPlot",
