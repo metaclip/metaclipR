@@ -63,7 +63,6 @@ Other transformation: \code{\link{metaclip.graph.Command}},
   \code{\link{metaclipR.Dataset}},
   \code{\link{metaclipR.Ensemble}},
   \code{\link{metaclipR.Interpolation}},
-  \code{\link{metaclipR.Regridding}},
   \code{\link{metaclipR.etccdi}}
 }
 \author{

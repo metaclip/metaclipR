@@ -37,58 +37,9 @@ The following list of arguments is required to define an aggregation:
 
 The different arguments are explained in the the help page of \code{\link[transformeR]{interpGrid}}.
 }
-\examples{
-require(transformeR)
-require(igraph)
-pkg <- "transformeR"
-v <- "1.1.1"
-# Assume a given hindcast DatasetSubset: 
-data("CFS_Iberia_hus850")
-DS <- subsetGrid(CFS_Iberia_hus850, members = 1:3, years = 1989:1991)
-graph <- metaclipR.DatasetSubset(package = pkg,
-                                 version = v,
-                                 arg.list = list(members = 1:3,
-                                                 years = 1989:1991),
-                                 fun = "subsetGrid",
-                                 output = "DS")
-# Data are regridded to the regular EOBS 0.25 grid
-data("EOBS_Iberia_tas")
-ref.grid <- getGrid(EOBS_Iberia_tas)
-# We apply the fast 'akima' interpolator
-out <- interpGrid(DS,
-                  new.coordinates = ref.grid,
-                  method = "bilinear",
-                  bilin.method = "akima")
-plotClimatology(climatology(out), backdrop.theme = "coastline")
-# This is how metadata is encoded:
-# 1.) We identify the origin node from which the first transformation hangs:
-graph$parentnodename
-# 2.) Argument list
-arg.list <- list("new.coordinates" = ref.grid,
-                 "method" = "bilinear",
-                 "bilin.method" = "akima")
-# 3.) metaclipR.Regridding is called:
-graph <- metaclipR.Regridding(package = pkg,
-                              version = v,
-                              graph = graph,
-                              fun = "interpGrid",
-                              arg.list = arg.list)
-# This is the graph structure containing the metadata:
-plot(graph$graph)
-}
 \references{
 \href{http://www.meteo.unican.es/en/climate4r}{Climate4R page at University of Cantabria}
 \url{metaclip.predictia.es}
-}
-\seealso{
-Other transformation: \code{\link{metaclip.graph.Command}},
-  \code{\link{metaclipR.Aggregation}},
-  \code{\link{metaclipR.AnomalyCalculation}},
-  \code{\link{metaclipR.Climatology}},
-  \code{\link{metaclipR.Dataset}},
-  \code{\link{metaclipR.Ensemble}},
-  \code{\link{metaclipR.Interpolation}},
-  \code{\link{metaclipR.etccdi}}
 }
 \author{
 D. San Martín, J. Bedia
