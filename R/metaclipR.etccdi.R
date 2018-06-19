@@ -26,8 +26,7 @@
 #' @template template_arglistParam
 #' @template template_arglist
 #' @param graph Output from previous metaclipR function. A list with an i-graph class object plus the name of the parent node 
-#' from which the climate index step hangs.
-#' \code{transformeR} indicated in argument \code{fun}.
+#' from which the climate index step hangs. \code{climdexGrid} from package \pkg{climate4R.climdex} is indicated in argument \code{fun}.
 #' @details This function takes as reference the semantics defined in the Data Source and Transformation ontology
 #' defined in the Metaclip Framework (\url{http://www.metaclip.org}).
 #' 
@@ -66,8 +65,8 @@
 #' plot(metadata$graph)
 #' 
 #' # Alternatively, since metaclipR 1.1.0 the literal command call can be used:
-#' metadata2 <- metaclipR.etccdi(graph = a, index.code = "TX10p",
-#'                              arg.list = "tx10p <- climdexGrid(index.code = \"TX10p\", tx = tasmax.eobs, index.arg.list = list(freq = \"annual\")))")            
+#' cc <- "tx10p <- climdexGrid(index.code = \"TX10p\", tx = tasmax.eobs, index.arg.list = list(freq = \"annual\"))"
+#' metadata2 <- metaclipR.etccdi(graph = a, index.code = "TX10p", arg.list = cc)            
 #' plot(metadata2$graph)
 #' }
  
