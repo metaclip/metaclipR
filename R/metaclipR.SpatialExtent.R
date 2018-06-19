@@ -21,14 +21,28 @@
 #' suubsetting, regridding operations etc. so all steps point to the same reference spatial extent
 #' @param xyCoords Grid coordinates (i.e., the \code{$xyCoords} element of a \pkg{climate4R} object)
 #' @param region An optional character string designating a known region. See \code{knownClassIndividuals("HorizontalExtent")}
-#' for a list of regions defined in the current stable vocabulary version. Default to \code{NULL} and unused.
+#' for a list of regions defined in the current stable vocabulary version. Default to \code{NULL} and unused. When
+#' a known region is used, the spatial extent is already known, but resolution and projections details might be still needed (see the next arguments).
+#' Otherwise, the latter data properties are set to \code{NULL}. 
+#' @param xmin Optional. When neither \code{obj}, nor \code{RefSpatialExtent} arguments are passed, this is the minimum
+#' x coordinate defining the spatial extent
+#' @param xmax Same as \code{xmin}, but the maximum
+#' @param ymin Same as \code{xmin}, but for the Y coordinates
+#' @param ymax Same as \code{ymin}, but for the maximum Y coordinate.
+#' @param proj A projection string
+#' @param resX Spatial reslution of the grid in the X-coordinates
+#' @param resY Same as \code{resX}, but for the Y-coordinates
 #' @return A metaclipR list (igraph-class structure + terminal node name)
 #' @importFrom igraph make_empty_graph
 #' @author J Bedia
 #' @export
 
 
-metaclipR.SpatialExtent <- function(xyCoords, region = NULL) {
+metaclipR.SpatialExtent <- function(xyCoords, region = NULL,
+                                    xmin = NULL, xmax = NULL,
+                                    ymin = NULL, ymax = NULL,
+                                    proj = NULL,
+                                    resX = NULL, resY = NULL) {
     # Comprueba individuos para name
     graph <- make_empty_graph()
     if (!is.null(region)) {
@@ -39,24 +53,36 @@ metaclipR.SpatialExtent <- function(xyCoords, region = NULL) {
                                   nv = 1,
                                   name = spatextent.nodename,
                                   label = paste(region, "region", sep = "_"),
-                                  className = "ds:HorizontalExtent")
+                                  className = "ds:HorizontalExtent",
+                                  attr = list("ds:hasProjection" = proj,
+                                              "ds:hasHorizontalResX" = resX,
+                                              "ds:hasHorizontalResY" = resY))
         } else {
             stop("Invalid region specification\nCheck valid regions using \'knownClassIndividuals(\"SpatialExtent\")\'")
         }
     } else {
+        if (!is.null(xyCoords)) {
+            xmin <- xyCoords$x[1]
+            xmax <- tail(xyCoords$x, 1)
+            ymin <- xyCoords$y[1]
+            ymax <- tail(xyCoords$y, 1)
+            proj <- attr(xyCoords, "projection")
+            resX <- attr(xyCoords, "resX")
+            resY <- attr(xyCoords, "resY")
+        }
         spatextent.nodename <- paste("SpatialExtent", randomName(), sep = ".")
         graph <- add_vertices(graph,
                               nv = 1,
                               name = spatextent.nodename,
                               label = "SpatialExtent",
                               className = "ds:HorizontalExtent",
-                              attr = list("ds:xmin" = xyCoords$x[1],
-                                          "ds:xmax" = tail(xyCoords$x, 1),
-                                          "ds:ymin" = xyCoords$y[1],
-                                          "ds:ymax" = tail(xyCoords$y, 1),
-                                          "ds:hasProjection" = attr(xyCoords, "projection"),
-                                          "ds:hasHorizontalResX" = attr(xyCoords, "resX"),
-                                          "ds:hasHorizontalResY" = attr(xyCoords, "resY")))
+                              attr = list("ds:xmin" = xmin,
+                                          "ds:xmax" = xmax,
+                                          "ds:ymin" = ymin,
+                                          "ds:ymax" = ymax,
+                                          "ds:hasProjection" = proj,
+                                          "ds:hasHorizontalResX" = resX,
+                                          "ds:hasHorizontalResY" = resY))
     }
     return(list("graph" = graph, "parentnodename" = spatextent.nodename))
 }
