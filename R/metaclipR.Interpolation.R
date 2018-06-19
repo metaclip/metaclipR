@@ -121,7 +121,7 @@ metaclipR.Interpolation <- function(graph,
         graph <- add_edges(graph,
                            c(getNodeIndexbyName(graph, regnodename),
                              getNodeIndexbyName(graph, spatextent.nodename)),
-                           label = "ds:hasHorizontalExtent")
+                           label = "ds:usedReferenceCoordinates")
     }
     # Package/Command/Argument metadata ---------------------------------------
     if ("grid" %in% names(arg.list)) arg.list <- arg.list[-grep("grid", names(arg.list))]
