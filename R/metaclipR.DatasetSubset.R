@@ -1,6 +1,6 @@
 ##     metaclipR.DatasetSubset Construct a directed graph for DatasetSubset metadata encoding
 ##
-##     Copyright (C) 2017 Predictia (http://www.predictia.es)
+##     Copyright (C) 2018 Predictia (http://www.predictia.es)
 ##
 ##     This program is free software: you can redistribute it and/or modify
 ##     it under the terms of the GNU General Public License as published by
@@ -25,6 +25,17 @@
 #' @template template_arglist
 #' @param output A climate4R grid, resulting from the application of \code{\link[transformeR]{subsetGrid}}.
 #' @param disable.command Better not to touch. For internal usage only (used to re-use most of the code in other functions, but skipping command tracking)
+#' @param RefSpatialExtent A reference spatial extent used for spatial subset definition.
+#'  The reference spatial extent can be initiated with \code{\link{metaclipR.SpatialExtent}}, to be used in subsequent operations 
+#'  (e.g., regridding ...)
+#' @param xmin Optional. When neither \code{obj}, nor \code{RefSpatialExtent} arguments are passed, this is the minimum
+#' x coordinate defining the spatial extent
+#' @param xmax Same as \code{xmin}, but the maximum
+#' @param ymin Same as \code{xmin}, but for the Y coordinates
+#' @param ymax Same as \code{ymin}, but for the maximum Y coordinate.
+#' @param proj A projection string
+#' @param resX Spatial reslution of the grid in the X-coordinates
+#' @param resY Same as \code{resX}, but for the Y-coordinates
 #' @details This function takes as reference the semantics defined in the Data Source and Transformation ontology
 #' defined in the Metaclip Framework (\url{http://www.metaclip.org/}).
 #' 
@@ -45,23 +56,31 @@
 #' require(transformeR)
 #' require(igraph)
 #' # An example subset from S4_tas_iberia
-#' arg.list <- list(grid = S4_tas_iberia,
-#'                  members = 1:3, # First three members (out of 15)
-#'                  season = NULL,
-#'                  years = 1991:1995, # Period 1991-1995
-#'                  lonLim = c(-5,3), # longitudinal extent
-#'                  latLim = c(37,43),
-#'                  drop = FALSE) # latitudinal extent
+#' arg.list <- list() # latitudinal extent
 #' # Dataset subset is applied using subsetGrid:
-#' dataset.subset <- do.call("subsetGrid", args = arg.list)
+#' dataset.subset <- subsetGrid(grid = S4_tas_iberia,
+#'                              members = 1:3, 
+#'                              season = NULL,
+#'                              years = 1991:1995, 
+#'                              lonLim = c(-5,3), 
+#'                              latLim = c(37,43),
+#'                              drop = FALSE)
+#'                              
+#' command.call <- "subsetGrid(grid = S4_tas_iberia,
+#'                             members = 1:3, 
+#'                             season = NULL,
+#'                             years = 1991:1995, 
+#'                             lonLim = c(-5,3), 
+#'                             latLim = c(37,43),
+#'                             drop = FALSE)"
 #' # Just for illustration, visualization of the climatology:
-#' plotClimatology(climatology(dataset.subset, by.member = FALSE),
-#'                  backdrop.theme = "countries")
+#' require(visualizeR)
+#' spatialPlot(climatology(dataset.subset, by.member = FALSE),
+#'             backdrop.theme = "countries", rev.colors = TRUE)
 #' # Encoding provenance: 
 #' dsgraph <- metaclipR.DatasetSubset(package = "transformeR",
-#'                                    version = "1.1.1",
 #'                                    fun = "subsetGrid",
-#'                                    arg.list = arg.list,
+#'                                    arg.list = command.call,
 #'                                    output = "dataset.subset")
 #' # The Graph containing the metadata has been created.
 #' # This is a bit congested, but note that it is not conceived to be visualized in R
@@ -73,6 +92,9 @@ metaclipR.DatasetSubset <- function(package = "transformeR",
                                     fun = NULL,
                                     arg.list = NULL,
                                     output = NULL,
+                                    RefSpatialExtent = NULL,
+                                    xmin = NULL, xmax = NULL, ymin = NULL, ymax = NULL,
+                                    proj = NULL, resX = NULL, resY = NULL,
                                     disable.command = FALSE) {
     # First, an empty graph is created
     emptygraph <- TRUE
@@ -172,21 +194,33 @@ metaclipR.DatasetSubset <- function(package = "transformeR",
                          getNodeIndexbyName(graph, varstdef.nodename)),
                        label = "ds:hasStandardDefinition")
     # SpatialExtent (Horizontal) -------------------------------------
-    hext.nodename <- paste("HorizontalExtent", randomName(), sep = ".")
-    graph <- add_vertices(graph,
-                          nv = 1,
-                          name = hext.nodename,
-                          label = "HorizontalExtent",
-                          className = "ds:SpatialExtent",
-                          description = "Encode metadata of (Horizontal) Spatial Extents",
-                          attr = list("ds:xmin" = grd$x[1],
-                                      "ds:ymin" = grd$y[1],
-                                      "ds:xmax" = grd$x[2],
-                                      "ds:ymax" = grd$y[2])
-                          )
-    graph <- add_edges(graph, 
+    if (is.null(RefSpatialExtent)) {
+        if (!is.null(output)) {
+            RefSpatialExtent <- metaclipR.SpatialExtent(xyCoords = output$xyCoords)
+        } else {
+            g.aux <- make_empty_graph()
+            spatextent.nodename <- paste("SpatialExtent", randomName(), sep = ".")
+            g.aux <- add_vertices(g.aux,
+                                  nv = 1,
+                                  name = spatextent.nodename,
+                                  className = "ds:HorizontalExtent",
+                                  attr = list("ds:xmin" = xmin,
+                                              "ds:xmax" = xmax,
+                                              "ds:ymin" = ymin,
+                                              "ds:ymax" = ymax,
+                                              "ds:hasProjection" = proj,
+                                              "ds:hasHorizontalResX" = resX,
+                                              "ds:hasHorizontalResY" = resY))
+            RefSpatialExtent <- list("graph" = g.aux, "parentnodename" = spatextent.nodename)
+        }
+    }
+    if (class(RefSpatialExtent$graph) != "igraph") stop("Invalid \'RefSpatialExtent\' structure")
+    spatextent.nodename <- RefSpatialExtent$parentnodename
+    spatextent.graph <- RefSpatialExtent$graph
+    graph <- my_union_graph(graph, spatextent.graph)
+    graph <- add_edges(graph,
                        c(getNodeIndexbyName(graph, DatasetSubset.nodename),
-                         getNodeIndexbyName(graph, hext.nodename)),
+                         getNodeIndexbyName(graph, spatextent.nodename)),
                        label = "ds:hasHorizontalExtent")
     # Spatial Extent (Vertical) --------------------------------------
     vextent.nodename <- paste("VerticalExtent", randomName(), sep = ".")
@@ -194,8 +228,7 @@ metaclipR.DatasetSubset <- function(package = "transformeR",
                           nv = 1,
                           name = vextent.nodename,
                           label = "VerticalExtent",
-                          className = "ds:SpatialExtent",
-                          description = "Encode metadata of (Vertical) Spatial Extents")
+                          className = "ds:VerticalExtent")
     graph <- add_edges(graph, 
                        c(getNodeIndexbyName(graph, DatasetSubset.nodename),
                          getNodeIndexbyName(graph, vextent.nodename)),
