@@ -98,7 +98,7 @@ metaclipR.Interpolation <- function(graph,
                           nv = 1,
                           name = regnodename,
                           label = "Interpolation",
-                          className = interp.method.class)
+                          className = "ds:Interpolation")
     graph <- add_edges(graph,
                        c(getNodeIndexbyName(graph, orig.node),
                          getNodeIndexbyName(graph, regnodename)),
