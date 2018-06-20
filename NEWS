@@ -36,7 +36,7 @@
 * Other changes and class/property renaming for full compatibility with [datasource.owl v0.3](http://www.metaclip.org/datasource/0.3/datasource.owl)
 * METACLIP paper version submitted to EMS
 
-## v1.1.0 (devel)
+## v1.1.0 (20 Jun 2018)
 
 * Internal changes pointing to the new domain <http://www.metaclip.org>
 * Define individual instances of *ds:Dataset*
@@ -48,4 +48,4 @@
 * Replace `metaclipR.Regridding` (deprecated) by `metaclipR.Interpolation`, in accordance with vocabulary renaming (*datasource v0.7*)
 * Bug fix in JSON-LD double-quote representation of character string arguments in literal command calls
 * Update package version support
-* Minor documentation updates
+* Documentation updates
