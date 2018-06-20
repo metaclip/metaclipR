@@ -49,3 +49,7 @@
 * Bug fix in JSON-LD double-quote representation of character string arguments in literal command calls
 * Update package version support
 * Documentation updates
+
+## v1.1.1 (in devel)
+
+* Bug fix in `metaclipR.Interpolation`  (wrong class assignment to Interpolation node)
