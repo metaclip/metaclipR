@@ -1,6 +1,6 @@
 ##     metaclipR.SkillMap Construct a directed graph for skill map metadata encoding
 ##
-##     Copyright (C) 2017 Predictia (http://www.predictia.es)
+##     Copyright (C) 2018 Predictia (http://www.predictia.es)
 ##
 ##     This program is free software: you can redistribute it and/or modify
 ##     it under the terms of the GNU General Public License as published by
@@ -19,21 +19,22 @@
 #' @description Build a directed metadata graph describing a skill map 
 #' @param package package
 #' @param version version
+#' @param command.call.string Optional. In case the user wants the METACLIP representation of the command 
+#' as a literal command string. See the \code{arg.list} argument.
 #' @param graph metaclipR output object containing the input grid whose values are to be mapped
 #' @param input.grid Optional. The input grid passed to the plotting function. Some metadata are extracted from 
 #' this object if not explicit from the plotting arguments (e.g., the spatial extent of the map).
 #' @param epsg.code A character string indicating the EPSG code of the map projection. Default to \code{"4979"}
 #' (the most widely used WGS84 proj).
 #' @param fun function name. Default to \code{spatialPlot}, from package \code{visualizeR}.
-#' @template template_arglistParam
-#' @template template_arglist
+#' @template arg.list A key-value list of arguments passed to the function. Unlike other metaclipR functions, in this
+#' case the key-value list is compulsory. If literal command calls are required, these can be passed via the \code{command.call.string} argument)
 #' @param StipplingInputGraph Currently unused. The metaclipR output containing the step from which the stippling is derived (default to \code{NULL},
 #'  and no stippling is indicated)
 #' @details This function takes as reference the semantics defined in the Data Source and Transformation ontology
 #' defined in the Metaclip Framework (\url{http://www.metaclip.org/}).
 #' 
 #' @references 
-#' \href{https://docs.google.com/presentation/d/1Bn7M7IIFVvOoKG7YymXkDnNH4vJOqO6xmimeUI6Uxc0/view#slide=id.g23b883c69b_0_194}{Visual schema of the graphical product ontology}
 #' \href{http://www.meteo.unican.es/en/climate4r}{Climate4R page at University of Cantabria}
 #' @family graphical.products
 #' @export
@@ -43,9 +44,10 @@
 
 metaclipR.SkillMap <- function(graph, 
                                package = "visualizeR",
-                               version = "1.1.1",
+                               version = as.character(packageVersion(package)),
                                input.grid = NULL,
                                fun = "skillMap",
+                               command.call.string = NULL,
                                arg.list = NULL,
                                StipplingInputGraph = NULL,
                                epsg.code = "EPSG:4979") {
@@ -91,7 +93,6 @@ metaclipR.SkillMap <- function(graph,
                               name = spatextent.nodename,
                               label = "SpatialExtent",
                               className = "ds:SpatialExtent",
-                              description = "SpatialExtent definition",
                               attr = list("ds:xmin" = xmin,
                                           "ds:xmax" = xmax,
                                           "ds:ymin" = ymin,
@@ -206,6 +207,7 @@ metaclipR.SkillMap <- function(graph,
     # Package/Command/Argument metadata ---------------------------------------
     if ("easyVeriGrid" %in% names(arg.list)) arg.list <- arg.list[-grep("easyVeriGrid", names(arg.list))]
     if (!is.null(arg.list$title)) arg.list$title <- gsub("\n","|", arg.list$title)
+    if (!is.null(command.call.string)) arg.list <- command.call.string
     graph <- metaclip.graph.Command(graph, package, version, fun, arg.list, origin.node.name = map.nodename)
     return(list("graph" = graph, "parentnodename" = map.nodename))
 }
