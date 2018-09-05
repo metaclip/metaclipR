@@ -205,12 +205,12 @@ metaclipR.Dataset <- function(Dataset.name = NULL,
                         getNodeIndexbyName(graph, GCM.nodename)),
                       label = "ds:hadDrivingGCM")
         } else {
+            op <- ifelse(grepl("^Seasonal", Dataset.subclass), "ds:hadSeasonalForecastingSystem", "ds:hadSimulationModel")
             add_edges(graph, 
                       c(getNodeIndexbyName(graph, Dataset.nodename),
                         getNodeIndexbyName(graph, GCM.nodename)),
-                      label = "ds:hadSimulationModel")
+                      label = op)
         }
-        
     }
     return(list("graph" = graph, "parentnodename" = Dataset.nodename))
 }
