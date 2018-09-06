@@ -302,6 +302,20 @@ pkgVersionCheck <- function(pkg, version) {
 
 knownPackageVersions <- function() find.package(package = "metaclipR") %>% file.path("pkg_versions.csv") %>% read.csv(stringsAsFactors = FALSE) %>% print()
 
+#' @title Set a node name
+#' @description Set a node name after checking whether it is an individual instance or not
+#' @export
+#' @param node.name Proposed node name. This ca be an individual instance
+#' @param node.class Class of the node
+#' @param vocabulary Vocabulary defining the \code{node.class}. Default to \code{"datasource"}.
+
+setNodeName <- function(node.name, node.class, vocabulary = "datasource") {
+    suppressWarnings(
+        ifelse(node.name %in% suppressMessages(knownClassIndividuals(node.class, vocabulary = vocabulary)),
+               paste0("ds:", node.name),
+               paste0(node.name, ".", randomName()))
+    )
+}
 
 
 
