@@ -28,6 +28,7 @@
 #' @details This function takes as reference the semantics defined in the Seasonal Forecast Verification ontology
 #' defined in the Metaclip Framework (\url{http://www.metaclip.org}).
 #' @keywords internal
+#' @export
 #' @importFrom igraph add_vertices add_edges 
 #' @importFrom magrittr %<>% 
 #' @author D. San Martín, J. Bedia
