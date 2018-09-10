@@ -6,7 +6,8 @@
 \usage{
 metaclipR.Ensemble(package = "transformeR",
   version = as.character(packageVersion(package)), output = NULL,
-  fun = "bindGrid.member", arg.list = NULL, graph.list)
+  fun = "bindGrid.member", arg.list = NULL,
+  combination.method = NULL, graph.list)
 }
 \arguments{
 \item{package}{package name. Default to \code{"transformeR"}}
@@ -18,6 +19,10 @@ metaclipR.Ensemble(package = "transformeR",
 \item{fun}{function name. Default to \code{"bindGrid.member"})}
 
 \item{arg.list}{Either a character string containing a literal command call or a key-value pair list of arguments-values. See the dedicated section more for details.}
+
+\item{combination.method}{Optional. Character string refering to the combination method used to construct the ensemble.
+This is represented by the ds class "CombinationMethod", for which several individual instances exist (this
+can be indicated here). Type \code{knownClassIndividuals("CombinationMethod")} for further details.}
 
 \item{graph.list}{A \code{metaclipR} object data list, each element being the
 graph defining each ensemble member}
@@ -64,3 +69,4 @@ Other transformation: \code{\link{metaclip.graph.Command}},
 \author{
 D. San Martín, J. Bedia
 }
+\concept{transformation}

@@ -46,4 +46,5 @@ Other getProperty.helpers: \code{\link{getHasAbsoluteThreshold}},
 \author{
 J Bedia
 }
+\concept{getProperty.helpers}
 \keyword{internal}

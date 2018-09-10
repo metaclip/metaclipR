@@ -6,9 +6,10 @@
 \usage{
 metaclipR.DatasetSubset(package = "transformeR",
   version = as.character(packageVersion(package)), graph = NULL,
-  fun = NULL, arg.list = NULL, output = NULL, RefSpatialExtent = NULL,
-  xmin = NULL, xmax = NULL, ymin = NULL, ymax = NULL, proj = NULL,
-  resX = NULL, resY = NULL, disable.command = FALSE)
+  fun = NULL, arg.list = NULL, output = NULL,
+  RefSpatialExtent = NULL, xmin = NULL, xmax = NULL, ymin = NULL,
+  ymax = NULL, proj = NULL, resX = NULL, resY = NULL,
+  disable.command = FALSE)
 }
 \arguments{
 \item{package}{package}
@@ -123,3 +124,4 @@ Other subsetting: \code{\link{metaclipR.loadeR}}
 \author{
 D. San Martín, J. Bedia
 }
+\concept{subsetting}

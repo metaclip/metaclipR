@@ -184,7 +184,7 @@ serializeVertex <- function(g, vertex, describedNodeNames, connection) {
 
 
 #' @title Individual identification
-#' @description Is the node representing and individual instance, or a generic class entity?
+#' @description Is the node representing and individual instance (\code{TRUE}), or a generic class entity (\code{FALSE})?
 #' @return A Logical flag
 #' @keywords internal
 #' @author J Bedia

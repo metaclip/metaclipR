@@ -4,7 +4,8 @@
 \alias{metaclip.graph.Command}
 \title{Directed metadata graph construction for Package/Command/Argument provenance description}
 \usage{
-metaclip.graph.Command(graph, package, version, fun, arg.list, origin.node.name)
+metaclip.graph.Command(graph, package, version, fun, arg.list,
+  origin.node.name)
 }
 \arguments{
 \item{graph}{An igraph-class graph}
@@ -60,4 +61,5 @@ Other transformation: \code{\link{metaclipR.Aggregation}},
 \author{
 D. San Martín, J. Bedia
 }
+\concept{transformation}
 \keyword{internal}

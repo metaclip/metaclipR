@@ -58,3 +58,4 @@ Other validation: \code{\link{metaclipR.Validation}}
 \author{
 D. San Martín, J. Bedia
 }
+\concept{validation}

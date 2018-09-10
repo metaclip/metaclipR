@@ -36,3 +36,4 @@ Other ontology.helpers: \code{\link{knownClassIndividuals}}
 \author{
 J Bedia, D. San-Martín
 }
+\concept{ontology.helpers}

@@ -69,3 +69,4 @@ Other subsetting: \code{\link{metaclipR.DatasetSubset}}
 \author{
 D. San Martín, J. Bedia
 }
+\concept{subsetting}

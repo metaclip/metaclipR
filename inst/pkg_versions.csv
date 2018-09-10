@@ -1,8 +1,8 @@
 package,from,to
-transformeR,1.3.3,1.4.2
-downscaleR,2.0.3,3.0.0
-loadeR,1.3.0,1.4.2
+transformeR,1.3.3,1.4.4
+downscaleR,2.0.3,3.0.3
+loadeR,1.3.0,1.4.6
 loadeR.ECOMS,1.4.0,1.4.5
-visualizeR,1.1.0,1.1.2
+visualizeR,1.1.0,1.2.3
 easyVerification,0.4.3,0.4.4
-climate4R.climdex,0.1.1,0.1.3
+climate4R.climdex,0.1.1,0.1.4

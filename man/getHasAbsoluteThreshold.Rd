@@ -46,4 +46,5 @@ Other getProperty.helpers: \code{\link{getHasProbabilityThreshold}},
 \author{
 J Bedia
 }
+\concept{getProperty.helpers}
 \keyword{internal}

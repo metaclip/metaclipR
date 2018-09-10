@@ -149,6 +149,7 @@ getIndividualClass <- function(individual.name, vocabulary = "datasource") {
 #'  Requires prefix inclusion (e.g. \code{className = "ds:DatasetSubset"})
 #' @importFrom igraph add_vertices vertex_attr
 #' @keywords internal
+#' @export
 #' @author J Bedia
 
 my_add_vertices <- function(graph,
@@ -308,6 +309,7 @@ knownPackageVersions <- function() find.package(package = "metaclipR") %>% file.
 #' @param node.name Proposed node name. This ca be an individual instance
 #' @param node.class Class of the node
 #' @param vocabulary Vocabulary defining the \code{node.class}. Default to \code{"datasource"}.
+#' @return A character string to be set as the \code{"name"} attribute by \code{\link{my_add_vertices}}
 
 setNodeName <- function(node.name, node.class, vocabulary = "datasource") {
     suppressWarnings(

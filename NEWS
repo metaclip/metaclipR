@@ -53,3 +53,6 @@
 ## v1.1.1 (in devel)
 
 * Bug fix in `metaclipR.Interpolation`  (wrong class assignment to Interpolation node)
+* Addition of combination method option in `metaclipR.Ensemble`
+* New internal helper `setNodeName`
+* Other minor documentation updates

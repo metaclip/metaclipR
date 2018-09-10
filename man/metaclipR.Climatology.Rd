@@ -68,3 +68,4 @@ Other transformation: \code{\link{metaclip.graph.Command}},
 \author{
 D. San Martín, J. Bedia
 }
+\concept{transformation}

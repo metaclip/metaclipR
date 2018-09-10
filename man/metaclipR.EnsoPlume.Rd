@@ -72,3 +72,4 @@ Other graphical.products: \code{\link{metaclipR.AnomalyMap}},
 \author{
 D. San Martín, J. Bedia
 }
+\concept{graphical.products}

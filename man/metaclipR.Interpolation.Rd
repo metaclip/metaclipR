@@ -5,8 +5,9 @@
 \title{Directed metadata graph construction for interpolation Transformations}
 \usage{
 metaclipR.Interpolation(graph, package = "transformeR",
-  version = as.character(packageVersion(package)), RefSpatialExtent = NULL,
-  InterpolationMethod, fun = "interpGrid", arg.list = NULL)
+  version = as.character(packageVersion(package)),
+  RefSpatialExtent = NULL, InterpolationMethod, fun = "interpGrid",
+  arg.list = NULL)
 }
 \arguments{
 \item{graph}{A previous metaclipR data structure from which the current step follows}
@@ -105,3 +106,4 @@ Other transformation: \code{\link{metaclip.graph.Command}},
 \author{
 D. San Martín, J. Bedia
 }
+\concept{transformation}

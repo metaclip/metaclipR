@@ -24,4 +24,5 @@ Other graph.helpers: \code{\link{getNodeAttributes}},
 \author{
 J Bedia
 }
+\concept{graph.helpers}
 \keyword{internal}

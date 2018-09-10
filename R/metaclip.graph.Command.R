@@ -124,10 +124,8 @@ metaclip.graph.Command <- function(graph, package, version, fun, arg.list, origi
             }
         }
         # Package ----------------------
-        pkg.node.name <- ifelse(package %in% suppressMessages(knownClassIndividuals("Package")),
-                                paste0("ds:", package), paste0("Package.", randomName()))
+        pkg.node.name <- setNodeName(node.name = package, node.class = "Package", vocabulary = "datasource")
         graph <- my_add_vertices(graph = graph,
-                                 nv = 1,
                                  name = pkg.node.name, 
                                  className = "ds:Package",
                                  label = package)

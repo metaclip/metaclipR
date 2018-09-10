@@ -24,4 +24,5 @@ Other getClass.helpers: \code{\link{getForecastRepresentation}}
 \author{
 J Bedia
 }
+\concept{getClass.helpers}
 \keyword{internal}

@@ -70,3 +70,4 @@ Other validation: \code{\link{metaclipR.easyVerification}}
 \author{
 D. San Martín, J. Bedia
 }
+\concept{validation}

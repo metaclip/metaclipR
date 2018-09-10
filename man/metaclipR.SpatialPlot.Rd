@@ -6,8 +6,8 @@
 \usage{
 metaclipR.SpatialPlot(package = "visualizeR", version = "1.1.1", graph,
   input.grid = NULL, type = "grid", fun = "spatialPlot",
-  arg.list = NULL, stipplingInputGraph = NULL, epsg.code = "EPSG:4329",
-  isBranchStep = FALSE)
+  arg.list = NULL, stipplingInputGraph = NULL,
+  epsg.code = "EPSG:4329", isBranchStep = FALSE)
 }
 \arguments{
 \item{package}{package}
@@ -76,3 +76,4 @@ Other graphical.products: \code{\link{metaclipR.AnomalyMap}},
 \author{
 D. San Martín, J. Bedia
 }
+\concept{graphical.products}

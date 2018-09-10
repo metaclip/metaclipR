@@ -18,7 +18,7 @@
 
 #' @title Set a reference SpatialExtent
 #' @description Creates a graph containing a SpatialExtent definition, that can be used later as spatial reference of
-#' suubsetting, regridding operations etc. so all steps point to the same reference spatial extent
+#' subsetting, regridding operations etc. so all steps point to the same reference spatial extent
 #' @param xyCoords Grid coordinates (i.e., the \code{$xyCoords} element of a \pkg{climate4R} object)
 #' @param region An optional character string designating a known region. See \code{knownClassIndividuals("HorizontalExtent")}
 #' for a list of regions defined in the current stable vocabulary version. Default to \code{NULL} and unused. When

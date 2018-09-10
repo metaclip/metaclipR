@@ -40,3 +40,4 @@ Other ontology.helpers: \code{\link{getIndividualClass}}
 \author{
 J Bedia, D. San-Martín
 }
+\concept{ontology.helpers}

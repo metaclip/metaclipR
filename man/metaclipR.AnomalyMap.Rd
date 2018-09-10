@@ -66,3 +66,4 @@ Other graphical.products: \code{\link{metaclipR.EnsoPlume}},
 \author{
 D. San Martín, J. Bedia
 }
+\concept{graphical.products}
