@@ -55,4 +55,5 @@
 * Bug fix in `metaclipR.Interpolation`  (wrong class assignment to Interpolation node)
 * Addition of combination method option in `metaclipR.Ensemble`
 * New internal helper `setNodeName`
+* Allow to disable argument-value details in `metaclipR.Aggregation`
 * Other minor documentation updates

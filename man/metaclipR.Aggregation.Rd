@@ -6,7 +6,7 @@
 \usage{
 metaclipR.Aggregation(package = "transformeR",
   version = as.character(packageVersion(package)), graph,
-  fun = "aggregateGrid", arg.list = NULL)
+  fun = "aggregateGrid", arg.list = NULL, use.arg.list = TRUE)
 }
 \arguments{
 \item{package}{package}
@@ -18,6 +18,9 @@ metaclipR.Aggregation(package = "transformeR",
 \item{fun}{function name. Unused (set to \code{"aggregateGrid"})}
 
 \item{arg.list}{Either a character string containing a literal command call or a key-value pair list of arguments-values. See the dedicated section more for details.}
+
+\item{use.arg.list}{Logical flag. Used to optionally omit (\code{use.arg.list = FALSE}) the argument list in the description of command call. 
+Default to TRUE.}
 }
 \value{
 A named list with the updated graph in element \code{"graph"} and the parent node name (\code{"parentnodename"}),
