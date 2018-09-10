@@ -162,7 +162,7 @@ metaclipR.Aggregation <- function(package = "transformeR",
         cellme <- gsub("\"","'", cellme)
         aggr.time.nodename <- paste("ValidationTime", randomName(), sep = ".")
         graph <- my_add_vertices(graph,
-                                 name = "DailyAggregation",
+                                 name = aggr.time.nodename,
                                  label = "ValidationTime",
                                  className = "ds:ValidationTime",
                                  attr = list("ds:hasCellMethod" = cellme))
