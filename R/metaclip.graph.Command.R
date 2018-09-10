@@ -37,14 +37,15 @@ metaclip.graph.Command <- function(graph, package, version, fun, arg.list, origi
     if (class(graph) != "igraph") stop("Invalid input graph (not an 'igraph-class' object)")
     pkgVersionCheck(package, version)
     if (!is.null(fun)) {
-        cmd.node.name <- paste("Command", fun, randomName(), sep = ".")
+        cmd.node.name <- setNodeName("QA4Seas.py", node.class = "Command")
+        # cmd.node.name <- paste("Command", fun, randomName(), sep = ".")
         # Argument and ArgumentValue
         if (is.list(arg.list)) {
-            graph <- add_vertices(graph, 1, 
-                                  name = cmd.node.name, 
-                                  className = "ds:Command",
-                                  label = fun,
-                                  attr = list("prov:value" = fun))
+            graph <- my_add_vertices(graph, 1, 
+                                     name = cmd.node.name, 
+                                     className = "ds:Command",
+                                     label = fun,
+                                     attr = list("prov:value" = fun))
             # Add the edge linking the verification step with the command 
             for (i in 1:length(origin.node.name)) {
                 graph <- add_edges(graph, 
