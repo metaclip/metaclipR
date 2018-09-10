@@ -22,6 +22,8 @@
 #' @param graph A previous metaclipR data structure from which the current step follows
 #' @param version version
 #' @param fun function name. Unused (set to \code{"aggregateGrid"})
+#' @param use.arg.list Logical flag. Used to optionally omit (\code{use.arg.list = FALSE}) the argument list in the description of command call. 
+#' Default to TRUE.
 #' @template template_arglistParam
 #' @template template_arglist
 #' @details This function takes as reference the semantics defined in the Data Source and Transformation ontology
@@ -82,7 +84,8 @@ metaclipR.Aggregation <- function(package = "transformeR",
                                   version = as.character(packageVersion(package)),
                                   graph,
                                   fun = "aggregateGrid",
-                                  arg.list = NULL) {
+                                  arg.list = NULL,
+                                  use.arg.list = TRUE) {
     orig.node <- graph$parentnodename
     graph <- graph$graph
     if (class(graph) != "igraph") stop("Invalid input graph (not an 'igraph-class' object)")
@@ -279,6 +282,7 @@ metaclipR.Aggregation <- function(package = "transformeR",
     }
     # Package/Command/Argument metadata ---------------------------------------
     if ("grid" %in% names(arg.list)) arg.list <- arg.list[-grep("grid", names(arg.list))]
+    if (!use.arg.list) arg.list <- NULL
     graph <- metaclip.graph.Command(graph, package, version, fun, arg.list,
                                     origin.node.name = orig.nodes.command)
     return(list("graph" = graph,
