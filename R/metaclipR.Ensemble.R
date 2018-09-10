@@ -24,6 +24,9 @@
 #' @param graph.list A \code{metaclipR} object data list, each element being the
 #' graph defining each ensemble member
 #' @param output Optional. The output R object name, as character string
+#' @param combination.method Optional. Character string refering to the combination method used to construct the ensemble.
+#' This is represented by the ds class "CombinationMethod", for which several individual instances exist (this
+#' can be indicated here). Type \code{knownClassIndividuals("CombinationMethod")} for further details.
 #' @template template_arglistParam
 #' @template template_arglist
 #' @details This function takes as reference the semantics defined in the Data Source and Transformation ontology
@@ -38,6 +41,7 @@ metaclipR.Ensemble <- function(package = "transformeR",
                                output = NULL,
                                fun = "bindGrid.member",
                                arg.list = NULL,
+                               combination.method = NULL,
                                graph.list) {
     if (length(graph.list) < 2) {
         stop("The input must be a list of at least two metaclipR graphs", call. = FALSE)
@@ -64,6 +68,18 @@ metaclipR.Ensemble <- function(package = "transformeR",
                            c(getNodeIndexbyName(graph, graph.list[[i]]$parentnodename),
                              getNodeIndexbyName(graph, nodename)),
                            label = "ds:wasEnsembleMember")
+    }
+    ## Combination method (if specified)
+    if (!is.null(combination.method)) {
+        if (!is.character(combination.method)) stop("Invalid \'combination.method\' argument value", call. = FALSE)
+        cm.nodename <- setNodeName(combination.method, node.class = "CombinationMethod", vocabulary = "datasource")
+        graph <- my_add_vertices(graph = graph,
+                                 name = cm.nodename,
+                                 label = "Combination Method",
+                                 className = "ds:CombinationMethod")
+        graph <- add_edges(graph, c(getNodeIndexbyName(graph, nodename),
+                                    getNodeIndexbyName(cm.nodename)),
+                           label = "ds:hadCombinationMethod")
     }
     # Package/Command/Argument metadata ---------------------------------------
     graph <- metaclip.graph.Command(graph, package, version, fun, arg.list,
