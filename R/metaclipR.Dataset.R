@@ -130,7 +130,6 @@ metaclipR.Dataset <- function(Dataset.name = NULL,
                                           DataProvider %in% suppressMessages((knownClassIndividuals("ModellingCenter"))), TRUE, FALSE)
         DataProvider.nodename <- ifelse(isKnownDataProvider, paste0("ds:", DataProvider), paste0("DataProvider.", randomName())) 
         graph <- my_add_vertices(graph,
-                                 nv = 1,
                                  name = DataProvider.nodename,
                                  label = DataProvider,
                                  className = "ds:DataProvider",

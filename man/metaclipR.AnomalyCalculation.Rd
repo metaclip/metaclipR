@@ -57,7 +57,7 @@ by the user.
 require(transformeR)
 require(igraph)
 pkg <- "transformeR"
-v <- "1.1.1"
+v <- "1.4.1"
 # Assume a given hindcast DatasetSubset: 
 data("CFS_Iberia_psl")
 # In this example it is assumed that the 1983-1990 partition is the hindcast
@@ -112,6 +112,7 @@ fcst <- subsetGrid(CFS.psl.annual, years = 2002)
 # no linking property between hindcast and forecast is indicated 
 metadata2 <- metaclipR.DatasetSubset(package = pkg,
                                      version = v,
+                                     fun = "subsetGrid",
                                      arg.list = list("years" = 2002),
                                      output = "fcst")
                                           
