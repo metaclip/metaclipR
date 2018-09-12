@@ -37,11 +37,11 @@ metaclip.graph.Command <- function(graph, package, version, fun, arg.list, origi
     if (class(graph) != "igraph") stop("Invalid input graph (not an 'igraph-class' object)")
     pkgVersionCheck(package, version)
     if (!is.null(fun)) {
-        cmd.node.name <- setNodeName("QA4Seas.py", node.class = "Command")
+        cmd.node.name <- setNodeName(fun, node.class = "Command")
         # cmd.node.name <- paste("Command", fun, randomName(), sep = ".")
         # Argument and ArgumentValue
         if (is.list(arg.list)) {
-            graph <- my_add_vertices(graph, 1, 
+            graph <- my_add_vertices(graph,  
                                      name = cmd.node.name, 
                                      className = "ds:Command",
                                      label = fun,
@@ -106,36 +106,33 @@ metaclip.graph.Command <- function(graph, package, version, fun, arg.list, origi
                     }
                 }
             }
-        } else {
-            if (is.character(arg.list)) {
-                if (length(arg.list) > 1) stop("Invalid literal command call definition (should be of length one)")
-                arg.list %<>% formatCommandCallString()
-                graph <- add_vertices(graph, 1, 
-                                      name = cmd.node.name, 
-                                      className = "ds:Command",
-                                      label = fun,
-                                      attr = list("prov:value" = fun,
-                                                  "ds:hadLiteralCommandCall" = arg.list))
-                # Add the edge linking the verification step with the command 
-                for (i in 1:length(origin.node.name)) {
-                    graph <- add_edges(graph, 
-                                       c(getNodeIndexbyName(graph, origin.node.name[i]),
-                                         getNodeIndexbyName(graph, cmd.node.name)),
-                                       label = "ds:hadCommandCall")    
-                }
-            }
+        } else if (is.character(arg.list)) {
+            if (length(arg.list) > 1) stop("Invalid literal command call definition (should be of length one)")
+            arg.list %<>% formatCommandCallString()
+            graph <- add_vertices(graph, 1, 
+                                  name = cmd.node.name, 
+                                  className = "ds:Command",
+                                  label = fun,
+                                  attr = list("prov:value" = fun,
+                                              "ds:hadLiteralCommandCall" = arg.list))
         }
-        # Package ----------------------
-        pkg.node.name <- setNodeName(node.name = package, node.class = "Package", vocabulary = "datasource")
-        graph <- my_add_vertices(graph = graph,
-                                 name = pkg.node.name, 
-                                 className = "ds:Package",
-                                 label = package)
-        graph <- add_edges(graph, 
-                           c(getNodeIndexbyName(graph, cmd.node.name),
-                             getNodeIndexbyName(graph, pkg.node.name)),
-                           label = "ds:fromPackage")
+        for (i in 1:length(origin.node.name)) {
+            graph <- add_edges(graph, 
+                               c(getNodeIndexbyName(graph, origin.node.name[i]),
+                                 getNodeIndexbyName(graph, cmd.node.name)),
+                               label = "ds:hadCommandCall")    
+        }
     }
+    # Package ----------------------
+    pkg.node.name <- setNodeName(node.name = package, node.class = "Package", vocabulary = "datasource")
+    graph <- my_add_vertices(graph = graph,
+                             name = pkg.node.name, 
+                             className = "ds:Package",
+                             label = package)
+    graph <- add_edges(graph, 
+                       c(getNodeIndexbyName(graph, cmd.node.name),
+                         getNodeIndexbyName(graph, pkg.node.name)),
+                       label = "ds:fromPackage")
     return(graph)
 }
 
