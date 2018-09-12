@@ -54,7 +54,6 @@ metaclipR.Ensemble <- function(package = "transformeR",
     # graph <- make_empty_graph()
     nodename <- paste0("Ensemble.", randomName()) 
     graph <- my_add_vertices(graph,
-                             nv = 1,
                              name = nodename,
                              label = "Multi-model Ensemble",
                              className = "ds:Ensemble")
