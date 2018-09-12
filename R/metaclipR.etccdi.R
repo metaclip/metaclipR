@@ -69,7 +69,8 @@
 #' metadata2 <- metaclipR.etccdi(graph = a, index.code = "TX10p", arg.list = cc)            
 #' plot(metadata2$graph)
 #' }
- 
+
+
 metaclipR.etccdi <- function(graph,
                              package = "climate4R.climdex",
                              version = as.character(packageVersion(package)),
@@ -145,6 +146,109 @@ metaclipR.etccdi <- function(graph,
     if ("tn" %in% names(arg.list)) arg.list <- arg.list[-grep("tn", names(arg.list))]
     if ("tx" %in% names(arg.list)) arg.list <- arg.list[-grep("tx", names(arg.list))]
     if ("pr" %in% names(arg.list)) arg.list <- arg.list[-grep("pr", names(arg.list))]
+    graph <- metaclip.graph.Command(graph, package, version, fun, arg.list,
+                                    origin.node.name = cicalc.node)
+    return(list("graph" = graph, "parentnodename" = cicalc.node))
+}
+
+
+
+#' @title METACLIP description of climate index calculation steps
+#' @description METACLIP description of climate index calculation steps
+#' @param graph Output from previous metaclipR function. A list with an i-graph class object plus the name of the parent node 
+#' from which the climate index step hangs. \code{climdexGrid} from package \pkg{climate4R.climdex} is indicated in argument \code{fun}.
+#' @param package package
+#' @param version version
+#' @param index.code Character string, indicating the specific code of the index according to the ETCCDI definitions (see Details)
+#' @param fun function name. Unused (set to \code{"climdexGrid"})
+#' @param output Optional. The output climate4R object name, as character string
+#' @template template_arglistParam
+#' @template template_arglist
+#' @param new.time.res Character string. Recommended an ISO8601 representation of temporal resolution, 
+#' as a "duration". Typical values are "P1H" (hourly), "P3H" (3-hourly), "P1D" (daily), "P1M" (monthly) etc.
+#' If omitted, the last temporal resolution given is assumed to be preserved, and this is not updated.
+#' @param time.step Optional. Time step data property
+#' @param cell.method Optional. Cell method. Default to the \code{index.code} value. 
+#' @references For reference on ISO8601 definition \url{https://en.wikipedia.org/wiki/ISO_8601#Durations}
+#' @export
+
+metaclipR.ClimateIndex <- function(graph,
+                                   package = "climate4R.climdex",
+                                   version = as.character(packageVersion(package)),
+                                   output = NULL,
+                                   index.code,
+                                   fun = "climdexGrid",
+                                   arg.list = NULL,
+                                   new.time.res = NULL,
+                                   time.step = NULL,
+                                   cell.method = NULL) {
+    if (class(graph$graph) != "igraph") stop("Invalid input graph (not an 'igraph-class' object)")
+    if (is.null(index.code)) {
+        stop("The 'index.code' argument is missing in the argument list, with no default")
+    }
+    orig.node <- graph$parentnodename
+    graph <- graph$graph
+    cicalc.node <- paste("ClimateIndexCalculation", randomName(), sep = ".")
+    # ClimateIndex calculation node
+    graph <- my_add_vertices(graph,
+                             name = cicalc.node,
+                             label = "ClimateIndexCalculation",
+                             className = "ds:ClimateIndexCalculation")
+    graph <- add_edges(graph,
+                       c(getNodeIndexbyName(graph, orig.node),
+                         getNodeIndexbyName(graph, cicalc.node)),
+                       label = "ds:hadClimateIndexCalculation")
+    # Climate index node
+    nodename <- setNodeName(node.name = index.code, node.class = "ClimateIndex")
+    aux <- suppressWarnings(suppressMessages(getIndividualClass(index.code)))
+    cn <- ifelse(is.null(aux),"ds:ClimateIndex", paste0("ds:", index.code))
+    graph <- my_add_vertices(graph,
+                             name = nodename,
+                             label = index.code,
+                             className = cn)
+    graph <- add_edges(graph,
+                       c(getNodeIndexbyName(graph, cicalc.node),
+                         getNodeIndexbyName(graph, nodename)),
+                       label = "ds:withClimateIndex")
+    # TemporalResolution ---------------------
+    # hasTimeStep
+    if (!is.null(output)) {
+        output <- get(output)
+        output$Data <- NULL
+        time.step <- getHasTimeStep(output)
+        output <- NULL
+        cell.method <- index.code
+        timeres.nodename <- paste("TemporalResolution", randomName(), sep = ".")
+        graph <- add_vertices(graph,
+                              nv = 1,
+                              name = timeres.nodename,
+                              label = "TemporalResolution",
+                              className = "ds:TemporalResolution",
+                              attr = list("ds:hasTimeStep" = time.step,
+                                          "ds:hasCellMethod" = cell.method))
+        graph <- add_edges(graph, 
+                           c(getNodeIndexbyName(graph, cicalc.node),
+                             getNodeIndexbyName(graph, timeres.nodename)),
+                           label = "ds:hasTemporalResolution")
+    } else {
+        if (!is.null(new.time.res)) {
+            if (is.null(cell.method)) cell.method <- index.code
+            if (is.null(time.step)) time.step <- "undefined"
+            timeres.nodename <- paste("TemporalResolution", randomName(), sep = ".")
+            graph <- add_vertices(graph,
+                                  nv = 1,
+                                  name = timeres.nodename,
+                                  label = new.time.res,
+                                  className = "ds:TemporalResolution",
+                                  attr = list("ds:hasTimeStep" = time.step,
+                                              "ds:hasCellMethod" = cell.method))
+            graph <- add_edges(graph, 
+                               c(getNodeIndexbyName(graph, cicalc.node),
+                                 getNodeIndexbyName(graph, timeres.nodename)),
+                               label = "ds:hasTemporalResolution")
+        }
+        
+    }
     graph <- metaclip.graph.Command(graph, package, version, fun, arg.list,
                                     origin.node.name = cicalc.node)
     return(list("graph" = graph, "parentnodename" = cicalc.node))
