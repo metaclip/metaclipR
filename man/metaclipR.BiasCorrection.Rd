@@ -8,7 +8,7 @@ metaclipR.BiasCorrection(package = "downscaleR", version = "3.0.0",
   fun = "biasCorrection", arg.list, graph, TrainingGraph, ReferenceGraph,
   BC.method, BC.class = "BiasCorrection", isDefinedBy = NULL,
   comment = NULL, hasProbCharacter = NULL, isMultivariable = NULL,
-  isMultisite = NULL)
+  isMultisite = NULL, disable.command = FALSE)
 }
 \arguments{
 \item{package}{bias correction package. Default to \code{"downscaleR"}}
@@ -47,6 +47,9 @@ deal with multisite predictions? See References.}
 
 \item{isMultisite}{Default to NULL (unspecified), otherwise logical. Is the bias correction method envisaged to 
 deal with multisite predictions? See References.}
+
+\item{disable.command}{Better not to touch. For internal usage only (used to re-use most of the code in
+other functions, but skipping command tracking)}
 }
 \description{
 Build a directed metadata graph from bias correction routines

@@ -4,9 +4,10 @@
 \alias{metaclipR.Anomaly}
 \title{Directed metadata graph construction for Anomaly transformations}
 \usage{
-metaclipR.Anomaly(graph, package = "transformeR", version = "1.4.1",
+metaclipR.Anomaly(graph, package = "transformeR", version = "1.4.4",
   fun = "scaleGrid", time.frame = "seasonal", arg.list = NULL,
-  referenceGraph = NULL, clim.cell.method = "mean")
+  referenceGraph = NULL, clim.cell.method = "mean",
+  disable.command = FALSE)
 }
 \arguments{
 \item{graph}{An output from a previous \pkg{metaclipR} function containing a list with the i-graph class object containing
@@ -26,6 +27,9 @@ the input grid whose anomaly is to be computed, plus the terminal node from whic
 used as base to compute the climatology, plus the name of its terminal node}
 
 \item{clim.cell.method}{Optional. cell method for climatology calculation. Default to \code{"mean"}.}
+
+\item{disable.command}{Better not to touch. For internal usage only (used to re-use most of the code 
+in other functions, but skipping command tracking)}
 }
 \description{
 Build a directed metadata graph describing an anomaly Transformation

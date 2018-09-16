@@ -58,4 +58,5 @@
 * New generic function for climate index definition `metaclipR.climateIndex`
 * New generic function for anomaly definition `metaclipR.Anomaly`
 * Allow to disable argument-value details in `metaclipR.Aggregation`
+* Added `disable.command` flag in several functions, to optionally skip source code description
 * Other minor documentation updates

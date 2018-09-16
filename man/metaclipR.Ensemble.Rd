@@ -7,7 +7,7 @@
 metaclipR.Ensemble(package = "transformeR",
   version = as.character(packageVersion(package)), output = NULL,
   fun = "bindGrid.member", arg.list = NULL,
-  combination.method = NULL, graph.list)
+  combination.method = NULL, graph.list, disable.command = FALSE)
 }
 \arguments{
 \item{package}{package name. Default to \code{"transformeR"}}
@@ -26,6 +26,9 @@ can be indicated here). Type \code{knownClassIndividuals("CombinationMethod")} f
 
 \item{graph.list}{A \code{metaclipR} object data list, each element being the
 graph defining each ensemble member}
+
+\item{disable.command}{Better not to touch. For internal usage only (used to re-use most of the code in other
+functions, but skipping command tracking)}
 }
 \description{
 Build a directed metadata graph describing an Ensemble transformation from two or more
