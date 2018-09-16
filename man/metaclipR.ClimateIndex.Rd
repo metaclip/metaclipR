@@ -7,7 +7,8 @@
 metaclipR.ClimateIndex(graph, package = "climate4R.climdex",
   version = as.character(packageVersion(package)), output = NULL,
   index.code, fun = "climdexGrid", arg.list = NULL,
-  new.time.res = NULL, time.step = NULL, cell.method = NULL)
+  new.time.res = NULL, time.step = NULL, cell.method = NULL,
+  disable.command = FALSE)
 }
 \arguments{
 \item{graph}{Output from previous metaclipR function. A list with an i-graph class object plus the name of the parent node 
@@ -32,6 +33,9 @@ If omitted, the last temporal resolution given is assumed to be preserved, and t
 \item{time.step}{Optional. Time step data property}
 
 \item{cell.method}{Optional. Cell method. Default to the \code{index.code} value.}
+
+\item{disable.command}{Better not to touch. For internal usage only (used to re-use most of
+the code in other functions, but skipping command tracking)}
 }
 \description{
 METACLIP description of climate index calculation steps

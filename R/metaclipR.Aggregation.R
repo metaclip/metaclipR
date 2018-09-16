@@ -22,6 +22,8 @@
 #' @param graph A previous metaclipR data structure from which the current step follows
 #' @param version version
 #' @param fun function name. Unused (set to \code{"aggregateGrid"})
+#' @param disable.command Better not to touch. For internal usage only (used to re-use most of the code in other
+#'  functions, but skipping command tracking)
 #' @param use.arg.list Logical flag. Used to optionally omit (\code{use.arg.list = FALSE}) the argument list in the description of command call. 
 #' Default to TRUE.
 #' @template template_arglistParam
@@ -85,7 +87,8 @@ metaclipR.Aggregation <- function(package = "transformeR",
                                   graph,
                                   fun = "aggregateGrid",
                                   arg.list = NULL,
-                                  use.arg.list = TRUE) {
+                                  use.arg.list = TRUE,
+                                  disable.command = FALSE) {
     orig.node <- graph$parentnodename
     graph <- graph$graph
     if (class(graph) != "igraph") stop("Invalid input graph (not an 'igraph-class' object)")
@@ -266,10 +269,12 @@ metaclipR.Aggregation <- function(package = "transformeR",
                            label = "ds:hasTemporalResolution")
     }
     # Package/Command/Argument metadata ---------------------------------------
-    if ("grid" %in% names(arg.list)) arg.list <- arg.list[-grep("grid", names(arg.list))]
-    if (!use.arg.list) names(arg.list) <- NULL
-    graph <- metaclip.graph.Command(graph, package, version, fun, arg.list,
-                                    origin.node.name = orig.nodes.command)
+    if (!disable.command) {
+        if ("grid" %in% names(arg.list)) arg.list <- arg.list[-grep("grid", names(arg.list))]
+        if (!use.arg.list) names(arg.list) <- NULL
+        graph <- metaclip.graph.Command(graph, package, version, fun, arg.list,
+                                        origin.node.name = orig.nodes.command)
+    }
     return(list("graph" = graph,
                 "parentnodename" = tail(orig.nodes.command, 1))
     ) 
