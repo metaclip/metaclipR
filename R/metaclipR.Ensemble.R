@@ -27,6 +27,8 @@
 #' @param combination.method Optional. Character string refering to the combination method used to construct the ensemble.
 #' This is represented by the ds class "CombinationMethod", for which several individual instances exist (this
 #' can be indicated here). Type \code{knownClassIndividuals("CombinationMethod")} for further details.
+#' @param disable.command Better not to touch. For internal usage only (used to re-use most of the code in other
+#'  functions, but skipping command tracking)
 #' @template template_arglistParam
 #' @template template_arglist
 #' @details This function takes as reference the semantics defined in the Data Source and Transformation ontology
@@ -42,13 +44,15 @@ metaclipR.Ensemble <- function(package = "transformeR",
                                fun = "bindGrid.member",
                                arg.list = NULL,
                                combination.method = NULL,
-                               graph.list) {
+                               graph.list,
+                               disable.command = FALSE) {
     if (length(graph.list) < 2) {
         stop("The input must be a list of at least two metaclipR graphs", call. = FALSE)
     }
     for (i in 1:length(graph.list)) {
         if (class(graph.list[[i]]$graph) != "igraph") stop("Invalid input graph (not an 'igraph-class' object)")    
     }
+    stopifnot(is.logical(disable.command))
     # Ensemble node
     graph <- graph.list[[1]]$graph
     # graph <- make_empty_graph()
@@ -81,7 +85,9 @@ metaclipR.Ensemble <- function(package = "transformeR",
                            label = "ds:hadCombinationMethod")
     }
     # Package/Command/Argument metadata ---------------------------------------
-    graph <- metaclip.graph.Command(graph, package, version, fun, arg.list,
-                                    origin.node.name = nodename)
+    if (!disable.command) {
+        graph <- metaclip.graph.Command(graph, package, version, fun, arg.list,
+                                        origin.node.name = nodename)
+    }
     return(list("graph" = graph, "parentnodename" = nodename))
 }

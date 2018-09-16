@@ -162,6 +162,8 @@ metaclipR.etccdi <- function(graph,
 #' @param index.code Character string, indicating the specific code of the index according to the ETCCDI definitions (see Details)
 #' @param fun function name. Unused (set to \code{"climdexGrid"})
 #' @param output Optional. The output climate4R object name, as character string
+#' @param disable.command Better not to touch. For internal usage only (used to re-use most of
+#'  the code in other functions, but skipping command tracking)
 #' @template template_arglistParam
 #' @template template_arglist
 #' @param new.time.res Character string. Recommended an ISO8601 representation of temporal resolution, 
@@ -181,7 +183,8 @@ metaclipR.ClimateIndex <- function(graph,
                                    arg.list = NULL,
                                    new.time.res = NULL,
                                    time.step = NULL,
-                                   cell.method = NULL) {
+                                   cell.method = NULL,
+                                   disable.command = FALSE) {
     if (class(graph$graph) != "igraph") stop("Invalid input graph (not an 'igraph-class' object)")
     if (is.null(index.code)) {
         stop("The 'index.code' argument is missing in the argument list, with no default")
@@ -249,7 +252,9 @@ metaclipR.ClimateIndex <- function(graph,
         }
         
     }
-    graph <- metaclip.graph.Command(graph, package, version, fun, arg.list,
-                                    origin.node.name = cicalc.node)
+    if (!disable.command) {
+        graph <- metaclip.graph.Command(graph, package, version, fun, arg.list,
+                                        origin.node.name = cicalc.node)
+    }
     return(list("graph" = graph, "parentnodename" = cicalc.node))
 }

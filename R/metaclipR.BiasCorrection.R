@@ -41,6 +41,8 @@
 #' @param TrainingGraph metaclipR output containing the training data (e.g. 20C3M/historical scenario in
 #'  climate change applications etc.)
 #' @param ReferenceGraph metaclipR output containing the reference predictand (typically observations) 
+#' @param disable.command Better not to touch. For internal usage only (used to re-use most of the code in
+#'  other functions, but skipping command tracking)
 #' @details This function takes as reference the semantics defined in the Calibration ontology defined in the 
 #' Metaclip Framework (\url{http://www.metaclip.org/}). These in turn are partially based on the VALUE Framewrok (Gutiérrez et al. 2018)
 #' @references 
@@ -66,17 +68,27 @@ metaclipR.BiasCorrection <- function(package = "downscaleR",
                                      comment = NULL,
                                      hasProbCharacter = NULL,
                                      isMultivariable = NULL,
-                                     isMultisite = NULL) {
+                                     isMultisite = NULL,
+                                     disable.command = FALSE) {
     if (class(graph$graph) != "igraph") stop("Invalid input graph (not an 'igraph-class' object)")
     if (class(TrainingGraph$graph) != "igraph") stop("Invalid input TrainingGraph (not an 'igraph-class' object)")
     if (class(ReferenceGraph$graph) != "igraph") stop("Invalid input ReferenceGraph (not an 'igraph-class' object)")
+    stopifnot(disable.command)
     pkgVersionCheck(package, version)
-    BC.class <- match.arg(BC.class, choices = c("BiasCorrection",
-                                                "NonParametricBiasCorrection",
-                                                "LinearScaling",
-                                                "NPQuantileMapping",
-                                                "PQuantileMapping",
-                                                "ParametricBiasCorrection"))
+    bc.class <- getIndividualClass(BC.method, vocabulary = "calibration")
+    if (!is.null(bc.class)) {
+        BC.class <- bc.class
+    } else {
+        BC.class <- match.arg(BC.class, choices = c("BiasCorrection",
+                                                    "NonParametricBiasCorrection",
+                                                    "LinearScaling",
+                                                    "NPQuantileMapping",
+                                                    "PQuantileMapping",
+                                                    "ParametricBiasCorrection",
+                                                    "VarianceInflation",
+                                                    "ProbabilityScaling",
+                                                    "EnsembleRecalibration"))
+    }
     if (!is.null(hasProbCharacter)) {
         hasProbCharacter <- match.arg(hasProbCharacter, choices = c("deterministic", "stochastic"))
     }
@@ -85,18 +97,16 @@ metaclipR.BiasCorrection <- function(package = "downscaleR",
     # Adding the Calibration node
     cal.node <- paste0("Calibration.", randomName())
     graph <- my_add_vertices(graph,
-                             nv = 1,
                              name = cal.node,
-                             label = "BiasCorrection",
+                             label = "Calibration",
                              className = "cal:Calibration")
     graph <- add_edges(graph, 
                        c(getNodeIndexbyName(graph, pnode),
                          getNodeIndexbyName(graph, cal.node)),
                        label = "cal:hadCalibration")
     # Adding the CalibrationMethod node
-    isKnownBCmethod <- ifelse(BC.method %in% knownClassIndividuals("BiasCorrection", vocabulary = "calibration"), TRUE, FALSE)
-    method.nodename <- ifelse(isKnownBCmethod, paste0("cal:", BC.method), paste0("BCmethod.", randomName())) 
-    if (!isKnownBCmethod) {
+    method.nodename <- setNodeName(node.name = BC.method, node.class = BC.class, vocabulary = "calibration")
+    if (is.null(bc.class)) {
         attrl <- list("cal:isMultiVariable" = isMultivariable,
                       "cal:isMultiSite" = isMultisite,
                       "cal:hasProbCharacter" = hasProbCharacter,
@@ -104,10 +114,9 @@ metaclipR.BiasCorrection <- function(package = "downscaleR",
                       "rdfs:comment" = comment)
     } else {
         attrl <- NULL    
-        BC.class <- getIndividualClass(BC.method, vocabulary = "calibration")
+        
     }
     graph <- my_add_vertices(graph,
-                             nv = 1,
                              name = method.nodename,
                              label = BC.method,
                              className = BC.class,
@@ -129,15 +138,17 @@ metaclipR.BiasCorrection <- function(package = "downscaleR",
                          getNodeIndexbyName(graph, ReferenceGraph$parentnodename)),
                        label = "cal:withReferenceData")
     # Function call 
-    if ("y" %in% names(arg.list)) arg.list <- arg.list[-grep("y", names(arg.list), fixed = TRUE)]
-    if ("x" %in% names(arg.list)) arg.list <- arg.list[-grep("x", names(arg.list), fixed = TRUE)]
-    if ("newdata" %in% names(arg.list)) arg.list <- arg.list[-grep("newdata", names(arg.list), fixed = TRUE)]
-    graph <- metaclip.graph.Command(graph,
-                                    package = package,
-                                    version = version,
-                                    fun = fun,
-                                    arg.list = arg.list,
-                                    origin.node.name = cal.node)
+    if (!disable.command) {
+        if ("y" %in% names(arg.list)) arg.list <- arg.list[-grep("y", names(arg.list), fixed = TRUE)]
+        if ("x" %in% names(arg.list)) arg.list <- arg.list[-grep("x", names(arg.list), fixed = TRUE)]
+        if ("newdata" %in% names(arg.list)) arg.list <- arg.list[-grep("newdata", names(arg.list), fixed = TRUE)]
+        graph <- metaclip.graph.Command(graph,
+                                        package = package,
+                                        version = version,
+                                        fun = fun,
+                                        arg.list = arg.list,
+                                        origin.node.name = cal.node)
+    }
     return(list("graph" = graph, "parentnodename" = cal.node))
 }
 

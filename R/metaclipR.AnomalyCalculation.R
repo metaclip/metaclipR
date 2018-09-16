@@ -217,6 +217,8 @@ metaclipR.AnomalyCalculation <- function(graph,
 #' @param fun function name. Unused (set to \code{"scaleGrid"})
 #' @param time.frame Time frame considered for climatological reference calculation
 #' @param clim.cell.method Optional. cell method for climatology calculation. Default to \code{"mean"}.
+#' @param disable.command Better not to touch. For internal usage only (used to re-use most of the code 
+#' in other functions, but skipping command tracking)
 #' @template template_arglistParam
 #' @template template_arglist
 #' @param graph An output from a previous \pkg{metaclipR} function containing a list with the i-graph class object containing
@@ -232,7 +234,8 @@ metaclipR.Anomaly <- function(graph,
                               time.frame = "seasonal",
                               arg.list = NULL,
                               referenceGraph = NULL,
-                              clim.cell.method = "mean") {
+                              clim.cell.method = "mean",
+                              disable.command = FALSE) {
     if (class(graph$graph) != "igraph") stop("Invalid input graph (not an 'igraph-class' object)")
     time.frame <- match.arg(time.frame, choices = c("monthly", "annual", "seasonal"))
     withInput <- graph$parentnodename
@@ -240,6 +243,7 @@ metaclipR.Anomaly <- function(graph,
     if (is.null(withInput)) {
         stop("The 'withInput' property is required: enter the name of the parent node.")
     }
+    stopifnot(is.logical(disable.command))
     orig.nodes.command <- c()
     anom.nodename <- paste("Anomaly", randomName(), sep = ".")
     orig.nodes.command <- c(orig.nodes.command, anom.nodename)
@@ -279,17 +283,18 @@ metaclipR.Anomaly <- function(graph,
                            label = "ds:hadClimatology")
         orig.nodes.command <- c(orig.nodes.command, clim.base.nodename)
     }
-    
     ## Package/Command/Argument metadata ---------------------
-    if ("grid" %in% (names(arg.list))) arg.list <- arg.list[-grep("grid", names(arg.list))]
-    if ("base" %in% (names(arg.list))) arg.list <- arg.list[-grep("base", names(arg.list))]
-    if ("ref" %in% (names(arg.list))) arg.list <- arg.list[-grep("ref", names(arg.list))]
-    graph <- metaclip.graph.Command(graph = graph,
-                                    package = package,
-                                    version = version,
-                                    fun = fun,
-                                    arg.list = arg.list,
-                                    origin.node.name = orig.nodes.command)
+    if (!disable.command) {
+        if ("grid" %in% (names(arg.list))) arg.list <- arg.list[-grep("grid", names(arg.list))]
+        if ("base" %in% (names(arg.list))) arg.list <- arg.list[-grep("base", names(arg.list))]
+        if ("ref" %in% (names(arg.list))) arg.list <- arg.list[-grep("ref", names(arg.list))]
+        graph <- metaclip.graph.Command(graph = graph,
+                                        package = package,
+                                        version = version,
+                                        fun = fun,
+                                        arg.list = arg.list,
+                                        origin.node.name = orig.nodes.command)
+    }
     return(list("graph" = graph, "parentnodename" = anom.nodename))
 }
 
