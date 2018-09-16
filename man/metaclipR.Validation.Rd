@@ -6,7 +6,7 @@
 \usage{
 metaclipR.Validation(package, version, fun, measure.name = NULL,
   type = c("validation", "verification"), QualityAspect, arg.list,
-  PredictionGraph, ReferenceGraph)
+  PredictionGraph, ReferenceGraph, disable.command = FALSE)
 }
 \arguments{
 \item{package}{Validation package.}
@@ -31,6 +31,9 @@ specific \emph{ForecastVerification} subclass, when relevant}
 \item{PredictionGraph}{metaclipR output containing the Predictions/Projections to validate}
 
 \item{ReferenceGraph}{metaclipR output containing the reference (observations)}
+
+\item{disable.command}{Better not to touch. For internal usage only (used to re-use most of the code in other
+functions, but skipping command tracking)}
 }
 \description{
 Build a directed metadata graph from validation routines

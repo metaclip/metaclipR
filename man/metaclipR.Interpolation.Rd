@@ -7,7 +7,7 @@
 metaclipR.Interpolation(graph, package = "transformeR",
   version = as.character(packageVersion(package)),
   RefSpatialExtent = NULL, InterpolationMethod, fun = "interpGrid",
-  arg.list = NULL)
+  arg.list = NULL, disable.command = FALSE)
 }
 \arguments{
 \item{graph}{A previous metaclipR data structure from which the current step follows}
@@ -24,6 +24,9 @@ metaclipR.Interpolation(graph, package = "transformeR",
 \item{fun}{function name. Unused (set to \code{"interpGrid"})}
 
 \item{arg.list}{Either a character string containing a literal command call or a key-value pair list of arguments-values. See the dedicated section more for details.}
+
+\item{disable.command}{Better not to touch. For internal usage only (used to re-use most of the code in other
+functions, but skipping command tracking)}
 }
 \description{
 Build a directed metadata graph describing an interpolation

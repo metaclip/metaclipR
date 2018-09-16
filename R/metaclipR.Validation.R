@@ -26,6 +26,8 @@
 #' @param measure.name Character string describing the name of the validation measure (e.g. \code{"Correlation"}).
 #' If omitted, the \code{QualityAspect} value will be assigned. This will affect the name of the validation node in the 
 #' METACLIP Interpreter graph (thus, it is recommended its usage for better provenance readability).
+#' @param disable.command Better not to touch. For internal usage only (used to re-use most of the code in other
+#'  functions, but skipping command tracking)
 #' @template template_arglistParam
 #' @template template_arglist
 #' @param QualityAspect Class name. Quality Aspect addressed by the Validation. Possible values are 
@@ -51,10 +53,12 @@ metaclipR.Validation <- function(package,
                                  QualityAspect,
                                  arg.list, 
                                  PredictionGraph,
-                                 ReferenceGraph) {
+                                 ReferenceGraph,
+                                 disable.command = FALSE) {
     if (class(PredictionGraph$graph) != "igraph") stop("Invalid input PredictionGraph (not an 'igraph-class' object)")   
     if (class(ReferenceGraph$graph) != "igraph") stop("Invalid input ReferenceGraph (not an 'igraph-class' object)")   
     type <- match.arg(type, choices = c("validation", "verification"))
+    stopifnot(is.logical(disable.command))
     val.classname <- switch(type,
                             "validation" = "veri:Validation",
                             "verification" = "veri:ForecastVerification")
@@ -98,13 +102,15 @@ metaclipR.Validation <- function(package,
                          getNodeIndexbyName(graph, qnode.name)),
                        label = "veri:withQualityAspect")
     # Function call 
-    if ("grid" %in% names(arg.list)) arg.list <- arg.list[-grep("grid", names(arg.list))]
-    graph <- metaclip.graph.Command(graph,
-                                    package = package,
-                                    version = version,
-                                    fun = fun,
-                                    arg.list = arg.list,
-                                    origin.node.name = origin.node.name)
+    if (!disable.command) {
+        if ("grid" %in% names(arg.list)) arg.list <- arg.list[-grep("grid", names(arg.list))]
+        graph <- metaclip.graph.Command(graph,
+                                        package = package,
+                                        version = version,
+                                        fun = fun,
+                                        arg.list = arg.list,
+                                        origin.node.name = origin.node.name)
+    }
     return(list("graph" = graph, "parentnodename" = origin.node.name))
 }
 
