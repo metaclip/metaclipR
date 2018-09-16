@@ -73,7 +73,7 @@ metaclipR.BiasCorrection <- function(package = "downscaleR",
     if (class(graph$graph) != "igraph") stop("Invalid input graph (not an 'igraph-class' object)")
     if (class(TrainingGraph$graph) != "igraph") stop("Invalid input TrainingGraph (not an 'igraph-class' object)")
     if (class(ReferenceGraph$graph) != "igraph") stop("Invalid input ReferenceGraph (not an 'igraph-class' object)")
-    stopifnot(disable.command)
+    stopifnot(is.logical(disable.command))
     pkgVersionCheck(package, version)
     bc.class <- getIndividualClass(BC.method, vocabulary = "calibration")
     if (!is.null(bc.class)) {
