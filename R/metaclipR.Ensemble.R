@@ -78,10 +78,10 @@ metaclipR.Ensemble <- function(package = "transformeR",
         cm.nodename <- setNodeName(combination.method, node.class = "CombinationMethod", vocabulary = "datasource")
         graph <- my_add_vertices(graph = graph,
                                  name = cm.nodename,
-                                 label = "Combination Method",
+                                 label = "Combination",
                                  className = "ds:CombinationMethod")
         graph <- add_edges(graph, c(getNodeIndexbyName(graph, nodename),
-                                    getNodeIndexbyName(cm.nodename)),
+                                    getNodeIndexbyName(graph, cm.nodename)),
                            label = "ds:hadCombinationMethod")
     }
     # Package/Command/Argument metadata ---------------------------------------
