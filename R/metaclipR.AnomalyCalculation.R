@@ -37,7 +37,7 @@
 #' require(transformeR)
 #' require(igraph)
 #' pkg <- "transformeR"
-#' v <- "1.1.1"
+#' v <- "1.4.1"
 #' # Assume a given hindcast DatasetSubset: 
 #' data("CFS_Iberia_psl")
 #' # In this example it is assumed that the 1983-1990 partition is the hindcast
@@ -92,6 +92,7 @@
 #' # no linking property between hindcast and forecast is indicated 
 #' metadata2 <- metaclipR.DatasetSubset(package = pkg,
 #'                                      version = v,
+#'                                      fun = "subsetGrid",
 #'                                      arg.list = list("years" = 2002),
 #'                                      output = "fcst")
 #'                                           
@@ -206,4 +207,95 @@ metaclipR.AnomalyCalculation <- function(graph,
                                     origin.node.name = orig.nodes.command)
     return(list("graph" = graph, "parentnodename" = anom.nodename))
 }
+
+
+
+#' @title Directed metadata graph construction for Anomaly transformations  
+#' @description Build a directed metadata graph describing an anomaly Transformation
+#' @param package package
+#' @param version version
+#' @param fun function name. Unused (set to \code{"scaleGrid"})
+#' @param time.frame Time frame considered for climatological reference calculation
+#' @param clim.cell.method Optional. cell method for climatology calculation. Default to \code{"mean"}.
+#' @param disable.command Better not to touch. For internal usage only (used to re-use most of the code 
+#' in other functions, but skipping command tracking)
+#' @template template_arglistParam
+#' @template template_arglist
+#' @param graph An output from a previous \pkg{metaclipR} function containing a list with the i-graph class object containing
+#'  the input grid whose anomaly is to be computed, plus the terminal node from which the Anomaly Step will hang
+#' @param referenceGraph An output from a previous \pkg{metaclipR} function containing a list with the i-graph class object containing the reference Transformation-class object
+#' used as base to compute the climatology, plus the name of its terminal node
+#' @export
+
+metaclipR.Anomaly <- function(graph,
+                              package = "transformeR",
+                              version = "1.4.4",
+                              fun = "scaleGrid",
+                              time.frame = "seasonal",
+                              arg.list = NULL,
+                              referenceGraph = NULL,
+                              clim.cell.method = "mean",
+                              disable.command = FALSE) {
+    if (class(graph$graph) != "igraph") stop("Invalid input graph (not an 'igraph-class' object)")
+    time.frame <- match.arg(time.frame, choices = c("monthly", "annual", "seasonal"))
+    withInput <- graph$parentnodename
+    graph <- graph$graph
+    if (is.null(withInput)) {
+        stop("The 'withInput' property is required: enter the name of the parent node.")
+    }
+    stopifnot(is.logical(disable.command))
+    orig.nodes.command <- c()
+    anom.nodename <- paste("Anomaly", randomName(), sep = ".")
+    orig.nodes.command <- c(orig.nodes.command, anom.nodename)
+    graph <- add_vertices(graph,
+                          nv = 1,
+                          name = anom.nodename,
+                          label = "Anomaly",
+                          className = "ds:Anomaly",
+                          attr = list("ds:hasTimeFrame" = time.frame))
+    graph <- add_edges(graph,
+                       c(getNodeIndexbyName(graph, withInput),
+                         getNodeIndexbyName(graph, anom.nodename)),
+                       label = "ds:hadAnomalyCalculation")
+    if (!is.null(referenceGraph)) {
+        if (class(referenceGraph$graph) != "igraph") stop("Invalid input graph (not an 'igraph-class' object)")
+        # Graphs 1 and 2 are joined ----------------------
+        uniongraph <- my_union_graph(graph, referenceGraph$graph)
+        graph <- add_edges(uniongraph,
+                           c(getNodeIndexbyName(uniongraph, anom.nodename),
+                             getNodeIndexbyName(uniongraph, referenceGraph$parentnodename)),
+                           label = "ds:withReference")
+    } else {
+        clim.base.nodename <- paste("climatology", randomName(), sep = ".")
+        graph <- add_vertices(graph,
+                              nv = 1,
+                              name = clim.base.nodename,
+                              label = "Climatology",
+                              className = "ds:Climatology",
+                              attr = list("hasCellMethod" = "mean"))
+        graph <- add_edges(graph,
+                           c(getNodeIndexbyName(graph, anom.nodename),
+                             getNodeIndexbyName(graph, clim.base.nodename)),
+                           label = "ds:withReference")
+        graph <- add_edges(graph,
+                           c(getNodeIndexbyName(graph, withInput),
+                             getNodeIndexbyName(graph, clim.base.nodename)),
+                           label = "ds:hadClimatology")
+        orig.nodes.command <- c(orig.nodes.command, clim.base.nodename)
+    }
+    ## Package/Command/Argument metadata ---------------------
+    if (!disable.command) {
+        if ("grid" %in% (names(arg.list))) arg.list <- arg.list[-grep("grid", names(arg.list))]
+        if ("base" %in% (names(arg.list))) arg.list <- arg.list[-grep("base", names(arg.list))]
+        if ("ref" %in% (names(arg.list))) arg.list <- arg.list[-grep("ref", names(arg.list))]
+        graph <- metaclip.graph.Command(graph = graph,
+                                        package = package,
+                                        version = version,
+                                        fun = fun,
+                                        arg.list = arg.list,
+                                        origin.node.name = orig.nodes.command)
+    }
+    return(list("graph" = graph, "parentnodename" = anom.nodename))
+}
+
 

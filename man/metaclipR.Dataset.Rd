@@ -5,8 +5,9 @@
 \title{Directed metadata graph construction for Data Sources}
 \usage{
 metaclipR.Dataset(Dataset.name = NULL, Dataset.subclass = NULL,
-  DataProvider = NULL, ModellingCenter = NULL, DataProvider.URL = NULL,
-  Project = NULL, RCM = NULL, GCM = NULL, Run = NULL)
+  DataProvider = NULL, ModellingCenter = NULL,
+  DataProvider.URL = NULL, Project = NULL, RCM = NULL, GCM = NULL,
+  Run = NULL)
 }
 \arguments{
 \item{Dataset.name}{Name (label) of the Dataset. There is a number of already known Datasets, pertaining to the User Data Gateway 
@@ -87,3 +88,4 @@ Other transformation: \code{\link{metaclip.graph.Command}},
 \author{
 D. San Martín, J. Bedia
 }
+\concept{transformation}

@@ -29,3 +29,4 @@ Other graph.helpers: \code{\link{getNodeIndexbyName}},
 \author{
 J Bedia
 }
+\concept{graph.helpers}

@@ -26,3 +26,4 @@ Other graphical.outputs: \code{\link{embedFig}}
 \author{
 J Bedia
 }
+\concept{graphical.outputs}

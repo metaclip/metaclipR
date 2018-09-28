@@ -28,6 +28,7 @@
 #' @details This function takes as reference the semantics defined in the Seasonal Forecast Verification ontology
 #' defined in the Metaclip Framework (\url{http://www.metaclip.org}).
 #' @keywords internal
+#' @export
 #' @importFrom igraph add_vertices add_edges 
 #' @importFrom magrittr %<>% 
 #' @author D. San Martín, J. Bedia
@@ -36,14 +37,15 @@ metaclip.graph.Command <- function(graph, package, version, fun, arg.list, origi
     if (class(graph) != "igraph") stop("Invalid input graph (not an 'igraph-class' object)")
     pkgVersionCheck(package, version)
     if (!is.null(fun)) {
-        cmd.node.name <- paste("Command", fun, randomName(), sep = ".")
+        cmd.node.name <- setNodeName(fun, node.class = "Command")
+        # cmd.node.name <- paste("Command", fun, randomName(), sep = ".")
         # Argument and ArgumentValue
         if (is.list(arg.list)) {
-            graph <- add_vertices(graph, 1, 
-                                  name = cmd.node.name, 
-                                  className = "ds:Command",
-                                  label = fun,
-                                  attr = list("prov:value" = fun))
+            graph <- my_add_vertices(graph,  
+                                     name = cmd.node.name, 
+                                     className = "ds:Command",
+                                     label = fun,
+                                     attr = list("prov:value" = fun))
             # Add the edge linking the verification step with the command 
             for (i in 1:length(origin.node.name)) {
                 graph <- add_edges(graph, 
@@ -104,38 +106,33 @@ metaclip.graph.Command <- function(graph, package, version, fun, arg.list, origi
                     }
                 }
             }
-        } else {
-            if (is.character(arg.list)) {
-                if (length(arg.list) > 1) stop("Invalid literal command call definition (should be of length one)")
-                arg.list %<>% formatCommandCallString()
-                graph <- add_vertices(graph, 1, 
-                                      name = cmd.node.name, 
-                                      className = "ds:Command",
-                                      label = fun,
-                                      attr = list("prov:value" = fun,
-                                                  "ds:hadLiteralCommandCall" = arg.list))
-                # Add the edge linking the verification step with the command 
-                for (i in 1:length(origin.node.name)) {
-                    graph <- add_edges(graph, 
-                                       c(getNodeIndexbyName(graph, origin.node.name[i]),
-                                         getNodeIndexbyName(graph, cmd.node.name)),
-                                       label = "ds:hadCommandCall")    
-                }
-            }
+        } else if (is.character(arg.list)) {
+            if (length(arg.list) > 1) stop("Invalid literal command call definition (should be of length one)")
+            arg.list %<>% formatCommandCallString()
+            graph <- add_vertices(graph, 1, 
+                                  name = cmd.node.name, 
+                                  className = "ds:Command",
+                                  label = fun,
+                                  attr = list("prov:value" = fun,
+                                              "ds:hadLiteralCommandCall" = arg.list))
         }
-        # Package ----------------------
-        pkg.node.name <- ifelse(package %in% suppressMessages(knownClassIndividuals("Package")),
-                                paste0("ds:", package), paste0("Package.", randomName()))
-        graph <- my_add_vertices(graph = graph,
-                                 nv = 1,
-                                 name = pkg.node.name, 
-                                 className = "ds:Package",
-                                 label = package)
-        graph <- add_edges(graph, 
-                           c(getNodeIndexbyName(graph, cmd.node.name),
-                             getNodeIndexbyName(graph, pkg.node.name)),
-                           label = "ds:fromPackage")
+        for (i in 1:length(origin.node.name)) {
+            graph <- add_edges(graph, 
+                               c(getNodeIndexbyName(graph, origin.node.name[i]),
+                                 getNodeIndexbyName(graph, cmd.node.name)),
+                               label = "ds:hadCommandCall")    
+        }
     }
+    # Package ----------------------
+    pkg.node.name <- setNodeName(node.name = package, node.class = "Package", vocabulary = "datasource")
+    graph <- my_add_vertices(graph = graph,
+                             name = pkg.node.name, 
+                             className = "ds:Package",
+                             label = package)
+    graph <- add_edges(graph, 
+                       c(getNodeIndexbyName(graph, cmd.node.name),
+                         getNodeIndexbyName(graph, pkg.node.name)),
+                       label = "ds:fromPackage")
     return(graph)
 }
 

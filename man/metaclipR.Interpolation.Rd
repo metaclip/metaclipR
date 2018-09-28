@@ -5,8 +5,9 @@
 \title{Directed metadata graph construction for interpolation Transformations}
 \usage{
 metaclipR.Interpolation(graph, package = "transformeR",
-  version = as.character(packageVersion(package)), RefSpatialExtent = NULL,
-  InterpolationMethod, fun = "interpGrid", arg.list = NULL)
+  version = as.character(packageVersion(package)),
+  RefSpatialExtent = NULL, InterpolationMethod, fun = "interpGrid",
+  arg.list = NULL, disable.command = FALSE)
 }
 \arguments{
 \item{graph}{A previous metaclipR data structure from which the current step follows}
@@ -23,6 +24,9 @@ metaclipR.Interpolation(graph, package = "transformeR",
 \item{fun}{function name. Unused (set to \code{"interpGrid"})}
 
 \item{arg.list}{Either a character string containing a literal command call or a key-value pair list of arguments-values. See the dedicated section more for details.}
+
+\item{disable.command}{Better not to touch. For internal usage only (used to re-use most of the code in other
+functions, but skipping command tracking)}
 }
 \description{
 Build a directed metadata graph describing an interpolation
@@ -40,7 +44,7 @@ classes from the datasource vocabulary of METACLIP.
 
 Alternatively, and in order to accomodate the description of the source code to other environments
 and languajes (e.g. shell scripts, calls to CDOs etc.), the use of literal command calls 
-seems like a more convenient choice. Literal command calls also allow for a more straightforward
+is a more convenient choice. Literal command calls also allow for a more straightforward
 reproducibility by just "copying and pasting" the code used to generate each step. Literal
 command calls are encoded in METACLIP using the \emph{hadLiteralCommandCall} data property
 from the datasource vocabulary, that is attached to the command description. 
@@ -105,3 +109,4 @@ Other transformation: \code{\link{metaclip.graph.Command}},
 \author{
 D. San Martín, J. Bedia
 }
+\concept{transformation}

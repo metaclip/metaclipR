@@ -130,7 +130,6 @@ metaclipR.Dataset <- function(Dataset.name = NULL,
                                           DataProvider %in% suppressMessages((knownClassIndividuals("ModellingCenter"))), TRUE, FALSE)
         DataProvider.nodename <- ifelse(isKnownDataProvider, paste0("ds:", DataProvider), paste0("DataProvider.", randomName())) 
         graph <- my_add_vertices(graph,
-                                 nv = 1,
                                  name = DataProvider.nodename,
                                  label = DataProvider,
                                  className = "ds:DataProvider",
@@ -205,12 +204,12 @@ metaclipR.Dataset <- function(Dataset.name = NULL,
                         getNodeIndexbyName(graph, GCM.nodename)),
                       label = "ds:hadDrivingGCM")
         } else {
+            op <- ifelse(grepl("^Seasonal", Dataset.subclass), "ds:hadSeasonalForecastingSystem", "ds:hadSimulationModel")
             add_edges(graph, 
                       c(getNodeIndexbyName(graph, Dataset.nodename),
                         getNodeIndexbyName(graph, GCM.nodename)),
-                      label = "ds:hadSimulationModel")
+                      label = op)
         }
-        
     }
     return(list("graph" = graph, "parentnodename" = Dataset.nodename))
 }

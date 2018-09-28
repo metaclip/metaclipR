@@ -6,7 +6,8 @@
 \usage{
 metaclipR.Ensemble(package = "transformeR",
   version = as.character(packageVersion(package)), output = NULL,
-  fun = "bindGrid.member", arg.list = NULL, graph.list)
+  fun = "bindGrid.member", arg.list = NULL,
+  combination.method = NULL, graph.list, disable.command = FALSE)
 }
 \arguments{
 \item{package}{package name. Default to \code{"transformeR"}}
@@ -19,8 +20,15 @@ metaclipR.Ensemble(package = "transformeR",
 
 \item{arg.list}{Either a character string containing a literal command call or a key-value pair list of arguments-values. See the dedicated section more for details.}
 
+\item{combination.method}{Optional. Character string refering to the combination method used to construct the ensemble.
+This is represented by the ds class "CombinationMethod", for which several individual instances exist (this
+can be indicated here). Type \code{knownClassIndividuals("CombinationMethod")} for further details.}
+
 \item{graph.list}{A \code{metaclipR} object data list, each element being the
 graph defining each ensemble member}
+
+\item{disable.command}{Better not to touch. For internal usage only (used to re-use most of the code in other
+functions, but skipping command tracking)}
 }
 \description{
 Build a directed metadata graph describing an Ensemble transformation from two or more
@@ -39,7 +47,7 @@ classes from the datasource vocabulary of METACLIP.
 
 Alternatively, and in order to accomodate the description of the source code to other environments
 and languajes (e.g. shell scripts, calls to CDOs etc.), the use of literal command calls 
-seems like a more convenient choice. Literal command calls also allow for a more straightforward
+is a more convenient choice. Literal command calls also allow for a more straightforward
 reproducibility by just "copying and pasting" the code used to generate each step. Literal
 command calls are encoded in METACLIP using the \emph{hadLiteralCommandCall} data property
 from the datasource vocabulary, that is attached to the command description. 
@@ -64,3 +72,4 @@ Other transformation: \code{\link{metaclip.graph.Command}},
 \author{
 D. San Martín, J. Bedia
 }
+\concept{transformation}

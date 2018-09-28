@@ -40,7 +40,7 @@ classes from the datasource vocabulary of METACLIP.
 
 Alternatively, and in order to accomodate the description of the source code to other environments
 and languajes (e.g. shell scripts, calls to CDOs etc.), the use of literal command calls 
-seems like a more convenient choice. Literal command calls also allow for a more straightforward
+is a more convenient choice. Literal command calls also allow for a more straightforward
 reproducibility by just "copying and pasting" the code used to generate each step. Literal
 command calls are encoded in METACLIP using the \emph{hadLiteralCommandCall} data property
 from the datasource vocabulary, that is attached to the command description. 
@@ -57,7 +57,7 @@ by the user.
 require(transformeR)
 require(igraph)
 pkg <- "transformeR"
-v <- "1.1.1"
+v <- "1.4.1"
 # Assume a given hindcast DatasetSubset: 
 data("CFS_Iberia_psl")
 # In this example it is assumed that the 1983-1990 partition is the hindcast
@@ -112,6 +112,7 @@ fcst <- subsetGrid(CFS.psl.annual, years = 2002)
 # no linking property between hindcast and forecast is indicated 
 metadata2 <- metaclipR.DatasetSubset(package = pkg,
                                      version = v,
+                                     fun = "subsetGrid",
                                      arg.list = list("years" = 2002),
                                      output = "fcst")
                                           
@@ -160,3 +161,4 @@ Other transformation: \code{\link{metaclip.graph.Command}},
 \author{
 D. San Martín, J. Bedia
 }
+\concept{transformation}

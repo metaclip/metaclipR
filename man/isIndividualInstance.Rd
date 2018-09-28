@@ -10,7 +10,7 @@ isIndividualInstance(node.name)
 A Logical flag
 }
 \description{
-Is the node representing and individual instance, or a generic class entity?
+Is the node representing and individual instance (\code{TRUE}), or a generic class entity (\code{FALSE})?
 }
 \author{
 J Bedia

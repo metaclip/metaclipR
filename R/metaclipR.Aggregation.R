@@ -22,6 +22,10 @@
 #' @param graph A previous metaclipR data structure from which the current step follows
 #' @param version version
 #' @param fun function name. Unused (set to \code{"aggregateGrid"})
+#' @param disable.command Better not to touch. For internal usage only (used to re-use most of the code in other
+#'  functions, but skipping command tracking)
+#' @param use.arg.list Logical flag. Used to optionally omit (\code{use.arg.list = FALSE}) the argument list in the description of command call. 
+#' Default to TRUE.
 #' @template template_arglistParam
 #' @template template_arglist
 #' @details This function takes as reference the semantics defined in the Data Source and Transformation ontology
@@ -82,7 +86,9 @@ metaclipR.Aggregation <- function(package = "transformeR",
                                   version = as.character(packageVersion(package)),
                                   graph,
                                   fun = "aggregateGrid",
-                                  arg.list = NULL) {
+                                  arg.list = NULL,
+                                  use.arg.list = TRUE,
+                                  disable.command = FALSE) {
     orig.node <- graph$parentnodename
     graph <- graph$graph
     if (class(graph) != "igraph") stop("Invalid input graph (not an 'igraph-class' object)")
@@ -96,8 +102,6 @@ metaclipR.Aggregation <- function(package = "transformeR",
                           label = "Aggregation",
                           className = "ds:Aggregation",
                           description = "Aggregation Class")
-    
-    # attr = list("ds:hasCellMethod" = cellme))
     graph <- add_edges(graph, 
                        c(getNodeIndexbyName(graph, orig.node),
                          getNodeIndexbyName(graph, aggr.nodename)),
@@ -160,26 +164,23 @@ metaclipR.Aggregation <- function(package = "transformeR",
         cellme <- paste(deparse(arg.list$aggr.d$FUN), collapse = "")
         cellme <- gsub("\"","'", cellme)
         aggr.time.nodename <- paste("ValidationTime", randomName(), sep = ".")
-        graph <- add_vertices(graph,
-                              nv = 1,
-                              name = aggr.time.nodename,
-                              label = "ValidTime",
-                              className = "ds:ValidationTime",
-                              description = "ValidationTime Class",
-                              attr = list("ds:hasCellMethod" = cellme))
+        graph <- my_add_vertices(graph,
+                                 name = aggr.time.nodename,
+                                 label = "ValidationTime",
+                                 className = "ds:ValidationTime",
+                                 attr = list("ds:hasCellMethod" = cellme))
         graph <- add_edges(graph, 
                            c(getNodeIndexbyName(graph, aggr.nodename),
                              getNodeIndexbyName(graph, aggr.time.nodename)),
                            label = "ds:alongDimension")
         # Update temporal Resolution
         timeres.nodename <- paste("TemporalResolution", randomName(), sep = ".")
-        graph <- add_vertices(graph,
-                              nv = 1,
-                              name = timeres.nodename,
-                              label = "TemporalResolution",
-                              className = "ds:TemporalResolution",
-                              attr = list("ds:hasTimeStep" = "P1D",
-                                          "ds:hasCellMethod" = cellme))
+        graph <- my_add_vertices(graph,
+                                 name = timeres.nodename,
+                                 label = "DailyResolution",
+                                 className = "ds:TemporalResolution",
+                                 attr = list("ds:hasTimeStep" = "P1D",
+                                             "ds:hasCellMethod" = cellme))
         graph <- add_edges(graph, 
                            c(getNodeIndexbyName(graph, aggr.nodename),
                              getNodeIndexbyName(graph, timeres.nodename)),
@@ -192,12 +193,10 @@ metaclipR.Aggregation <- function(package = "transformeR",
         time.counter <- c(time.counter, 1)
         if (sum(time.counter) > 1) {
             aggr.m.nodename <- paste("Aggregation.monthly", randomName(), sep = ".")
-            graph <- add_vertices(graph,
-                                  nv = 1,
-                                  name = aggr.m.nodename,
-                                  label = "MonthlyAggregation",
-                                  className = "ds:Aggregation",
-                                  description = "Aggregation Class")
+            graph <- my_add_vertices(graph,
+                                     name = aggr.m.nodename,
+                                     label = "MonthlyAggregation",
+                                     className = "ds:Aggregation")
             graph <- add_edges(graph, 
                                c(getNodeIndexbyName(graph, aggr.nodename),
                                  getNodeIndexbyName(graph, aggr.m.nodename)),
@@ -206,26 +205,23 @@ metaclipR.Aggregation <- function(package = "transformeR",
             orig.nodes.command <- c(orig.nodes.command, aggr.nodename)
         }
         aggr.time.nodename <- paste("ValidationTime", randomName(), sep = ".")
-        graph <- add_vertices(graph,
-                              nv = 1,
-                              name = aggr.time.nodename,
-                              label = "ValidTime",
-                              className = "ds:ValidationTime",
-                              description = "ValidationTime Class",
-                              attr = list("ds:hasCellMethod" = cellme))
+        graph <- my_add_vertices(graph,
+                                 name = aggr.time.nodename,
+                                 label = "ValidationTime",
+                                 className = "ds:ValidationTime",
+                                 attr = list("ds:hasCellMethod" = cellme))
         graph <- add_edges(graph, 
                            c(getNodeIndexbyName(graph, aggr.nodename),
                              getNodeIndexbyName(graph, aggr.time.nodename)),
                            label = "ds:alongDimension")
         # Update temporal Resolution
         timeres.nodename <- paste("TemporalResolution", randomName(), sep = ".")
-        graph <- add_vertices(graph,
-                              nv = 1,
-                              name = timeres.nodename,
-                              label = "TemporalResolution",
-                              className = "ds:TemporalResolution",
-                              attr = list("ds:hasTimeStep" = "P1M",
-                                          "ds:hasCellMethod" = cellme))
+        graph <- my_add_vertices(graph,
+                                 name = timeres.nodename,
+                                 label = "MonthlyResolution",
+                                 className = "ds:TemporalResolution",
+                                 attr = list("ds:hasTimeStep" = "P1M",
+                                             "ds:hasCellMethod" = cellme))
         graph <- add_edges(graph, 
                            c(getNodeIndexbyName(graph, aggr.nodename),
                              getNodeIndexbyName(graph, timeres.nodename)),
@@ -238,12 +234,10 @@ metaclipR.Aggregation <- function(package = "transformeR",
         time.counter <- c(time.counter, 1)
         if (sum(time.counter) > 1) {
             aggr.y.nodename <- paste("Aggregation.yearly", randomName(), sep = ".")
-            graph <- add_vertices(graph,
-                                  nv = 1,
-                                  name = aggr.y.nodename,
-                                  label = "AnnualAggregation",
-                                  className = "ds:Aggregation",
-                                  description = "Aggregation Class")
+            graph <- my_add_vertices(graph,
+                                     name = aggr.y.nodename,
+                                     label = "AnnualAggregation",
+                                     className = "ds:Aggregation")
             graph <- add_edges(graph, 
                                c(getNodeIndexbyName(graph, aggr.nodename),
                                  getNodeIndexbyName(graph, aggr.y.nodename)),
@@ -252,35 +246,35 @@ metaclipR.Aggregation <- function(package = "transformeR",
             orig.nodes.command <- c(orig.nodes.command, aggr.nodename)
         }
         aggr.time.nodename <- paste("ValidationTime", randomName(), sep = ".")
-        graph <- add_vertices(graph,
-                              nv = 1,
-                              name = aggr.time.nodename,
-                              label = "ValidTime",
-                              className = "ds:ValidationTime",
-                              description = "ValidationTime Class",
-                              attr = list("ds:hasCellMethod" = cellme))
+        graph <- my_add_vertices(graph,
+                                 name = aggr.time.nodename,
+                                 label = "ValidationTime",
+                                 className = "ds:ValidationTime",
+                                 attr = list("ds:hasCellMethod" = cellme))
         graph <- add_edges(graph, 
                            c(getNodeIndexbyName(graph, aggr.nodename),
                              getNodeIndexbyName(graph, aggr.time.nodename)),
                            label = "ds:alongDimension")
         # Update temporal Resolution
         timeres.nodename <- paste("TemporalResolution", randomName(), sep = ".")
-        graph <- add_vertices(graph,
-                              nv = 1,
-                              name = timeres.nodename,
-                              label = "TemporalResolution",
-                              className = "ds:TemporalResolution",
-                              attr = list("ds:hasTimeStep" = "P1Y",
-                                          "ds:hasCellMethod" = cellme))
+        graph <- my_add_vertices(graph,
+                                 name = timeres.nodename,
+                                 label = "AnnualResolution",
+                                 className = "ds:TemporalResolution",
+                                 attr = list("ds:hasTimeStep" = "P1Y",
+                                             "ds:hasCellMethod" = cellme))
         graph <- add_edges(graph, 
                            c(getNodeIndexbyName(graph, aggr.nodename),
                              getNodeIndexbyName(graph, timeres.nodename)),
                            label = "ds:hasTemporalResolution")
     }
     # Package/Command/Argument metadata ---------------------------------------
-    if ("grid" %in% names(arg.list)) arg.list <- arg.list[-grep("grid", names(arg.list))]
-    graph <- metaclip.graph.Command(graph, package, version, fun, arg.list,
-                                    origin.node.name = orig.nodes.command)
+    if (!disable.command) {
+        if ("grid" %in% names(arg.list)) arg.list <- arg.list[-grep("grid", names(arg.list))]
+        if (!use.arg.list) names(arg.list) <- NULL
+        graph <- metaclip.graph.Command(graph, package, version, fun, arg.list,
+                                        origin.node.name = orig.nodes.command)
+    }
     return(list("graph" = graph,
                 "parentnodename" = tail(orig.nodes.command, 1))
     ) 

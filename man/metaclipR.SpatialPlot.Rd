@@ -6,8 +6,8 @@
 \usage{
 metaclipR.SpatialPlot(package = "visualizeR", version = "1.1.1", graph,
   input.grid = NULL, type = "grid", fun = "spatialPlot",
-  arg.list = NULL, stipplingInputGraph = NULL, epsg.code = "EPSG:4329",
-  isBranchStep = FALSE)
+  arg.list = NULL, stipplingInputGraph = NULL,
+  epsg.code = "EPSG:4329", isBranchStep = FALSE)
 }
 \arguments{
 \item{package}{package}
@@ -55,7 +55,7 @@ classes from the datasource vocabulary of METACLIP.
 
 Alternatively, and in order to accomodate the description of the source code to other environments
 and languajes (e.g. shell scripts, calls to CDOs etc.), the use of literal command calls 
-seems like a more convenient choice. Literal command calls also allow for a more straightforward
+is a more convenient choice. Literal command calls also allow for a more straightforward
 reproducibility by just "copying and pasting" the code used to generate each step. Literal
 command calls are encoded in METACLIP using the \emph{hadLiteralCommandCall} data property
 from the datasource vocabulary, that is attached to the command description. 
@@ -76,3 +76,4 @@ Other graphical.products: \code{\link{metaclipR.AnomalyMap}},
 \author{
 D. San Martín, J. Bedia
 }
+\concept{graphical.products}

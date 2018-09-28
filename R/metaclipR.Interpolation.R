@@ -24,6 +24,8 @@
 #' @param fun function name. Unused (set to \code{"interpGrid"})
 #' @param InterpolationMethod Interpolation method. Current possible choices include \code{"nearest"}, \code{"bilinear"}, \code{"bicubic"},
 #'  \code{"IDW"} and \code{"spline"}, but these will be probably updated in the future to accommodate further methods.
+#' @param disable.command Better not to touch. For internal usage only (used to re-use most of the code in other
+#'  functions, but skipping command tracking)
 #' @template template_arglistParam
 #' @template template_arglist
 #' @details This function takes as reference the semantics defined in the Data Source and Transformation ontology
@@ -78,11 +80,13 @@ metaclipR.Interpolation <- function(graph,
                                     RefSpatialExtent = NULL,
                                     InterpolationMethod,
                                     fun = "interpGrid",
-                                    arg.list = NULL) {
+                                    arg.list = NULL,
+                                    disable.command = FALSE) {
     if (class(graph$graph) != "igraph") stop("Invalid input graph (not an 'igraph-class' object)")
     # if (is.list(arg.list)) { 
     #     stop("The use of an argument list in this function has been deprecated since v1.1.0")
     # }
+    stopifnot(is.logical(disable.command))
     interp.method <- match.arg(InterpolationMethod, choices = c("nearest", "bilinear", "bicubic", "IDW", "spline"))
     interp.method.class <- switch(interp.method,
                                   "nearest" = "ds:NearestNeighbor",
@@ -98,7 +102,7 @@ metaclipR.Interpolation <- function(graph,
                           nv = 1,
                           name = regnodename,
                           label = "Interpolation",
-                          className = interp.method.class)
+                          className = "ds:Interpolation")
     graph <- add_edges(graph,
                        c(getNodeIndexbyName(graph, orig.node),
                          getNodeIndexbyName(graph, regnodename)),
@@ -124,9 +128,11 @@ metaclipR.Interpolation <- function(graph,
                            label = "ds:usedReferenceCoordinates")
     }
     # Package/Command/Argument metadata ---------------------------------------
-    if ("grid" %in% names(arg.list)) arg.list <- arg.list[-grep("grid", names(arg.list))]
-    graph <- metaclip.graph.Command(graph, package, version, fun, arg.list,
-                                    origin.node.name = regnodename)
+    if (!disable.command) {
+        if ("grid" %in% names(arg.list)) arg.list <- arg.list[-grep("grid", names(arg.list))]
+        graph <- metaclip.graph.Command(graph, package, version, fun, arg.list,
+                                        origin.node.name = regnodename)
+    }
     return(list("graph" = graph, "parentnodename" = regnodename))
 }
 

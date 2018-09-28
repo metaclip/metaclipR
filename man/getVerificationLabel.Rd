@@ -18,4 +18,5 @@ Give a label to the specific measure used for the Verification node, as inferred
 \author{
 J Bedia
 }
+\concept{getLabel.helpers}
 \keyword{internal}

@@ -49,3 +49,14 @@
 * Bug fix in JSON-LD double-quote representation of character string arguments in literal command calls
 * Update package version support
 * Documentation updates
+
+## v1.2.0 (28 Sep 2018)
+
+* Bug fix in `metaclipR.Interpolation`  (wrong class assignment to Interpolation node)
+* Addition of combination method option in `metaclipR.Ensemble`
+* New internal helper `setNodeName` (automatically handles node names for individuals).
+* New generic function for climate index definition `metaclipR.climateIndex`
+* New generic function for anomaly definition `metaclipR.Anomaly`
+* Allow to disable argument-value details in `metaclipR.Aggregation`
+* Added `disable.command` flag in several functions, to optionally skip source code description
+* Other minor documentation updates

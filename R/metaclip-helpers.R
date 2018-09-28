@@ -129,8 +129,13 @@ getIndividualClass <- function(individual.name, vocabulary = "datasource") {
         return(er)
     })
     if (!is.null(out)) {
-        a <- gsub("\"|\\[|]", "", out) %>% strsplit(split = ",") %>% unlist() %>% extract2(1) %>% gsub(pattern = "http://www.metaclip.org/.*\\.owl#", replacement = "")
-        if (length(a) == 0) warning("No class found:\nEither the individual does not exist or there are no associated classes to it")
+        aux <- gsub("\"|\\[|]", "", out)
+        if (aux == "") {
+            a <- NULL
+        } else {
+            a <-  aux %>% strsplit(split = ",") %>% unlist() %>% extract2(1) %>% gsub(pattern = "http://www.metaclip.org/.*\\.owl#", replacement = "")
+            if (length(a) == 0) warning("No class found:\nEither the individual does not exist or there are no associated classes to it")
+        }
         return(a)
     } else {
         message("Unreachable remote vocabulary\nLikely reason: unavailable internet connection")
@@ -149,6 +154,7 @@ getIndividualClass <- function(individual.name, vocabulary = "datasource") {
 #'  Requires prefix inclusion (e.g. \code{className = "ds:DatasetSubset"})
 #' @importFrom igraph add_vertices vertex_attr
 #' @keywords internal
+#' @export
 #' @author J Bedia
 
 my_add_vertices <- function(graph,
@@ -302,6 +308,21 @@ pkgVersionCheck <- function(pkg, version) {
 
 knownPackageVersions <- function() find.package(package = "metaclipR") %>% file.path("pkg_versions.csv") %>% read.csv(stringsAsFactors = FALSE) %>% print()
 
+#' @title Set a node name
+#' @description Set a node name after checking whether it is an individual instance or not
+#' @export
+#' @param node.name Proposed node name. This ca be an individual instance
+#' @param node.class Class of the node
+#' @param vocabulary Vocabulary defining the \code{node.class}. Default to \code{"datasource"}.
+#' @return A character string to be set as the \code{"name"} attribute by \code{\link{my_add_vertices}}
+
+setNodeName <- function(node.name, node.class, vocabulary = "datasource") {
+    suppressWarnings(
+        ifelse(node.name %in% suppressMessages(knownClassIndividuals(node.class, vocabulary = vocabulary)),
+               paste0("ds:", node.name),
+               paste0(node.name, ".", randomName()))
+    )
+}
 
 
 

@@ -24,6 +24,11 @@
 #' @param graph.list A \code{metaclipR} object data list, each element being the
 #' graph defining each ensemble member
 #' @param output Optional. The output R object name, as character string
+#' @param combination.method Optional. Character string refering to the combination method used to construct the ensemble.
+#' This is represented by the ds class "CombinationMethod", for which several individual instances exist (this
+#' can be indicated here). Type \code{knownClassIndividuals("CombinationMethod")} for further details.
+#' @param disable.command Better not to touch. For internal usage only (used to re-use most of the code in other
+#'  functions, but skipping command tracking)
 #' @template template_arglistParam
 #' @template template_arglist
 #' @details This function takes as reference the semantics defined in the Data Source and Transformation ontology
@@ -38,19 +43,21 @@ metaclipR.Ensemble <- function(package = "transformeR",
                                output = NULL,
                                fun = "bindGrid.member",
                                arg.list = NULL,
-                               graph.list) {
+                               combination.method = NULL,
+                               graph.list,
+                               disable.command = FALSE) {
     if (length(graph.list) < 2) {
         stop("The input must be a list of at least two metaclipR graphs", call. = FALSE)
     }
     for (i in 1:length(graph.list)) {
         if (class(graph.list[[i]]$graph) != "igraph") stop("Invalid input graph (not an 'igraph-class' object)")    
     }
+    stopifnot(is.logical(disable.command))
     # Ensemble node
     graph <- graph.list[[1]]$graph
     # graph <- make_empty_graph()
     nodename <- paste0("Ensemble.", randomName()) 
     graph <- my_add_vertices(graph,
-                             nv = 1,
                              name = nodename,
                              label = "Multi-model Ensemble",
                              className = "ds:Ensemble")
@@ -65,8 +72,22 @@ metaclipR.Ensemble <- function(package = "transformeR",
                              getNodeIndexbyName(graph, nodename)),
                            label = "ds:wasEnsembleMember")
     }
+    ## Combination method (if specified)
+    if (!is.null(combination.method)) {
+        if (!is.character(combination.method)) stop("Invalid \'combination.method\' argument value", call. = FALSE)
+        cm.nodename <- setNodeName(combination.method, node.class = "CombinationMethod", vocabulary = "datasource")
+        graph <- my_add_vertices(graph = graph,
+                                 name = cm.nodename,
+                                 label = "Combination",
+                                 className = "ds:CombinationMethod")
+        graph <- add_edges(graph, c(getNodeIndexbyName(graph, nodename),
+                                    getNodeIndexbyName(graph, cm.nodename)),
+                           label = "ds:hadCombinationMethod")
+    }
     # Package/Command/Argument metadata ---------------------------------------
-    graph <- metaclip.graph.Command(graph, package, version, fun, arg.list,
-                                    origin.node.name = nodename)
+    if (!disable.command) {
+        graph <- metaclip.graph.Command(graph, package, version, fun, arg.list,
+                                        origin.node.name = nodename)
+    }
     return(list("graph" = graph, "parentnodename" = nodename))
 }

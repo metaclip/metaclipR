@@ -8,7 +8,7 @@ metaclipR.BiasCorrection(package = "downscaleR", version = "3.0.0",
   fun = "biasCorrection", arg.list, graph, TrainingGraph, ReferenceGraph,
   BC.method, BC.class = "BiasCorrection", isDefinedBy = NULL,
   comment = NULL, hasProbCharacter = NULL, isMultivariable = NULL,
-  isMultisite = NULL)
+  isMultisite = NULL, disable.command = FALSE)
 }
 \arguments{
 \item{package}{bias correction package. Default to \code{"downscaleR"}}
@@ -47,6 +47,9 @@ deal with multisite predictions? See References.}
 
 \item{isMultisite}{Default to NULL (unspecified), otherwise logical. Is the bias correction method envisaged to 
 deal with multisite predictions? See References.}
+
+\item{disable.command}{Better not to touch. For internal usage only (used to re-use most of the code in
+other functions, but skipping command tracking)}
 }
 \description{
 Build a directed metadata graph from bias correction routines
@@ -64,7 +67,7 @@ classes from the datasource vocabulary of METACLIP.
 
 Alternatively, and in order to accomodate the description of the source code to other environments
 and languajes (e.g. shell scripts, calls to CDOs etc.), the use of literal command calls 
-seems like a more convenient choice. Literal command calls also allow for a more straightforward
+is a more convenient choice. Literal command calls also allow for a more straightforward
 reproducibility by just "copying and pasting" the code used to generate each step. Literal
 command calls are encoded in METACLIP using the \emph{hadLiteralCommandCall} data property
 from the datasource vocabulary, that is attached to the command description. 
@@ -85,3 +88,4 @@ https://doi.org/10.1002/joc.5462
 \author{
 D. San Martín, J. Bedia
 }
+\concept{calibration}

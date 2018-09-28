@@ -6,7 +6,7 @@
 \usage{
 metaclipR.Validation(package, version, fun, measure.name = NULL,
   type = c("validation", "verification"), QualityAspect, arg.list,
-  PredictionGraph, ReferenceGraph)
+  PredictionGraph, ReferenceGraph, disable.command = FALSE)
 }
 \arguments{
 \item{package}{Validation package.}
@@ -31,6 +31,9 @@ specific \emph{ForecastVerification} subclass, when relevant}
 \item{PredictionGraph}{metaclipR output containing the Predictions/Projections to validate}
 
 \item{ReferenceGraph}{metaclipR output containing the reference (observations)}
+
+\item{disable.command}{Better not to touch. For internal usage only (used to re-use most of the code in other
+functions, but skipping command tracking)}
 }
 \description{
 Build a directed metadata graph from validation routines
@@ -51,7 +54,7 @@ classes from the datasource vocabulary of METACLIP.
 
 Alternatively, and in order to accomodate the description of the source code to other environments
 and languajes (e.g. shell scripts, calls to CDOs etc.), the use of literal command calls 
-seems like a more convenient choice. Literal command calls also allow for a more straightforward
+is a more convenient choice. Literal command calls also allow for a more straightforward
 reproducibility by just "copying and pasting" the code used to generate each step. Literal
 command calls are encoded in METACLIP using the \emph{hadLiteralCommandCall} data property
 from the datasource vocabulary, that is attached to the command description. 
@@ -70,3 +73,4 @@ Other validation: \code{\link{metaclipR.easyVerification}}
 \author{
 D. San Martín, J. Bedia
 }
+\concept{validation}
