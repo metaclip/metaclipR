@@ -38,6 +38,8 @@ graph2json <- function(graph, output.file) {
     # Metaclip imports
     cat(c("\t\t\"ds\": ", "\"http://www.metaclip.org/datasource/datasource.owl#\",\n"), 
         sep = "", file = z)    
+    cat(c("\t\t\"ipcc\": ", "\"http://www.metaclip.org/ipcc_terms/ipcc_terms.owl#\",\n"), 
+        sep = "", file = z)    
     cat(c("\t\t\"veri\": ", "\"http://www.metaclip.org/verification/verification.owl#\",\n"), 
         sep = "", file = z)    
     cat(c("\t\t\"cal\": ", "\"http://www.metaclip.org/calibration/calibration.owl#\",\n"), 
