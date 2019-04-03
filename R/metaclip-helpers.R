@@ -77,7 +77,8 @@ knownClassIndividuals <- function(classname, vocabulary = "datasource") {
     vocabulary <- match.arg(vocabulary, choices = c("datasource",
                                                     "calibration",
                                                     "verification",
-                                                    "graphical_output"))
+                                                    "graphical_output",
+                                                    "ipcc_terms"))
     refURL <- paste0("http://www.metaclip.org/individuals?vocab=", vocabulary, "&class=")
     message("Reading remote ", vocabulary, " ontology file ...")
     destURL <- paste0(refURL, classname) %>% URLencode() %>% url() 

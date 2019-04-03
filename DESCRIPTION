@@ -21,8 +21,8 @@ Suggests:
     devtools
 Type: Package
 Title: A climate4R package for METACLIP provenance description
-Version: 1.2.0
-Date: 2018-09-28
+Version: 1.2.1
+Date: 2019-04-03
 Authors@R: as.person(c(
     "Predictia <http://www.predictia.es/en> [cph]",
     "Joaquín Bedia <bediaj@predictia.es> [aut, cre]",
@@ -34,5 +34,5 @@ Encoding: UTF-8
 Description: Encode climate product provenance according to the METACLIP semantic framework <http://www.metaclip.org>. 
 License: file LICENSE
 LazyData: true
-RoxygenNote: 6.1.0
+RoxygenNote: 6.1.1
 VignetteBuilder: knitr
