@@ -60,3 +60,8 @@
 * Allow to disable argument-value details in `metaclipR.Aggregation`
 * Added `disable.command` flag in several functions, to optionally skip source code description
 * Other minor documentation updates
+
+## v1.2.1 (03 Apr 2019)
+
+* Minor modifications introduced in order to accomodate the new ipcc_tems vocabulary in the METACLIP family
+
