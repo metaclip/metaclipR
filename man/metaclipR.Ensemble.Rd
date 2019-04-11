@@ -7,7 +7,8 @@
 metaclipR.Ensemble(package = "transformeR",
   version = as.character(packageVersion(package)), output = NULL,
   fun = "bindGrid.member", arg.list = NULL,
-  combination.method = NULL, graph.list, disable.command = FALSE)
+  combination.method = NULL, graph.list, disable.command = FALSE,
+  dc.description = NULL)
 }
 \arguments{
 \item{package}{package name. Default to \code{"transformeR"}}
@@ -29,6 +30,9 @@ graph defining each ensemble member}
 
 \item{disable.command}{Better not to touch. For internal usage only (used to re-use most of the code in other
 functions, but skipping command tracking)}
+
+\item{dc.description}{Default to \code{NULL} and unused. Otherwise, this is a character string that will be appendend as a
+"dc:description" annotation to the ds:Ensemble-class node.}
 }
 \description{
 Build a directed metadata graph describing an Ensemble transformation from two or more

@@ -6,7 +6,8 @@
 \usage{
 metaclipR.Climatology(package = "transformeR",
   version = as.character(packageVersion(package)), graph,
-  fun = "climatology", arg.list = NULL)
+  fun = "climatology", arg.list = NULL, disable.command = FALSE,
+  dc.description = NULL)
 }
 \arguments{
 \item{package}{package}
@@ -18,6 +19,9 @@ metaclipR.Climatology(package = "transformeR",
 \item{fun}{function name. Unused (set to \code{"climatology"})}
 
 \item{arg.list}{Either a character string containing a literal command call or a key-value pair list of arguments-values. See the dedicated section more for details.}
+
+\item{dc.description}{Default to \code{NULL} and unused. Otherwise, this is a character string that will be appendend as a
+"dc:description" annotation to the ds:Climatology-class node.}
 }
 \value{
 A named list with the updated graph in element \code{"graph"} and the parent node name (\code{"parentnodename"}),

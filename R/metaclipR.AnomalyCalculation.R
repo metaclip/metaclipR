@@ -21,7 +21,7 @@
 #' @param package package
 #' @param version version
 #' @param fun function name. Unused (set to \code{"localScaling"})
-#' @param dc.description Default to \code{NULL} and unused. Otherwise, this is a character string that will be appendend as a
+ #' @param dc.description Default to \code{NULL} and unused. Otherwise, this is a character string that will be appendend as a
 #'  "dc:description" annotation to the ds:AnomalyCalculation-class node.
 #' @template template_arglistParam
 #' @template template_arglist
