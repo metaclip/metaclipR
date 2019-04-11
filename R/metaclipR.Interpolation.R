@@ -104,11 +104,13 @@ metaclipR.Interpolation <- function(graph,
     if (is.null(dc.description)) {
         graph <- add_vertices(graph,
                               nv = 1,
+                              label = "Interpolation",
                               name = regnodename,
                               className = "ds:Interpolation")
     } else {
         graph <- add_vertices(graph,
                               nv = 1,
+                              label = "Interpolation",
                               name = regnodename,
                               className = "ds:Interpolation",
                               attr = list("dc:description" = dc.description))
@@ -121,7 +123,7 @@ metaclipR.Interpolation <- function(graph,
     graph <- add_vertices(graph,
                           nv = 1,
                           name = regmethod.nodename,
-                          label = "InterpolationMethod",
+                          label = "Interpolation method",
                           className = interp.method.class)
     graph <- add_edges(graph,
                        c(getNodeIndexbyName(graph, regnodename),
