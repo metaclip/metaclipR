@@ -22,6 +22,10 @@
 #' @param graph A previous metaclipR data structure from which the current step follows
 #' @param version version
 #' @param fun function name. Unused (set to \code{"climatology"})
+#' @param dc.description Default to \code{NULL} and unused. Otherwise, this is a character string that will be appendend as a
+#'  "dc:description" annotation to the ds:Climatology-class node.
+#' @param disable.command Better not to touch. For internal usage only (used to re-use most of the code in other
+#'  functions, but skipping command tracking)
 #' @details This function takes as reference the semantics defined in the Data Source and Transformation ontology
 #' defined in the Metaclip Framework (\url{http://www.metaclip.org}).
 #' @template template_arglistParam
@@ -39,7 +43,9 @@ metaclipR.Climatology <- function(package = "transformeR",
                                   version = as.character(packageVersion(package)),
                                   graph,
                                   fun = "climatology",
-                                  arg.list = NULL) {
+                                  arg.list = NULL,
+                                  disable.command = FALSE,
+                                  dc.description = NULL) {
     orig.node <- graph$parentnodename
     graph <- graph$graph
     if (class(graph) != "igraph") stop("Invalid input graph (not an 'igraph-class' object)")
@@ -48,20 +54,31 @@ metaclipR.Climatology <- function(package = "transformeR",
     if (is.null(arg.list)) arg.list <- list(clim.fun = list(FUN = "mean", na.rm = TRUE), by.member = TRUE)
     cellme <- paste(deparse(arg.list$clim.fun$FUN), collapse = "")
     cellme <- gsub("\"","'", cellme)
-    graph <- add_vertices(graph,
-                          nv = 1,
-                          name = clim.nodename,
-                          label = "Climatology",
-                          className = "ds:Climatology",
-                          description = "Climatology Class",
-                          attr = list("ds:hasCellMethod" = cellme))
+    if (is.null(dc.description)) {
+        graph <- add_vertices(graph,
+                              nv = 1,
+                              name = clim.nodename,
+                              label = "Climatology",
+                              className = "ds:Climatology",
+                              attr = list("ds:hasCellMethod" = cellme))    
+    } else {
+        graph <- add_vertices(graph,
+                              nv = 1,
+                              name = clim.nodename,
+                              label = "Climatology",
+                              className = "ds:Climatology",
+                              attr = list("ds:hasCellMethod" = cellme,
+                                          "dc:description" = dc.description))    
+    }
     graph <- add_edges(graph, 
                        c(getNodeIndexbyName(graph, orig.node),
                          getNodeIndexbyName(graph, clim.nodename)),
                        label = "ds:hadClimatology")
     # Package/Command/Argument metadata ---------------------------------------
-    if ("grid" %in% names(arg.list)) arg.list <- arg.list[-grep("grid", names(arg.list))]
-    graph <- metaclip.graph.Command(graph, package, version, fun, arg.list,
-                                    origin.node.name = clim.nodename)
+    if (!disable.command) {
+        if ("grid" %in% names(arg.list)) arg.list <- arg.list[-grep("grid", names(arg.list))]
+        graph <- metaclip.graph.Command(graph, package, version, fun, arg.list,
+                                        origin.node.name = clim.nodename)    
+    }
     return(list("graph" = graph, "parentnodename" = clim.nodename)) 
 }
