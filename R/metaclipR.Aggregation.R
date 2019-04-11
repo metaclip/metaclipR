@@ -118,8 +118,8 @@ metaclipR.Aggregation <- function(package = "transformeR",
                          getNodeIndexbyName(graph, aggr.nodename)),
                        label = "ds:hadAggregation")
     # Member aggregation -----------------------------------------------
-    if (!is.null(arg.list$aggr.mem$FUN)) {
-        cellme <- paste(deparse(arg.list$aggr.mem$FUN), collapse = "")
+    if (!is.null(arg.list[['aggr.mem']][['FUN']])) {
+        cellme <- paste(deparse(arg.list[['aggr.mem']][['FUN']]), collapse = "")
         cellme <- gsub("\"","'", cellme)
         aggr.mem.nodename <- paste("Member", randomName(), sep = ".")
         graph <- add_vertices(graph,
@@ -127,7 +127,6 @@ metaclipR.Aggregation <- function(package = "transformeR",
                               name = aggr.mem.nodename,
                               label = "Member",
                               className = "ds:Member",
-                              description = "Member Class",
                               attr = list("ds:hasCellMethod" = cellme))
         graph <- add_edges(graph, 
                            c(getNodeIndexbyName(graph, aggr.nodename),
@@ -135,7 +134,7 @@ metaclipR.Aggregation <- function(package = "transformeR",
                            label = "ds:alongDimension")
     }
     # Lon aggregation ---------------------------------------------------------
-    if (!is.null(arg.list$aggr.lon$FUN)) {
+    if (!is.null(arg.list[['aggr.lon']][['FUN']])) {
         cellme <- paste(deparse(arg.list$aggr.lon$FUN), collapse = "")
         cellme <- gsub("\"","'", cellme)
         aggr.lon.nodename <- paste("Longitude", randomName(), sep = ".")
@@ -144,7 +143,6 @@ metaclipR.Aggregation <- function(package = "transformeR",
                               name = aggr.lon.nodename,
                               label = "Longitude",
                               className = "ds:Longitude",
-                              description = "Longitude Class",
                               attr = list("ds:hasCellMethod" = cellme))
         graph <- add_edges(graph, 
                            c(getNodeIndexbyName(graph, aggr.nodename),
@@ -152,7 +150,7 @@ metaclipR.Aggregation <- function(package = "transformeR",
                            label = "ds:alongDimension")
     }
     # Lat aggregation ---------------------------------------------------------
-    if (!is.null(arg.list$aggr.lat$FUN)) {
+    if (!is.null(arg.list[['aggr.lat']][['FUN']])) {
         cellme <- paste(deparse(arg.list$aggr.lat$FUN), collapse = "")
         cellme <- gsub("\"","'", cellme)
         aggr.lat.nodename <- paste("Latitude", randomName(), sep = ".")
@@ -161,7 +159,6 @@ metaclipR.Aggregation <- function(package = "transformeR",
                               name = aggr.lat.nodename,
                               label = "Latitude",
                               className = "ds:Latitude",
-                              description = "Latitude Class",
                               attr = list("ds:hasCellMethod" = cellme))
         graph <- add_edges(graph, 
                            c(getNodeIndexbyName(graph, aggr.nodename),
@@ -170,7 +167,7 @@ metaclipR.Aggregation <- function(package = "transformeR",
     }
     # Subdaily-to-daily aggregation -------------------------------------------
     time.counter <- c()
-    if (!is.null(arg.list$aggr.d$FUN)) {
+    if (!is.null(arg.list[['aggr.d']][['FUN']])) {
         time.counter <- c(time.counter, 1)
         cellme <- paste(deparse(arg.list$aggr.d$FUN), collapse = "")
         cellme <- gsub("\"","'", cellme)
@@ -198,8 +195,8 @@ metaclipR.Aggregation <- function(package = "transformeR",
                            label = "ds:hasTemporalResolution")
     }
     # Daily to monthly aggregation -------------------------------------------
-    if (!is.null(arg.list$aggr.m$FUN)) {
-        cellme <- paste(deparse(arg.list$aggr.m$FUN), collapse = "")
+    if (!is.null(arg.list[['aggr.m']][['FUN']])) {
+        cellme <- paste(deparse(arg.list[['aggr.m']][['FUN']]), collapse = "")
         cellme <- gsub("\"","'", cellme)
         time.counter <- c(time.counter, 1)
         if (sum(time.counter) > 1) {
@@ -239,8 +236,8 @@ metaclipR.Aggregation <- function(package = "transformeR",
                            label = "ds:hasTemporalResolution")
     }
     # Monthly to seasonal/annual aggregation -------------------------------------------
-    if (!is.null(arg.list$aggr.y$FUN)) {
-        cellme <- paste(deparse(arg.list$aggr.y$FUN), collapse = "")
+    if (!is.null(arg.list[['aggr.y']][['FUN']])) {
+        cellme <- paste(deparse(arg.list[['aggr.y']][['FUN']]), collapse = "")
         cellme <- gsub("\"","'", cellme)
         time.counter <- c(time.counter, 1)
         if (sum(time.counter) > 1) {
