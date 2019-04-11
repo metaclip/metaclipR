@@ -29,6 +29,8 @@
 #' can be indicated here). Type \code{knownClassIndividuals("CombinationMethod")} for further details.
 #' @param disable.command Better not to touch. For internal usage only (used to re-use most of the code in other
 #'  functions, but skipping command tracking)
+#' @param dc.description Default to \code{NULL} and unused. Otherwise, this is a character string that will be appendend as a
+#'  "dc:description" annotation to the ds:Ensemble-class node.
 #' @template template_arglistParam
 #' @template template_arglist
 #' @details This function takes as reference the semantics defined in the Data Source and Transformation ontology
@@ -45,7 +47,8 @@ metaclipR.Ensemble <- function(package = "transformeR",
                                arg.list = NULL,
                                combination.method = NULL,
                                graph.list,
-                               disable.command = FALSE) {
+                               disable.command = FALSE,
+                               dc.description = NULL) {
     if (length(graph.list) < 2) {
         stop("The input must be a list of at least two metaclipR graphs", call. = FALSE)
     }
@@ -56,15 +59,23 @@ metaclipR.Ensemble <- function(package = "transformeR",
     # Ensemble node
     graph <- graph.list[[1]]$graph
     # graph <- make_empty_graph()
-    nodename <- paste0("Ensemble.", randomName()) 
-    graph <- my_add_vertices(graph,
-                             name = nodename,
-                             label = "Multi-model Ensemble",
-                             className = "ds:Ensemble")
+    nodename <- paste0("Ensemble.", randomName())
+    if (is.null(dc.description)) {
+        graph <- my_add_vertices(graph,
+                                 name = nodename,
+                                 label = "Ensemble construction",
+                                 className = "ds:Ensemble")    
+    } else {
+        graph <- my_add_vertices(graph,
+                                 name = nodename,
+                                 label = "Ensemble construction",
+                                 className = "ds:Ensemble",
+                                 attr = list("dc:description" = dc.description))    
+    }
     graph <- add_edges(graph,
                        c(getNodeIndexbyName(graph, graph.list[[1]]$parentnodename),
                          getNodeIndexbyName(graph, nodename)),
-                       label = "ds:wasEnsembleMember")
+                       label = "ds:wasEnsembleMember")    
     for (i in 2:length(graph.list)) {
         graph <- my_union_graph(graph, graph.list[[i]]$graph)
         graph <- add_edges(graph,
