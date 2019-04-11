@@ -22,7 +22,7 @@ Suggests:
 Type: Package
 Title: A climate4R package for METACLIP provenance description
 Version: 1.2.1
-Date: 2019-04-03
+Date: 2019-04-11
 Authors@R: as.person(c(
     "Predictia <http://www.predictia.es/en> [cph]",
     "Joaquín Bedia <bediaj@predictia.es> [aut, cre]",

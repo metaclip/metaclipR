@@ -6,7 +6,7 @@
 \usage{
 metaclipR.AnomalyCalculation(graph, package = "transformeR",
   version = "1.4.1", fun = "scaleGrid", arg.list = NULL,
-  referenceGraph = NULL)
+  referenceGraph = NULL, dc.description = NULL)
 }
 \arguments{
 \item{graph}{An output from a previous \pkg{metaclipR} function containing a list with the i-graph class object containing
@@ -22,6 +22,9 @@ the input grid whose anomaly is to be computed, plus the terminal node from whic
 
 \item{referenceGraph}{An output from a previous \pkg{metaclipR} function containing a list with the i-graph class object containing the reference Transformation-class object
 used as base to compute the climatology, plus the name of its terminal node}
+
+\item{dc.description}{Default to \code{NULL} and unused. Otherwise, this is a character string that will be appendend as a
+"dc:description" annotation to the ds:AnomalyCalculation-class node.}
 }
 \description{
 Build a directed metadata graph describing an anomaly Transformation on a 

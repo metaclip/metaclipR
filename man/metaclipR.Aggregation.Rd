@@ -7,7 +7,7 @@
 metaclipR.Aggregation(package = "transformeR",
   version = as.character(packageVersion(package)), graph,
   fun = "aggregateGrid", arg.list = NULL, use.arg.list = TRUE,
-  disable.command = FALSE)
+  disable.command = FALSE, dc.description = NULL)
 }
 \arguments{
 \item{package}{package}
@@ -25,6 +25,9 @@ Default to TRUE.}
 
 \item{disable.command}{Better not to touch. For internal usage only (used to re-use most of the code in other
 functions, but skipping command tracking)}
+
+\item{dc.description}{Default to \code{NULL} and unused. Otherwise, this is a character string that will be appendend as a
+"dc:description" annotation to the ds:Aggregation node.}
 }
 \value{
 A named list with the updated graph in element \code{"graph"} and the parent node name (\code{"parentnodename"}),

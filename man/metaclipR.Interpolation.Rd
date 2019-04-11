@@ -7,7 +7,7 @@
 metaclipR.Interpolation(graph, package = "transformeR",
   version = as.character(packageVersion(package)),
   RefSpatialExtent = NULL, InterpolationMethod, fun = "interpGrid",
-  arg.list = NULL, disable.command = FALSE)
+  arg.list = NULL, disable.command = FALSE, dc.description = NULL)
 }
 \arguments{
 \item{graph}{A previous metaclipR data structure from which the current step follows}
@@ -27,6 +27,9 @@ metaclipR.Interpolation(graph, package = "transformeR",
 
 \item{disable.command}{Better not to touch. For internal usage only (used to re-use most of the code in other
 functions, but skipping command tracking)}
+
+\item{dc.description}{Default to \code{NULL} and unused. Otherwise, this is a character string that will be appendend as a
+"dc:description" annotation to the ds:Interpolation-class node.}
 }
 \description{
 Build a directed metadata graph describing an interpolation
