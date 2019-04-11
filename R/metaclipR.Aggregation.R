@@ -26,6 +26,8 @@
 #'  functions, but skipping command tracking)
 #' @param use.arg.list Logical flag. Used to optionally omit (\code{use.arg.list = FALSE}) the argument list in the description of command call. 
 #' Default to TRUE.
+#' @param dc.description Default to \code{NULL} and unused. Otherwise, this is a character string that will be appendend as a
+#'  "dc:description" annotation to the ds:Aggregation node.
 #' @template template_arglistParam
 #' @template template_arglist
 #' @details This function takes as reference the semantics defined in the Data Source and Transformation ontology
@@ -88,7 +90,8 @@ metaclipR.Aggregation <- function(package = "transformeR",
                                   fun = "aggregateGrid",
                                   arg.list = NULL,
                                   use.arg.list = TRUE,
-                                  disable.command = FALSE) {
+                                  disable.command = FALSE,
+                                  dc.description = NULL) {
     orig.node <- graph$parentnodename
     graph <- graph$graph
     if (class(graph) != "igraph") stop("Invalid input graph (not an 'igraph-class' object)")
@@ -96,12 +99,20 @@ metaclipR.Aggregation <- function(package = "transformeR",
     aggr.nodename <- paste("Aggregation", randomName(), sep = ".")
     orig.nodes.command <- c()
     orig.nodes.command <- c(orig.nodes.command, aggr.nodename)
-    graph <- add_vertices(graph,
-                          nv = 1,
-                          name = aggr.nodename,
-                          label = "Aggregation",
-                          className = "ds:Aggregation",
-                          description = "Aggregation Class")
+    if (is.null(dc.description)) {
+        graph <- add_vertices(graph,
+                              nv = 1,
+                              name = aggr.nodename,
+                              label = "Aggregation",
+                              className = "ds:Aggregation")    
+    } else {
+        graph <- add_vertices(graph,
+                              nv = 1,
+                              name = aggr.nodename,
+                              label = "Aggregation",
+                              className = "ds:Aggregation",
+                              attr = list("dc:description" = dc.description))
+    }
     graph <- add_edges(graph, 
                        c(getNodeIndexbyName(graph, orig.node),
                          getNodeIndexbyName(graph, aggr.nodename)),

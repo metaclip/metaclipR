@@ -21,6 +21,8 @@
 #' @param package package
 #' @param version version
 #' @param fun function name. Unused (set to \code{"localScaling"})
+#' @param dc.description Default to \code{NULL} and unused. Otherwise, this is a character string that will be appendend as a
+#'  "dc:description" annotation to the ds:AnomalyCalculation-class node.
 #' @template template_arglistParam
 #' @template template_arglist
 #' @param graph An output from a previous \pkg{metaclipR} function containing a list with the i-graph class object containing
@@ -134,7 +136,8 @@ metaclipR.AnomalyCalculation <- function(graph,
                                          version = "1.4.1",
                                          fun = "scaleGrid",
                                          arg.list = NULL,
-                                         referenceGraph = NULL) {
+                                         referenceGraph = NULL,
+                                         dc.description = NULL) {
     if (class(graph$graph) != "igraph") stop("Invalid input graph (not an 'igraph-class' object)")
     withInput <- graph$parentnodename
     graph <- graph$graph
@@ -146,13 +149,22 @@ metaclipR.AnomalyCalculation <- function(graph,
     # graph <- metaclipR.DatasetSubset(graph = graph, output = output, disable.command = TRUE)
     anom.nodename <- paste("Anomaly", randomName(), sep = ".")
     orig.nodes.command <- c(orig.nodes.command, anom.nodename)
-    graph <- add_vertices(graph,
-                          nv = 1,
-                          name = anom.nodename,
-                          label = "Anomaly",
-                          className = "ds:Anomaly",
-                          description = "Anomaly Class",
-                          attr = list("ds:hasTimeFrame" = arg.list$time.frame))
+    if (is.null(dc.description)) {
+        graph <- add_vertices(graph,
+                              nv = 1,
+                              name = anom.nodename,
+                              label = "Anomaly",
+                              className = "ds:Anomaly",
+                              attr = list("ds:hasTimeFrame" = arg.list$time.frame))    
+    } else {
+        graph <- add_vertices(graph,
+                              nv = 1,
+                              name = anom.nodename,
+                              label = "Anomaly",
+                              className = "ds:Anomaly",
+                              attr = list("ds:hasTimeFrame" = arg.list$time.frame,
+                                          "dc:description" = dc.description))
+    }
     graph <- add_edges(graph,
                        c(getNodeIndexbyName(graph, withInput),
                          getNodeIndexbyName(graph, anom.nodename)),

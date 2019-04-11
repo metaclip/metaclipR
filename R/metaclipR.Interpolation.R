@@ -26,6 +26,8 @@
 #'  \code{"IDW"} and \code{"spline"}, but these will be probably updated in the future to accommodate further methods.
 #' @param disable.command Better not to touch. For internal usage only (used to re-use most of the code in other
 #'  functions, but skipping command tracking)
+#' @param dc.description Default to \code{NULL} and unused. Otherwise, this is a character string that will be appendend as a
+#'  "dc:description" annotation to the ds:Interpolation-class node.
 #' @template template_arglistParam
 #' @template template_arglist
 #' @details This function takes as reference the semantics defined in the Data Source and Transformation ontology
@@ -81,7 +83,8 @@ metaclipR.Interpolation <- function(graph,
                                     InterpolationMethod,
                                     fun = "interpGrid",
                                     arg.list = NULL,
-                                    disable.command = FALSE) {
+                                    disable.command = FALSE,
+                                    dc.description = NULL) {
     if (class(graph$graph) != "igraph") stop("Invalid input graph (not an 'igraph-class' object)")
     # if (is.list(arg.list)) { 
     #     stop("The use of an argument list in this function has been deprecated since v1.1.0")
@@ -98,11 +101,18 @@ metaclipR.Interpolation <- function(graph,
     graph <- graph$graph
     # New spatial extent
     regnodename <- paste("Interpolation", randomName(), sep = ".")
-    graph <- add_vertices(graph,
-                          nv = 1,
-                          name = regnodename,
-                          label = "Interpolation",
-                          className = "ds:Interpolation")
+    if (is.null(dc.description)) {
+        graph <- add_vertices(graph,
+                              nv = 1,
+                              name = regnodename,
+                              className = "ds:Interpolation")
+    } else {
+        graph <- add_vertices(graph,
+                              nv = 1,
+                              name = regnodename,
+                              className = "ds:Interpolation",
+                              attr = list("dc:description" = dc.description))
+    }
     graph <- add_edges(graph,
                        c(getNodeIndexbyName(graph, orig.node),
                          getNodeIndexbyName(graph, regnodename)),
