@@ -4,8 +4,7 @@
 \alias{embedJSON}
 \title{Embed JSON-LD}
 \usage{
-embedJSON(png.in, json.file, png.out, opt.list = list(width = 950, height
-  = 900, res = 150))
+embedJSON(png.in, json.file, png.out)
 }
 \arguments{
 \item{png.in}{Full path to a target png file}

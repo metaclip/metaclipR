@@ -80,14 +80,12 @@ embedFig <- function(plot.fun, arg.list, full.metadata, format = "png", filename
 #' @param png.out Output png file path
 #' @return A png with embeded METACLIP provenance
 #' @importFrom png readPNG writePNG
+#' @importFrom magrittr %>% 
 #' @export
 #' @family graphical.outputs
 #' @author J Bedia
 
-embedJSON <- function(png.in, json.file, png.out,
-                      opt.list = list(width = 950,
-                                      height = 900,
-                                      res = 150)) {
+embedJSON <- function(png.in, json.file, png.out) {
     txt <- scan(json.file,
                 what = character(), strip.white = TRUE,
                 quote = "'", blank.lines.skip = TRUE)
