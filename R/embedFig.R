@@ -1,6 +1,6 @@
 ##     embedFig.R A function to embed compressed JSON metadata into bitmap files
 ##
-##     Copyright (C) 2018 Predictia (http://www.predictia.es)
+##     Copyright (C) 2019 Predictia (http://www.predictia.es)
 ##
 ##     This program is free software: you can redistribute it and/or modify
 ##     it under the terms of the GNU General Public License as published by
@@ -72,3 +72,30 @@ embedFig <- function(plot.fun, arg.list, full.metadata, format = "png", filename
 }
 
 
+
+#' @title Embed JSON-LD
+#' @description Embeds a JSON file into a png as METACLIP metadata
+#' @param png.in Full path to a target png file
+#' @param json.file File path to JSON-LD 
+#' @param png.out Output png file path
+#' @return A png with embeded METACLIP provenance
+#' @importFrom png readPNG writePNG
+#' @export
+#' @family graphical.outputs
+#' @author J Bedia
+
+embedJSON <- function(png.in, json.file, png.out,
+                      opt.list = list(width = 950,
+                                      height = 900,
+                                      res = 150)) {
+    txt <- scan(json.file,
+                what = character(), strip.white = TRUE,
+                quote = "'", blank.lines.skip = TRUE)
+    metadata <- paste(txt, collapse = " ") %>% charToRaw() %>% memCompress() %>% as.character() %>% paste(collapse = "")
+    metadata <- c(metaclip = metadata)
+    img <- png::readPNG(source = png.in)
+    # Embed compressed metadata
+    png::writePNG(image = img,
+                  text = metadata,
+                  target = png.out)
+}
