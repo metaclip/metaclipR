@@ -20,6 +20,9 @@ metaclipR.Climatology(package = "transformeR",
 
 \item{arg.list}{Either a character string containing a literal command call or a key-value pair list of arguments-values. See the dedicated section more for details.}
 
+\item{disable.command}{Better not to touch. For internal usage only (used to re-use most of the code in other
+functions, but skipping command tracking)}
+
 \item{dc.description}{Default to \code{NULL} and unused. Otherwise, this is a character string that will be appendend as a
 "dc:description" annotation to the ds:Climatology-class node.}
 }

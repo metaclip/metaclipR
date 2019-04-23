@@ -64,4 +64,6 @@
 ## v1.2.1 (03 Apr 2019)
 
 * Minor modifications introduced in order to accomodate the new ipcc_tems vocabulary in the METACLIP family
+* Add optional `dc:description` annotations in several class nodes
+* New helper `embedFig` for JSON embeding in arbitrary png files
 

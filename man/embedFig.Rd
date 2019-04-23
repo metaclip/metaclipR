@@ -60,7 +60,8 @@ by the user.
 }
 
 \seealso{
-Other graphical.outputs: \code{\link{graph2json}}
+Other graphical.outputs: \code{\link{embedJSON}},
+  \code{\link{graph2json}}
 }
 \author{
 J. Bedia

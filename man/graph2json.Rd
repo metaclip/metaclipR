@@ -21,7 +21,8 @@ Takes an igraph-class RDF graph and write it in JSON-LD
 A useful app to check/test JSON-LD mark <https://json-ld.org/playground/>
 }
 \seealso{
-Other graphical.outputs: \code{\link{embedFig}}
+Other graphical.outputs: \code{\link{embedFig}},
+  \code{\link{embedJSON}}
 }
 \author{
 J Bedia
