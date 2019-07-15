@@ -117,11 +117,20 @@ metaclipR.Dataset <- function(Dataset.name = NULL,
                                                                 "ShortRangeForecast"))
     graph <- make_empty_graph(directed = TRUE)
     # Dataset node ------------------
-    graph <- my_add_vertices(graph,
-                             nv = 1,
-                             name = Dataset.nodename,
-                             label = Dataset.name,
-                             className = paste0("ds:", Dataset.subclass))
+    if (!is.null(Run)) {
+        graph <- my_add_vertices(graph,
+                                 nv = 1,
+                                 name = Dataset.nodename,
+                                 label = Dataset.name,
+                                 className = paste0("ds:", Dataset.subclass),
+                                 attr = list("ds:hasRun" = Run))
+    } else {
+        graph <- my_add_vertices(graph,
+                                 nv = 1,
+                                 name = Dataset.nodename,
+                                 label = Dataset.name,
+                                 className = paste0("ds:", Dataset.subclass))
+    }
     # DataProvider node (OPTIONAL) -------------
     # List of instantiable knownDataProviders
     if (is.character(DataProvider)) {
@@ -180,8 +189,7 @@ metaclipR.Dataset <- function(Dataset.name = NULL,
                                  nv = 1,
                                  name = RCM.nodename,
                                  label = RCM,
-                                 className = "ds:RCM",
-                                 attr = list("ds:hasRun" = Run))
+                                 className = "ds:RCM")
         graph <- add_edges(graph, 
                            c(getNodeIndexbyName(graph, Dataset.nodename),
                              getNodeIndexbyName(graph, RCM.nodename)),
@@ -196,8 +204,7 @@ metaclipR.Dataset <- function(Dataset.name = NULL,
                                  nv = 1,
                                  name = GCM.nodename,
                                  label = GCM,
-                                 className = "ds:GCM",
-                                 attr = list("ds:hasRun" = Run))
+                                 className = "ds:GCM")
         graph <- if (rcmdata) {
             add_edges(graph, 
                       c(getNodeIndexbyName(graph, RCM.nodename),
