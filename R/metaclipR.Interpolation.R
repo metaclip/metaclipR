@@ -23,7 +23,7 @@
 #' @param RefSpatialExtent A reference spatial extent used for interpolation. The reference spatial extent can be initiated with \code{\link{metaclipR.SpatialExtent}}
 #' @param fun function name. Unused (set to \code{"interpGrid"})
 #' @param InterpolationMethod Interpolation method. Current possible choices include \code{"nearest"}, \code{"bilinear"}, \code{"bicubic"},
-#'  \code{"IDW"} and \code{"spline"}, but these will be probably updated in the future to accommodate further methods.
+#'  \code{"IDW"}, \code{"spline"} and \code{"ConservativeRemapping"}, but these will be probably updated in the future to accommodate further methods.
 #' @param disable.command Better not to touch. For internal usage only (used to re-use most of the code in other
 #'  functions, but skipping command tracking)
 #' @param dc.description Default to \code{NULL} and unused. Otherwise, this is a character string that will be appendend as a
@@ -90,13 +90,14 @@ metaclipR.Interpolation <- function(graph,
     #     stop("The use of an argument list in this function has been deprecated since v1.1.0")
     # }
     stopifnot(is.logical(disable.command))
-    interp.method <- match.arg(InterpolationMethod, choices = c("nearest", "bilinear", "bicubic", "IDW", "spline"))
+    interp.method <- match.arg(InterpolationMethod, choices = c("nearest", "bilinear", "bicubic", "IDW", "spline", "conservative"))
     interp.method.class <- switch(interp.method,
                                   "nearest" = "ds:NearestNeighbor",
                                   "bilinear" = "ds:BilinearInterpolation",
                                   "bicubic" = "ds:BicubicInterpolation",
                                   "IDW" = "ds:InverseDistanceWeighting",
-                                  "spline" = "ds:Splines")
+                                  "spline" = "ds:Splines",
+                                  "conservative" = "ds:ConservativeRemapping")
     orig.node <- graph$parentnodename
     graph <- graph$graph
     # New spatial extent
