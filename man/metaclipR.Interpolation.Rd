@@ -19,7 +19,7 @@ metaclipR.Interpolation(graph, package = "transformeR",
 \item{RefSpatialExtent}{A reference spatial extent used for interpolation. The reference spatial extent can be initiated with \code{\link{metaclipR.SpatialExtent}}}
 
 \item{InterpolationMethod}{Interpolation method. Current possible choices include \code{"nearest"}, \code{"bilinear"}, \code{"bicubic"},
-\code{"IDW"} and \code{"spline"}, but these will be probably updated in the future to accommodate further methods.}
+\code{"IDW"}, \code{"spline"} and \code{"ConservativeRemapping"}, but these will be probably updated in the future to accommodate further methods.}
 
 \item{fun}{function name. Unused (set to \code{"interpGrid"})}
 

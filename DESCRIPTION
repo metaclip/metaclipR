@@ -21,13 +21,11 @@ Suggests:
     devtools
 Type: Package
 Title: A climate4R package for METACLIP provenance description
-Version: 1.2.1
-Date: 2019-04-12
-Authors@R: as.person(c(
-    "Predictia <http://www.predictia.es/en> [cph]",
-    "Joaquín Bedia <bediaj@predictia.es> [aut, cre]",
-    "Daniel San Martín <daniel@predictia.es> [aut]",
-    "Nicolau Manubens <nicolau.manubens@bsc.es> [ctb]"))
+Version: 1.2.2
+Date: 2019-11-09
+Authors@R: c(person("Bedia", "Joaquín", email = "bediaj@unican.es", role = c("aut","cre"), comment = c(ORCID = "0000-0001-6219-4312")),
+             person("Daniel", "San Martín", email = "daniel@predictia.es", role = "aut"),
+             person("Nicolau", "Manubens", email = "nicolau.manubens@bsc.es", role = "ctb"))
 BugReports: https://github.com/metaclip/metaclipR/issues
 URL: http://www.metaclip.org
 Encoding: UTF-8
