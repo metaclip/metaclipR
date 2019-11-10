@@ -105,7 +105,15 @@ metaclipR.BiasCorrection <- function(package = "downscaleR",
                          getNodeIndexbyName(graph, cal.node)),
                        label = "cal:hadCalibration")
     # Adding the CalibrationMethod node
-    method.nodename <- setNodeName(node.name = BC.method, node.class = BC.class, vocabulary = "calibration")
+    isKnownMethod <- ifelse(BC.method %in% suppressMessages(knownClassIndividuals("CalibrationMethod", vocabulary = "calibration")), TRUE, FALSE)
+    # if (isKnownDataset) Dataset.subclass <- getIndividualClass(Dataset.name)
+    # method.nodename <- setNodeName(node.name = BC.method, node.class = BC.class, vocabulary = "calibration")
+    method.nodename <- if(isKnownMethod) {
+        paste0("cal:", BC.method)
+        BC.class <- getIndividualClass("EQM", vocabulary = "calibration")
+    } else {
+        setNodeName(node.name = BC.method, node.class = BC.class, vocabulary = "calibration")
+    }
     if (is.null(bc.class)) {
         attrl <- list("cal:isMultiVariable" = isMultivariable,
                       "cal:isMultiSite" = isMultisite,
@@ -114,7 +122,6 @@ metaclipR.BiasCorrection <- function(package = "downscaleR",
                       "rdfs:comment" = comment)
     } else {
         attrl <- NULL    
-        
     }
     graph <- my_add_vertices(graph,
                              name = method.nodename,
