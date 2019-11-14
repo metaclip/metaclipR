@@ -6,9 +6,10 @@
 \usage{
 metaclipR.BiasCorrection(package = "downscaleR", version = "3.0.0",
   fun = "biasCorrection", arg.list, graph, TrainingGraph, ReferenceGraph,
-  BC.method, BC.class = "BiasCorrection", isDefinedBy = NULL,
-  comment = NULL, hasProbCharacter = NULL, isMultivariable = NULL,
-  isMultisite = NULL, disable.command = FALSE)
+  ReferenceGraphSpatialExtent = NULL, BC.method,
+  BC.class = "BiasCorrection", isDefinedBy = NULL, comment = NULL,
+  hasProbCharacter = NULL, isMultivariable = NULL,
+  isMultisite = NULL, disable.command = FALSE, dc.description = NULL)
 }
 \arguments{
 \item{package}{bias correction package. Default to \code{"downscaleR"}}
@@ -25,6 +26,10 @@ metaclipR.BiasCorrection(package = "downscaleR", version = "3.0.0",
 climate change applications etc.)}
 
 \item{ReferenceGraph}{metaclipR output containing the reference predictand (typically observations)}
+
+\item{ReferenceGraphSpatialExtent}{Default to \code{NULL} and unused. Otherwise, this points to a SpatialExtent class node
+containing the horizontal spatial extent information of the observations. This will update the Spatial extent of the calibrated
+dataset to that of the reference observations used for calibration.}
 
 \item{BC.method}{Character string indicating the name of the bias correction method.
 For a list of known (instantiable) BiasCorrection methods see \code{knownClassIndividuals("BiasCorrection", "calibration")}}
@@ -50,6 +55,9 @@ deal with multisite predictions? See References.}
 
 \item{disable.command}{Better not to touch. For internal usage only (used to re-use most of the code in
 other functions, but skipping command tracking)}
+
+\item{dc.description}{Default to \code{NULL} and unused. Otherwise, this is a character string that will be appendend as a
+"dc:description" annotation to the ds:Calibration node.}
 }
 \description{
 Build a directed metadata graph from bias correction routines

@@ -1,6 +1,6 @@
 ##     metaclipR.BiasCorrection Construct a directed graph for bias correction
 ##
-##     Copyright (C) 2018 Predictia (http://www.predictia.es)
+##     Copyright (C) 2019 Predictia (http://www.predictia.es)
 ##
 ##     This program is free software: you can redistribute it and/or modify
 ##     it under the terms of the GNU General Public License as published by
@@ -41,8 +41,13 @@
 #' @param TrainingGraph metaclipR output containing the training data (e.g. 20C3M/historical scenario in
 #'  climate change applications etc.)
 #' @param ReferenceGraph metaclipR output containing the reference predictand (typically observations) 
+#' @param ReferenceGraphSpatialExtent Default to \code{NULL} and unused. Otherwise, this points to a SpatialExtent class node
+#' containing the horizontal spatial extent information of the observations. This will update the Spatial extent of the calibrated
+#' dataset to that of the reference observations used for calibration.
 #' @param disable.command Better not to touch. For internal usage only (used to re-use most of the code in
 #'  other functions, but skipping command tracking)
+#' @param dc.description Default to \code{NULL} and unused. Otherwise, this is a character string that will be appendend as a
+#'  "dc:description" annotation to the ds:Calibration node.
 #' @details This function takes as reference the semantics defined in the Calibration ontology defined in the 
 #' Metaclip Framework (\url{http://www.metaclip.org/}). These in turn are partially based on the VALUE Framewrok (Gutiérrez et al. 2018)
 #' @references 
@@ -62,6 +67,7 @@ metaclipR.BiasCorrection <- function(package = "downscaleR",
                                      graph,
                                      TrainingGraph,
                                      ReferenceGraph,
+                                     ReferenceGraphSpatialExtent = NULL,
                                      BC.method,
                                      BC.class = "BiasCorrection",
                                      isDefinedBy = NULL,
@@ -69,7 +75,9 @@ metaclipR.BiasCorrection <- function(package = "downscaleR",
                                      hasProbCharacter = NULL,
                                      isMultivariable = NULL,
                                      isMultisite = NULL,
-                                     disable.command = FALSE) {
+                                     disable.command = FALSE,
+                                     dc.description = NULL) {
+    
     if (class(graph$graph) != "igraph") stop("Invalid input graph (not an 'igraph-class' object)")
     if (class(TrainingGraph$graph) != "igraph") stop("Invalid input TrainingGraph (not an 'igraph-class' object)")
     if (class(ReferenceGraph$graph) != "igraph") stop("Invalid input ReferenceGraph (not an 'igraph-class' object)")
@@ -104,13 +112,24 @@ metaclipR.BiasCorrection <- function(package = "downscaleR",
                        c(getNodeIndexbyName(graph, pnode),
                          getNodeIndexbyName(graph, cal.node)),
                        label = "cal:hadCalibration")
+    # Update spatial extent
+    if (!is.null(ReferenceGraphSpatialExtent)) {
+        if (class(ReferenceGraphSpatialExtent$graph) != "igraph") stop("Invalid \'ReferenceGraphSpatialExtent\' structure")
+        spatextent.nodename <- ReferenceGraphSpatialExtent$parentnodename
+        graph <- my_union_graph(graph, ReferenceGraphSpatialExtent$graph)
+        graph <- add_edges(graph,
+                           c(getNodeIndexbyName(graph, cal.node),
+                             getNodeIndexbyName(graph, spatextent.nodename)),
+                           label = "ds:hasHorizontalExtent")
+    }
     # Adding the CalibrationMethod node
-    isKnownMethod <- ifelse(BC.method %in% suppressMessages(knownClassIndividuals("CalibrationMethod", vocabulary = "calibration")), TRUE, FALSE)
+    isKnownMethod <- ifelse(BC.method %in% suppressMessages(knownClassIndividuals("CalibrationMethod",
+                                                                                  vocabulary = "calibration")),
+                            TRUE, FALSE)
     # if (isKnownDataset) Dataset.subclass <- getIndividualClass(Dataset.name)
     # method.nodename <- setNodeName(node.name = BC.method, node.class = BC.class, vocabulary = "calibration")
-    method.nodename <- if(isKnownMethod) {
+    method.nodename <- if (isKnownMethod) {
         paste0("cal:", BC.method)
-        BC.class <- getIndividualClass("EQM", vocabulary = "calibration")
     } else {
         setNodeName(node.name = BC.method, node.class = BC.class, vocabulary = "calibration")
     }
