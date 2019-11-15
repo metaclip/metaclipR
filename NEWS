@@ -70,4 +70,6 @@
 ## v1.2.2 (in devel)
 * Move the hasRun property from GCM to Dataset
 * Added ConservativeRemapping class to interpolation method argument choices
+* Optionally update the SpatialHorizontalExtent after dataset calibration
+* Query individuals of a class from multiple vocabularies
 
