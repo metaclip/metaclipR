@@ -4,13 +4,17 @@
 \alias{knownClassIndividuals}
 \title{List all individuals from a class}
 \usage{
-knownClassIndividuals(classname, vocabulary = "datasource")
+knownClassIndividuals(classname, vocabulary = "datasource",
+  source.vocab = NULL)
 }
 \arguments{
 \item{classname}{The parent class from which the individual instances are queried}
 
 \item{vocabulary}{The target vocabulary name. Possible values are \code{"datasource"} (the default),
-\code{"calibration"}, \code{"verification"} and \code{"graphical_output"}.}
+\code{"calibration"}, \code{"verification"} and \code{"graphical_output"}.
+@param source.vocab Vocabulary the queried individuals belong to. For instance, the ClimateIndex class
+belong to the datasource vocabulary, but other individuals of this class may belong 
+to other vocabularies (e.g. ipcc).}
 }
 \value{
 A character vector of individuals for that class

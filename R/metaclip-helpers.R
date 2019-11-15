@@ -55,6 +55,9 @@ showUDGDatasources <- function() {
 #' @param classname The parent class from which the individual instances are queried
 #' @param vocabulary The target vocabulary name. Possible values are \code{"datasource"} (the default),
 #'  \code{"calibration"}, \code{"verification"} and \code{"graphical_output"}.
+#'  @param source.vocab Vocabulary the queried individuals belong to. For instance, the ClimateIndex class
+#'  belong to the datasource vocabulary, but other individuals of this class may belong 
+#'  to other vocabularies (e.g. ipcc).
 #' @importFrom utils URLencode
 #' @importFrom magrittr %>% 
 #' @details The function will check the existing individuals in the latest stable target
@@ -73,16 +76,18 @@ showUDGDatasources <- function() {
 #' knownClassIndividuals("ETCDDI")
 #' knownClassIndividuals("Dataset")
 
-knownClassIndividuals <- function(classname, vocabulary = "datasource") {
+knownClassIndividuals <- function(classname, vocabulary = "datasource", source.vocab = NULL) {
     vocabulary <- match.arg(vocabulary, choices = c("datasource",
                                                     "calibration",
                                                     "verification",
                                                     "graphical_output",
                                                     "ipcc_terms"))
-    refURL <- paste0("http://www.metaclip.org/individuals?vocab=", vocabulary, "&class=")
+    if (is.null(source.vocab)) source.vocab <- vocabulary
+    refURL <- paste0("http://www.metaclip.org/individuals?vocab=", vocabulary, "&sourceVocab=", source.vocab, "&class=")
     message("Reading remote ", vocabulary, " ontology file ...")
     destURL <- paste0(refURL, classname) %>% URLencode() %>% url() 
     on.exit(close(destURL))
+    print(destURL)
     out <- tryCatch(suppressWarnings(readLines(destURL, warn = FALSE)), error = function(er) {
         er <- NULL
         return(er)
