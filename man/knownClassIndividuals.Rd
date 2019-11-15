@@ -5,16 +5,19 @@
 \title{List all individuals from a class}
 \usage{
 knownClassIndividuals(classname, vocabulary = "datasource",
-  source.vocab = NULL)
+  source.vocab = NULL, verbose = FALSE)
 }
 \arguments{
 \item{classname}{The parent class from which the individual instances are queried}
 
 \item{vocabulary}{The target vocabulary name. Possible values are \code{"datasource"} (the default),
-\code{"calibration"}, \code{"verification"} and \code{"graphical_output"}.
-@param source.vocab Vocabulary the queried individuals belong to. For instance, the ClimateIndex class
-belong to the datasource vocabulary, but other individuals of this class may belong 
-to other vocabularies (e.g. ipcc).}
+\code{"calibration"}, \code{"verification"} and \code{"graphical_output"}.}
+
+\item{source.vocab}{Name of the vocabulary the parent class of the individuals belong to. By default, this is the same as the
+one provided in \code{vocabulary}.}
+
+\item{verbose}{If set to TRUE, it will print on screen details about the open connections to the remote vocabularies.
+For testing purposes only.}
 }
 \value{
 A character vector of individuals for that class
