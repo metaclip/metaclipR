@@ -11,7 +11,7 @@ knownClassIndividuals(classname, vocabulary = "datasource",
 \item{classname}{The parent class from which the individual instances are queried}
 
 \item{vocabulary}{The target vocabulary name. Possible values are \code{"datasource"} (the default),
-\code{"calibration"}, \code{"verification"} and \code{"graphical_output"}.}
+\code{"calibration"}, \code{"verification"}, \code{"graphical_output"} and \code{"ipcc_terms"}.}
 
 \item{source.vocab}{Name of the vocabulary the parent class of the individuals belong to. By default, this is the same as the
 one provided in \code{vocabulary}.}

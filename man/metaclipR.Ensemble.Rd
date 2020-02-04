@@ -68,6 +68,7 @@ by the user.
 Other transformation: \code{\link{metaclip.graph.Command}},
   \code{\link{metaclipR.Aggregation}},
   \code{\link{metaclipR.AnomalyCalculation}},
+  \code{\link{metaclipR.Binding}},
   \code{\link{metaclipR.Climatology}},
   \code{\link{metaclipR.Dataset}},
   \code{\link{metaclipR.Interpolation}},

@@ -52,6 +52,7 @@ by the user.
 \seealso{
 Other transformation: \code{\link{metaclipR.Aggregation}},
   \code{\link{metaclipR.AnomalyCalculation}},
+  \code{\link{metaclipR.Binding}},
   \code{\link{metaclipR.Climatology}},
   \code{\link{metaclipR.Dataset}},
   \code{\link{metaclipR.Ensemble}},

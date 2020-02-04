@@ -80,6 +80,7 @@ plot(metadata$graph)
 Other transformation: \code{\link{metaclip.graph.Command}},
   \code{\link{metaclipR.Aggregation}},
   \code{\link{metaclipR.AnomalyCalculation}},
+  \code{\link{metaclipR.Binding}},
   \code{\link{metaclipR.Climatology}},
   \code{\link{metaclipR.Ensemble}},
   \code{\link{metaclipR.Interpolation}},

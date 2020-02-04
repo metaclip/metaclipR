@@ -155,6 +155,7 @@ plot.igraph(out$graph, vertex.size = 5, edge.arrow.size = 0.1)
 \seealso{
 Other transformation: \code{\link{metaclip.graph.Command}},
   \code{\link{metaclipR.Aggregation}},
+  \code{\link{metaclipR.Binding}},
   \code{\link{metaclipR.Climatology}},
   \code{\link{metaclipR.Dataset}},
   \code{\link{metaclipR.Ensemble}},
