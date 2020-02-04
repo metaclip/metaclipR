@@ -54,7 +54,7 @@ showUDGDatasources <- function() {
 #' @description List defined individuals pertaining to a specific class from a METACLIP vocabulary
 #' @param classname The parent class from which the individual instances are queried
 #' @param vocabulary The target vocabulary name. Possible values are \code{"datasource"} (the default),
-#'  \code{"calibration"}, \code{"verification"} and \code{"graphical_output"}.
+#'  \code{"calibration"}, \code{"verification"}, \code{"graphical_output"} and \code{"ipcc_terms"}.
 #' @param source.vocab Name of the vocabulary the parent class of the individuals belong to. By default, this is the same as the
 #' one provided in \code{vocabulary}.
 #' @param verbose If set to TRUE, it will print on screen details about the open connections to the remote vocabularies.
