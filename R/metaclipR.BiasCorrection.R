@@ -44,6 +44,9 @@
 #' @param ReferenceGraphSpatialExtent Default to \code{NULL} and unused. Otherwise, this points to a SpatialExtent class node
 #' containing the horizontal spatial extent information of the observations. This will update the Spatial extent of the calibrated
 #' dataset to that of the reference observations used for calibration.
+#' @param ReferenceGraphRectangularGrid Default to \code{NULL} and unused. Otherwise, this points to a ds:RectangularGrid class node
+#' containing the grid definition of the predictand. This will update the Spatial extent of the calibrated
+#' dataset to that of the reference observations used for calibration.
 #' @param disable.command Better not to touch. For internal usage only (used to re-use most of the code in
 #'  other functions, but skipping command tracking)
 #' @param dc.description Default to \code{NULL} and unused. Otherwise, this is a character string that will be appendend as a
@@ -68,6 +71,7 @@ metaclipR.BiasCorrection <- function(package = "downscaleR",
                                      TrainingGraph,
                                      ReferenceGraph,
                                      ReferenceGraphSpatialExtent = NULL,
+                                     ReferenceGraphRectangularGrid = NULL,
                                      BC.method,
                                      BC.class = "BiasCorrection",
                                      isDefinedBy = NULL,
@@ -121,6 +125,15 @@ metaclipR.BiasCorrection <- function(package = "downscaleR",
                            c(getNodeIndexbyName(graph, cal.node),
                              getNodeIndexbyName(graph, spatextent.nodename)),
                            label = "ds:hasHorizontalExtent")
+    }
+    if (!is.null(ReferenceGraphRectangularGrid)) {
+        if (class(ReferenceGraphRectangularGrid$graph) != "igraph") stop("Invalid \'ReferenceGraphRectangularGrid\' structure")
+        grid.nodename <- ReferenceGraphRectangularGrid$parentnodename
+        graph <- my_union_graph(graph, ReferenceGraphRectangularGrid$graph)
+        graph <- add_edges(graph,
+                           c(getNodeIndexbyName(graph, cal.node),
+                             getNodeIndexbyName(graph, grid.nodename)),
+                           label = "ds:hasRectangularGrid")
     }
     # Adding the CalibrationMethod node
     isKnownMethod <- ifelse(BC.method %in% suppressMessages(knownClassIndividuals("CalibrationMethod",
