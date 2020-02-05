@@ -6,7 +6,8 @@
 \usage{
 metaclipR.BiasCorrection(package = "downscaleR", version = "3.0.0",
   fun = "biasCorrection", arg.list, graph, TrainingGraph, ReferenceGraph,
-  ReferenceGraphSpatialExtent = NULL, BC.method,
+  ReferenceGraphSpatialExtent = NULL,
+  ReferenceGraphRectangularGrid = NULL, BC.method,
   BC.class = "BiasCorrection", isDefinedBy = NULL, comment = NULL,
   hasProbCharacter = NULL, isMultivariable = NULL,
   isMultisite = NULL, disable.command = FALSE, dc.description = NULL)
@@ -29,6 +30,10 @@ climate change applications etc.)}
 
 \item{ReferenceGraphSpatialExtent}{Default to \code{NULL} and unused. Otherwise, this points to a SpatialExtent class node
 containing the horizontal spatial extent information of the observations. This will update the Spatial extent of the calibrated
+dataset to that of the reference observations used for calibration.}
+
+\item{ReferenceGraphRectangularGrid}{Default to \code{NULL} and unused. Otherwise, this points to a ds:RectangularGrid class node
+containing the grid definition of the predictand. This will update the Spatial extent of the calibrated
 dataset to that of the reference observations used for calibration.}
 
 \item{BC.method}{Character string indicating the name of the bias correction method.
