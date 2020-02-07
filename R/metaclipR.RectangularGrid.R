@@ -25,6 +25,7 @@
 #' @param ymax Same as \code{ymin}, but for the maximum Y coordinate.
 #' @param resX Required. Spatial resolution of the grid in the X-coordinates
 #' @param resY Required. Same as \code{resX}, but for the Y-coordinates
+#' @param ref.URL Optional Reference URL, encoded as a ds:referenceURL class annotation
 #' @param dc.description Default to \code{NULL} and unused. Otherwise, this is a character string that will be appendend as a
 #'  "dc:description" annotation to the ds:RectangularGrid node.
 #' @return A metaclipR object (igraph-class structure + terminal node name)
@@ -38,36 +39,22 @@ metaclipR.RectangularGrid <- function(resX,
                                       xmax = NULL,
                                       ymin = NULL,
                                       ymax = NULL,
-                                      dc.description = NULL) {
+                                      dc.description = NULL,
+                                      ref.URL = NULL) {
     graph <- make_empty_graph()
     grid.nodename <- paste("RectangularGrid", randomName(), sep = ".")
-    if (is.null(dc.description)) {
-        graph <- add_vertices(graph,
-                              nv = 1,
-                              name = grid.nodename,
-                              label = "Rectangular Grid",
-                              className = "ds:RectangularGrid",
-                              attr = list("ds:xmin" = xmin,
-                                          "ds:xmax" = xmax,
-                                          "ds:ymin" = ymin,
-                                          "ds:ymax" = ymax,
-                                          "ds:hasHorizontalResX" = resX,
-                                          "ds:hasHorizontalResY" = resY))
-    } else {
-        graph <- add_vertices(graph,
-                              nv = 1,
-                              name = grid.nodename,
-                              label = "Rectangular Grid",
-                              className = "ds:RectangularGrid",
-                              attr = list("ds:xmin" = xmin,
-                                          "ds:xmax" = xmax,
-                                          "ds:ymin" = ymin,
-                                          "ds:ymax" = ymax,
-                                          "ds:hasHorizontalResX" = resX,
-                                          "ds:hasHorizontalResY" = resY,
-                                          "dc:description" = dc.description))
-        
-    }
+    attr.list <- list("ds:xmin" = xmin,
+                      "ds:xmax" = xmax,
+                      "ds:ymin" = ymin,
+                      "ds:ymax" = ymax)
+    if (!is.null(dc.description)) attr.list[["dc:description"]] <- dc.description
+    if (!is.null(ref.URL)) attr.list[["ds:referenceURL"]] <- ref.URL
+    graph <- add_vertices(graph,
+                          nv = 1,
+                          name = grid.nodename,
+                          label = "Rectangular Grid",
+                          className = "ds:RectangularGrid",
+                          attr = attr.list)
     return(list("graph" = graph, "parentnodename" = grid.nodename))
 }
 
