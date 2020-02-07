@@ -75,5 +75,6 @@
 * Added new `metaclipR.RectangularGrid` function for new ds:RectangularGrid-class description 
 * Query individuals of a class from multiple vocabularies
 * Include new `metaclipR.Binding`
+* Include ds:refrenceURL annotation for grids
 * Other minor changes in node labels
 

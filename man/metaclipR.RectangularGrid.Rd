@@ -5,7 +5,7 @@
 \title{Set a reference RectangularGrid}
 \usage{
 metaclipR.RectangularGrid(resX, resY, xmin = NULL, xmax = NULL,
-  ymin = NULL, ymax = NULL, dc.description = NULL)
+  ymin = NULL, ymax = NULL, dc.description = NULL, ref.URL = NULL)
 }
 \arguments{
 \item{resX}{Required. Spatial resolution of the grid in the X-coordinates}
@@ -22,6 +22,8 @@ metaclipR.RectangularGrid(resX, resY, xmin = NULL, xmax = NULL,
 
 \item{dc.description}{Default to \code{NULL} and unused. Otherwise, this is a character string that will be appendend as a
 "dc:description" annotation to the ds:RectangularGrid node.}
+
+\item{ref.URL}{Optional Reference URL, encoded as a ds:referenceURL class annotation}
 }
 \value{
 A metaclipR object (igraph-class structure + terminal node name)
