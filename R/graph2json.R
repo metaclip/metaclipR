@@ -52,11 +52,12 @@ graph2json <- function(graph, output.file) {
     # rdf schema
     cat(c("\t\t\"rdfs\": ", "\"http://www.w3.org/2000/01/rdf-schema#\",\n"),
         sep = "", file = z)    
+    # dublin core
+    cat(c("\t\t\"dc\": ", "\"http://www.w3.org/2002/07/owl\",\n"),
+        sep = "", file = z)   
     # skos
     cat(c("\t\t\"skos\": ", "\"http://www.w3.org/2004/02/skos/core#\"\n"),
          sep = "", file = z)    
-    # dublin core
-    cat(c("\t\t\"dc\": ", "\"http://www.w3.org/2002/07/owl\",\n"), sep = "", file = z)    
     cat("\t},", file = z)
     cat("\n\t\"@graph\":[", file = z)
     # Todos los vertices del grafo
