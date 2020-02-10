@@ -46,7 +46,6 @@ graph2json <- function(graph, output.file) {
         sep = "", file = z)    
     cat(c("\t\t\"go\": ", "\"http://www.metaclip.org/graphical_output/graphical_output.owl#\",\n"), 
         sep = "", file = z)    
-    # other imports -not really needed as they are indirectly imported-, but don't harm
     # prov-o
     cat(c("\t\t\"prov\": ", "\"http://www.w3.org/ns/prov#\",\n"),
         sep = "", file = z)
@@ -56,21 +55,8 @@ graph2json <- function(graph, output.file) {
     # skos
     cat(c("\t\t\"skos\": ", "\"http://www.w3.org/2004/02/skos/core#\"\n"),
          sep = "", file = z)    
-    # # sequence
-    # cat(c("\t\t\"seq\": ", "\"http://www.ontologydesignpatterns.org/cp/owl/sequence.owl\",\n"),
-    #     sep = "", file = z) 
-    # # others
-    # cat(c("\t\t\"dc\": ", "\"http://www.w3.org/2002/07/owl\",\n"),
-    #     sep = "", file = z)    
-    # cat(c("\t\t\"owl\": ", "\"http://www.w3.org/2002/07/owl\",\n"),
-    #     sep = "", file = z)    
-    # cat(c("\t\t\"rdf\": ", "\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\",\n"),
-    #     sep = "", file = z)    
-    # cat(c("\t\t\"xml\": ", "\"http://www.w3.org/XML/1998/namespace\",\n"),
-    #     sep = "", file = z)
-    # cat(c("\t\t\"xsd\": ", "\"http://www.w3.org/2001/XMLSchema#\",\n"),
-    #     sep = "", file = z)    
-    # cat("\t},\n", file = z)
+    # dublin core
+    cat(c("\t\t\"dc\": ", "\"http://www.w3.org/2002/07/owl\",\n"), sep = "", file = z)    
     cat("\t},", file = z)
     cat("\n\t\"@graph\":[", file = z)
     # Todos los vertices del grafo
