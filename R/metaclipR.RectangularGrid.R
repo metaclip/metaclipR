@@ -46,7 +46,9 @@ metaclipR.RectangularGrid <- function(resX,
     attr.list <- list("ds:xmin" = xmin,
                       "ds:xmax" = xmax,
                       "ds:ymin" = ymin,
-                      "ds:ymax" = ymax)
+                      "ds:ymax" = ymax,
+                      "ds:hasHorizontalResX" = resX,
+                      "ds:hasHorizontalResY" = resY)
     if (!is.null(dc.description)) attr.list[["dc:description"]] <- dc.description
     if (!is.null(ref.URL)) attr.list[["ds:referenceURL"]] <- ref.URL
     graph <- add_vertices(graph,
