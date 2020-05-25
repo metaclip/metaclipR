@@ -4,25 +4,13 @@
 \name{ERAIN_tas_iberia}
 \alias{ERAIN_tas_iberia}
 \title{ERA-Interim example dataset}
-\format{A climate4R grid}
+\format{
+A climate4R grid
+}
 \source{
 Santander MetGroup User Data Gateway \url{http://www.meteo.unican.es/udg-tap}
 }
 \description{
 ERA-Interim reanalysis data in a 2-degree regular grid centred on the Iberian Peninsula. Data correspond to summer
 (JJA) temperature and are annually aggregated, encompassing the period 1981-2010.
-}
-\examples{
-\donttest{
-require(transformeR)
-data("ERAIN_tas_iberia")
-plotClimatology(climatology(ERAIN_tas_iberia),
-                backdrop.theme = "countries", 
-                scales = list(draw = TRUE),
-                main = getVarNames(ERAIN_tas_iberia, type = "long")
-)
-range(getRefDates(ERAIN_tas_iberia))            
-getSeason(ERAIN_tas_iberia) 
-getTimeResolution(ERAIN_tas_iberia)   
-}
 }

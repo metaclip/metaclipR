@@ -42,6 +42,7 @@
 #' require(igraph)
 #' pkg <- "transformeR"
 #' # Assume a given hindcast DatasetSubset: 
+#' require(climate4R.datasets)
 #' data("CFS_Iberia_hus850")
 #' DS <- subsetGrid(CFS_Iberia_hus850, members = 1:3, years = 1989:1991)
 #' comcall <- "subsetGrid(CFS_Iberia_hus850, members = 1:3, years = 1989:1991)"

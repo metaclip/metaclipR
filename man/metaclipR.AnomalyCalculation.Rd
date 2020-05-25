@@ -4,9 +4,15 @@
 \alias{metaclipR.AnomalyCalculation}
 \title{Directed metadata graph construction for Anomaly transformations}
 \usage{
-metaclipR.AnomalyCalculation(graph, package = "transformeR",
-  version = "1.4.1", fun = "scaleGrid", arg.list = NULL,
-  referenceGraph = NULL, dc.description = NULL)
+metaclipR.AnomalyCalculation(
+  graph,
+  package = "transformeR",
+  version = "1.4.1",
+  fun = "scaleGrid",
+  arg.list = NULL,
+  referenceGraph = NULL,
+  dc.description = NULL
+)
 }
 \arguments{
 \item{graph}{An output from a previous \pkg{metaclipR} function containing a list with the i-graph class object containing
@@ -62,6 +68,7 @@ require(igraph)
 pkg <- "transformeR"
 v <- "1.4.1"
 # Assume a given hindcast DatasetSubset: 
+require(climate4R.datasets)
 data("CFS_Iberia_psl")
 # In this example it is assumed that the 1983-1990 partition is the hindcast
 # (the reference period used to compute the anomaly), and that the 2002 subset
@@ -153,14 +160,15 @@ out <- metaclipR.AnomalyCalculation(graph = metadata2,
 plot.igraph(out$graph, vertex.size = 5, edge.arrow.size = 0.1)
 }
 \seealso{
-Other transformation: \code{\link{metaclip.graph.Command}},
-  \code{\link{metaclipR.Aggregation}},
-  \code{\link{metaclipR.Binding}},
-  \code{\link{metaclipR.Climatology}},
-  \code{\link{metaclipR.Dataset}},
-  \code{\link{metaclipR.Ensemble}},
-  \code{\link{metaclipR.Interpolation}},
-  \code{\link{metaclipR.etccdi}}
+Other transformation: 
+\code{\link{metaclip.graph.Command}()},
+\code{\link{metaclipR.Aggregation}()},
+\code{\link{metaclipR.Binding}()},
+\code{\link{metaclipR.Climatology}()},
+\code{\link{metaclipR.Dataset}()},
+\code{\link{metaclipR.Ensemble}()},
+\code{\link{metaclipR.Interpolation}()},
+\code{\link{metaclipR.etccdi}()}
 }
 \author{
 D. San Martín, J. Bedia

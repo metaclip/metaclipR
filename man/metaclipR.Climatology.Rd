@@ -4,10 +4,15 @@
 \alias{metaclipR.Climatology}
 \title{Directed metadata graph construction for Climatology transformations}
 \usage{
-metaclipR.Climatology(package = "transformeR",
-  version = as.character(packageVersion(package)), graph,
-  fun = "climatology", arg.list = NULL, disable.command = FALSE,
-  dc.description = NULL)
+metaclipR.Climatology(
+  package = "transformeR",
+  version = as.character(packageVersion(package)),
+  graph,
+  fun = "climatology",
+  arg.list = NULL,
+  disable.command = FALSE,
+  dc.description = NULL
+)
 }
 \arguments{
 \item{package}{package}
@@ -64,14 +69,15 @@ by the user.
 \href{http://www.meteo.unican.es/en/climate4r}{Climate4R page at University of Cantabria}
 }
 \seealso{
-Other transformation: \code{\link{metaclip.graph.Command}},
-  \code{\link{metaclipR.Aggregation}},
-  \code{\link{metaclipR.AnomalyCalculation}},
-  \code{\link{metaclipR.Binding}},
-  \code{\link{metaclipR.Dataset}},
-  \code{\link{metaclipR.Ensemble}},
-  \code{\link{metaclipR.Interpolation}},
-  \code{\link{metaclipR.etccdi}}
+Other transformation: 
+\code{\link{metaclip.graph.Command}()},
+\code{\link{metaclipR.Aggregation}()},
+\code{\link{metaclipR.AnomalyCalculation}()},
+\code{\link{metaclipR.Binding}()},
+\code{\link{metaclipR.Dataset}()},
+\code{\link{metaclipR.Ensemble}()},
+\code{\link{metaclipR.Interpolation}()},
+\code{\link{metaclipR.etccdi}()}
 }
 \author{
 D. San Martín, J. Bedia

@@ -4,9 +4,15 @@
 \alias{metaclipR.easyVerification}
 \title{Directed metadata graph construction for outputs}
 \usage{
-metaclipR.easyVerification(package = "easyVerification",
-  version = as.character(packageVersion(package)), fun, arg.list,
-  ForecastGraph, ReferenceGraph, ReferenceForecastGraph = NULL)
+metaclipR.easyVerification(
+  package = "easyVerification",
+  version = as.character(packageVersion(package)),
+  fun,
+  arg.list,
+  ForecastGraph,
+  ReferenceGraph,
+  ReferenceForecastGraph = NULL
+)
 }
 \arguments{
 \item{package}{Verification package. Default to \code{"easyVerification"}}
@@ -53,7 +59,8 @@ by the user.
 }
 
 \seealso{
-Other validation: \code{\link{metaclipR.Validation}}
+Other validation: 
+\code{\link{metaclipR.Validation}()}
 }
 \author{
 D. San Martín, J. Bedia

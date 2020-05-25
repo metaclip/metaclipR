@@ -4,8 +4,16 @@
 \alias{metaclipR.RectangularGrid}
 \title{Set a reference RectangularGrid}
 \usage{
-metaclipR.RectangularGrid(resX, resY, xmin = NULL, xmax = NULL,
-  ymin = NULL, ymax = NULL, dc.description = NULL, ref.URL = NULL)
+metaclipR.RectangularGrid(
+  resX,
+  resY,
+  xmin = NULL,
+  xmax = NULL,
+  ymin = NULL,
+  ymax = NULL,
+  dc.description = NULL,
+  ref.URL = NULL
+)
 }
 \arguments{
 \item{resX}{Required. Spatial resolution of the grid in the X-coordinates}

@@ -44,6 +44,7 @@
 #' @examples \dontrun{
 #' require(transformeR)
 #' require(igraph)
+#' require(climate4R.datasets)
 #' pkg <- "transformeR"
 #' v <- "1.1.1"
 #' # Assume a given hindcast DatasetSubset (we first simplify a)

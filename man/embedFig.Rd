@@ -4,8 +4,7 @@
 \alias{embedFig}
 \title{Generate a figure bitmap file with embedded metadata}
 \usage{
-embedFig(plot.fun, arg.list, full.metadata, format = "png", filename,
-  ...)
+embedFig(plot.fun, arg.list, full.metadata, format = "png", filename, ...)
 }
 \arguments{
 \item{plot.fun}{Character. Name of the plotting function}
@@ -60,8 +59,9 @@ by the user.
 }
 
 \seealso{
-Other graphical.outputs: \code{\link{embedJSON}},
-  \code{\link{graph2json}}
+Other graphical.outputs: 
+\code{\link{embedJSON}()},
+\code{\link{graph2json}()}
 }
 \author{
 J. Bedia

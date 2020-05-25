@@ -31,7 +31,8 @@ getIndividualClass("UDG") # The default vocabulary is datasource (can be omitted
 getIndividualClass("EQM", vocabulary = "calibration")
 }
 \seealso{
-Other ontology.helpers: \code{\link{knownClassIndividuals}}
+Other ontology.helpers: 
+\code{\link{knownClassIndividuals}()}
 }
 \author{
 J Bedia, D. San-Martín

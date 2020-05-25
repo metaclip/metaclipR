@@ -4,12 +4,23 @@
 \alias{metaclipR.DatasetSubset}
 \title{Directed metadata graph construction for DatasetSubsets}
 \usage{
-metaclipR.DatasetSubset(package = "transformeR",
-  version = as.character(packageVersion(package)), graph = NULL,
-  fun = NULL, arg.list = NULL, output = NULL,
-  RefSpatialExtent = NULL, xmin = NULL, xmax = NULL, ymin = NULL,
-  ymax = NULL, proj = NULL, resX = NULL, resY = NULL,
-  disable.command = FALSE)
+metaclipR.DatasetSubset(
+  package = "transformeR",
+  version = as.character(packageVersion(package)),
+  graph = NULL,
+  fun = NULL,
+  arg.list = NULL,
+  output = NULL,
+  RefSpatialExtent = NULL,
+  xmin = NULL,
+  xmax = NULL,
+  ymin = NULL,
+  ymax = NULL,
+  proj = NULL,
+  resX = NULL,
+  resY = NULL,
+  disable.command = FALSE
+)
 }
 \arguments{
 \item{package}{package}
@@ -119,7 +130,8 @@ plot(dsgraph$graph, vertex.size = 5, edge.arrow.size=0.1)
 \href{http://www.meteo.unican.es/en/climate4r}{Climate4R page at University of Cantabria}
 }
 \seealso{
-Other subsetting: \code{\link{metaclipR.loadeR}}
+Other subsetting: 
+\code{\link{metaclipR.loadeR}()}
 }
 \author{
 D. San Martín, J. Bedia

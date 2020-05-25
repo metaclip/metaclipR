@@ -41,6 +41,7 @@
 #' pkg <- "transformeR"
 #' v <- "1.4.1"
 #' # Assume a given hindcast DatasetSubset: 
+#' require(climate4R.datasets)
 #' data("CFS_Iberia_psl")
 #' # In this example it is assumed that the 1983-1990 partition is the hindcast
 #' # (the reference period used to compute the anomaly), and that the 2002 subset

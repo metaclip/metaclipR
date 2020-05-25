@@ -20,8 +20,9 @@ A png with embeded METACLIP provenance
 Embeds a JSON file into a png as METACLIP metadata
 }
 \seealso{
-Other graphical.outputs: \code{\link{embedFig}},
-  \code{\link{graph2json}}
+Other graphical.outputs: 
+\code{\link{embedFig}()},
+\code{\link{graph2json}()}
 }
 \author{
 J Bedia

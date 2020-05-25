@@ -4,9 +4,17 @@
 \alias{metaclipR.SpatialExtent}
 \title{Set a reference SpatialExtent}
 \usage{
-metaclipR.SpatialExtent(xyCoords, region = NULL, xmin = NULL,
-  xmax = NULL, ymin = NULL, ymax = NULL, proj = NULL,
-  resX = NULL, resY = NULL)
+metaclipR.SpatialExtent(
+  xyCoords,
+  region = NULL,
+  xmin = NULL,
+  xmax = NULL,
+  ymin = NULL,
+  ymax = NULL,
+  proj = NULL,
+  resX = NULL,
+  resY = NULL
+)
 }
 \arguments{
 \item{xyCoords}{Grid coordinates (i.e., the \code{$xyCoords} element of a \pkg{climate4R} object)}

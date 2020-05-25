@@ -4,10 +4,18 @@
 \alias{metaclipR.EnsoPlume}
 \title{Directed metadata graph construction for ENSO plume graphical products}
 \usage{
-metaclipR.EnsoPlume(package = "visualizeR", version = "1.1.1",
-  fun = "ensoPlumeC3S", multimodel = FALSE, input.obs.grid = NULL,
-  input.fcst.grid = NULL, arg.list = NULL, FcstMetadata,
-  ObsMetadata = NULL, VerificationMetadata = NULL)
+metaclipR.EnsoPlume(
+  package = "visualizeR",
+  version = "1.1.1",
+  fun = "ensoPlumeC3S",
+  multimodel = FALSE,
+  input.obs.grid = NULL,
+  input.fcst.grid = NULL,
+  arg.list = NULL,
+  FcstMetadata,
+  ObsMetadata = NULL,
+  VerificationMetadata = NULL
+)
 }
 \arguments{
 \item{package}{package}
@@ -65,9 +73,10 @@ by the user.
 }
 
 \seealso{
-Other graphical.products: \code{\link{metaclipR.AnomalyMap}},
-  \code{\link{metaclipR.SkillMap}},
-  \code{\link{metaclipR.SpatialPlot}}
+Other graphical.products: 
+\code{\link{metaclipR.AnomalyMap}()},
+\code{\link{metaclipR.SkillMap}()},
+\code{\link{metaclipR.SpatialPlot}()}
 }
 \author{
 D. San Martín, J. Bedia

@@ -40,8 +40,9 @@ by the user.
 }
 
 \seealso{
-Other getProperty.helpers: \code{\link{getHasProbabilityThreshold}},
-  \code{\link{getHasTimeStep}}
+Other getProperty.helpers: 
+\code{\link{getHasProbabilityThreshold}()},
+\code{\link{getHasTimeStep}()}
 }
 \author{
 J Bedia

@@ -4,8 +4,13 @@
 \alias{metaclipR.Regridding}
 \title{Directed metadata graph construction for Transformations of DatasetSubsets}
 \usage{
-metaclipR.Regridding(graph, package = "transformeR", version = "1.3.2",
-  fun = "interpGrid", arg.list = NULL)
+metaclipR.Regridding(
+  graph,
+  package = "transformeR",
+  version = "1.3.2",
+  fun = "interpGrid",
+  arg.list = NULL
+)
 }
 \arguments{
 \item{graph}{A previous metaclipR data structure from which the current step follows}

@@ -4,10 +4,17 @@
 \alias{metaclipR.SkillMap}
 \title{Directed metadata graph construction for skill Map graphical products}
 \usage{
-metaclipR.SkillMap(graph, package = "visualizeR",
-  version = as.character(packageVersion(package)), input.grid = NULL,
-  fun = "skillMap", command.call.string = NULL, arg.list = NULL,
-  StipplingInputGraph = NULL, epsg.code = "EPSG:4979")
+metaclipR.SkillMap(
+  graph,
+  package = "visualizeR",
+  version = as.character(packageVersion(package)),
+  input.grid = NULL,
+  fun = "skillMap",
+  command.call.string = NULL,
+  arg.list = NULL,
+  StipplingInputGraph = NULL,
+  epsg.code = "EPSG:4979"
+)
 }
 \arguments{
 \item{graph}{metaclipR output object containing the input grid whose values are to be mapped}
@@ -44,9 +51,10 @@ defined in the Metaclip Framework (\url{http://www.metaclip.org/}).
 \href{http://www.meteo.unican.es/en/climate4r}{Climate4R page at University of Cantabria}
 }
 \seealso{
-Other graphical.products: \code{\link{metaclipR.AnomalyMap}},
-  \code{\link{metaclipR.EnsoPlume}},
-  \code{\link{metaclipR.SpatialPlot}}
+Other graphical.products: 
+\code{\link{metaclipR.AnomalyMap}()},
+\code{\link{metaclipR.EnsoPlume}()},
+\code{\link{metaclipR.SpatialPlot}()}
 }
 \author{
 D. San Martín, J. Bedia

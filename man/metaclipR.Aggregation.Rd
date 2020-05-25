@@ -4,10 +4,16 @@
 \alias{metaclipR.Aggregation}
 \title{Directed metadata graph construction for Transformations of DatasetSubsets}
 \usage{
-metaclipR.Aggregation(package = "transformeR",
-  version = as.character(packageVersion(package)), graph,
-  fun = "aggregateGrid", arg.list = NULL, use.arg.list = TRUE,
-  disable.command = FALSE, dc.description = NULL)
+metaclipR.Aggregation(
+  package = "transformeR",
+  version = as.character(packageVersion(package)),
+  graph,
+  fun = "aggregateGrid",
+  arg.list = NULL,
+  use.arg.list = TRUE,
+  disable.command = FALSE,
+  dc.description = NULL
+)
 }
 \arguments{
 \item{package}{package}
@@ -67,6 +73,7 @@ by the user.
 \dontrun{
 require(transformeR)
 require(igraph)
+require(climate4R.datasets)
 pkg <- "transformeR"
 v <- "1.1.1"
 # Assume a given hindcast DatasetSubset (we first simplify a)
@@ -111,14 +118,15 @@ plot(graph$graph)
 \href{http://www.meteo.unican.es/en/climate4r}{Climate4R page at University of Cantabria}
 }
 \seealso{
-Other transformation: \code{\link{metaclip.graph.Command}},
-  \code{\link{metaclipR.AnomalyCalculation}},
-  \code{\link{metaclipR.Binding}},
-  \code{\link{metaclipR.Climatology}},
-  \code{\link{metaclipR.Dataset}},
-  \code{\link{metaclipR.Ensemble}},
-  \code{\link{metaclipR.Interpolation}},
-  \code{\link{metaclipR.etccdi}}
+Other transformation: 
+\code{\link{metaclip.graph.Command}()},
+\code{\link{metaclipR.AnomalyCalculation}()},
+\code{\link{metaclipR.Binding}()},
+\code{\link{metaclipR.Climatology}()},
+\code{\link{metaclipR.Dataset}()},
+\code{\link{metaclipR.Ensemble}()},
+\code{\link{metaclipR.Interpolation}()},
+\code{\link{metaclipR.etccdi}()}
 }
 \author{
 D. San Martín, J. Bedia

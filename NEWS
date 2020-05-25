@@ -78,3 +78,7 @@
 * Include ds:referenceURL annotation for grids
 * Other minor changes 
 
+## v1.4.0 (in devel)
+
+* Include internal vocabulary search
+* Several doc changes to accommodate the new climate4R.datasets package

@@ -4,10 +4,17 @@
 \alias{metaclipR.Interpolation}
 \title{Directed metadata graph construction for interpolation Transformations}
 \usage{
-metaclipR.Interpolation(graph, package = "transformeR",
+metaclipR.Interpolation(
+  graph,
+  package = "transformeR",
   version = as.character(packageVersion(package)),
-  RefSpatialExtent = NULL, InterpolationMethod, fun = "interpGrid",
-  arg.list = NULL, disable.command = FALSE, dc.description = NULL)
+  RefSpatialExtent = NULL,
+  InterpolationMethod,
+  fun = "interpGrid",
+  arg.list = NULL,
+  disable.command = FALSE,
+  dc.description = NULL
+)
 }
 \arguments{
 \item{graph}{A previous metaclipR data structure from which the current step follows}
@@ -66,6 +73,7 @@ require(transformeR)
 require(igraph)
 pkg <- "transformeR"
 # Assume a given hindcast DatasetSubset: 
+require(climate4R.datasets)
 data("CFS_Iberia_hus850")
 DS <- subsetGrid(CFS_Iberia_hus850, members = 1:3, years = 1989:1991)
 comcall <- "subsetGrid(CFS_Iberia_hus850, members = 1:3, years = 1989:1991)"
@@ -84,8 +92,8 @@ out <- interpGrid(DS,
                   bilin.method = "akima")
 comcall <- "interpGrid(DS,
                        new.coordinates = ref.grid,
-                       method = \\"bilinear\\",
-                       bilin.method = \\"akima\\")"
+                       method = \"bilinear\",
+                       bilin.method = \"akima\")"
 require(visualizeR)
 spatialPlot(climatology(out), backdrop.theme = "coastline")
 # This is how metadata is encoded:
@@ -101,14 +109,15 @@ plot(graph$graph)
 }
 }
 \seealso{
-Other transformation: \code{\link{metaclip.graph.Command}},
-  \code{\link{metaclipR.Aggregation}},
-  \code{\link{metaclipR.AnomalyCalculation}},
-  \code{\link{metaclipR.Binding}},
-  \code{\link{metaclipR.Climatology}},
-  \code{\link{metaclipR.Dataset}},
-  \code{\link{metaclipR.Ensemble}},
-  \code{\link{metaclipR.etccdi}}
+Other transformation: 
+\code{\link{metaclip.graph.Command}()},
+\code{\link{metaclipR.Aggregation}()},
+\code{\link{metaclipR.AnomalyCalculation}()},
+\code{\link{metaclipR.Binding}()},
+\code{\link{metaclipR.Climatology}()},
+\code{\link{metaclipR.Dataset}()},
+\code{\link{metaclipR.Ensemble}()},
+\code{\link{metaclipR.etccdi}()}
 }
 \author{
 D. San Martín, J. Bedia
