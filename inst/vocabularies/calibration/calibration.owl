@@ -1,0 +1,603 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://www.metaclip.org/calibration/calibration.owl#"
+     xml:base="http://www.metaclip.org/calibration/calibration.owl"
+     xmlns:dc="http://purl.org/dc/elements/1.1/"
+     xmlns:ds="http://www.metaclip.org/datasource/datasource.owl#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:prov="http://www.w3.org/ns/prov#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+     xmlns:terms="http://purl.org/dc/terms/"
+     xmlns:geosparql="http://www.opengis.net/ont/geosparql#"
+     xmlns:calibration="http://www.metaclip.org/calibration/calibration.owl#"
+     xmlns:cpannotationschema="http://www.ontologydesignpatterns.org/schemas/cpannotationschema.owl#">
+    <owl:Ontology rdf:about="http://www.metaclip.org/calibration/calibration.owl">
+        <owl:versionIRI rdf:resource="http://www.metaclip.org/calibration/0.3/calibration.owl"/>
+        <owl:imports rdf:resource="http://www.metaclip.org/datasource/datasource.owl"/>
+        <dc:creator xml:lang="en">Santander Meteorology Group</dc:creator>
+        <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2020-01-27</dc:date>
+        <dc:description xml:lang="en">The calibration ontology is aimed at the creation of a conceptual framework to describe the different statistical calibration techniques and procedures used in climate data analysis. In particular, the calibration ontology deals with bias correction, perfect-prog, ensemble recalibration and similar statistical post-processing techniques that rely on an observed reference and a calibration dataset to undertake an adjustment of climate model outputs. The vocabulary is constructed following the naming conventions and techniques followed in several international initiatives, such as the Action COST VALUE and EURO-CORDEX.</dc:description>
+        <dc:title xml:lang="en">The Calibration Vocabulary of METACLIP</dc:title>
+        <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://www.metaclip.org</rdfs:seeAlso>
+        <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">https://doi.org/10.1016/j.envsoft.2019.07.005</rdfs:seeAlso>
+        <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.4</owl:versionInfo>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.metaclip.org/calibration/calibration.owl#hasProbCharacter -->
+
+    <owl:AnnotationProperty rdf:about="http://www.metaclip.org/calibration/calibration.owl#hasProbCharacter">
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdfs:domain rdf:resource="http://www.metaclip.org/calibration/calibration.owl#CalibrationMethod"/>
+    </owl:AnnotationProperty>
+    
+
+
+    <!-- http://www.metaclip.org/calibration/calibration.owl#hasSeasonality -->
+
+    <owl:AnnotationProperty rdf:about="http://www.metaclip.org/calibration/calibration.owl#hasSeasonality">
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:AnnotationProperty>
+    
+
+
+    <!-- http://www.metaclip.org/calibration/calibration.owl#isMultiSite -->
+
+    <owl:AnnotationProperty rdf:about="http://www.metaclip.org/calibration/calibration.owl#isMultiSite">
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+        <rdfs:domain rdf:resource="http://www.metaclip.org/calibration/calibration.owl#CalibrationMethod"/>
+    </owl:AnnotationProperty>
+    
+
+
+    <!-- http://www.metaclip.org/calibration/calibration.owl#isMultiVariable -->
+
+    <owl:AnnotationProperty rdf:about="http://www.metaclip.org/calibration/calibration.owl#isMultiVariable">
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+        <rdfs:domain rdf:resource="http://www.metaclip.org/calibration/calibration.owl#CalibrationMethod"/>
+    </owl:AnnotationProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.metaclip.org/calibration/calibration.owl#hadCalibration -->
+
+    <owl:ObjectProperty rdf:about="http://www.metaclip.org/calibration/calibration.owl#hadCalibration">
+        <rdfs:subPropertyOf rdf:resource="http://www.metaclip.org/datasource/datasource.owl#hadTransformation"/>
+        <rdfs:domain rdf:resource="http://www.metaclip.org/datasource/datasource.owl#Step"/>
+        <rdfs:range rdf:resource="http://www.metaclip.org/calibration/calibration.owl#Calibration"/>
+        <dc:description xml:lang="en">This object property links a ds:Dtep with a :Calibration step</dc:description>
+        <rdfs:label>hadCalibration</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.metaclip.org/calibration/calibration.owl#hadDeltaChange -->
+
+    <owl:ObjectProperty rdf:about="http://www.metaclip.org/calibration/calibration.owl#hadDeltaChange">
+        <rdfs:subPropertyOf rdf:resource="http://www.metaclip.org/datasource/datasource.owl#hadTransformation"/>
+        <rdfs:domain rdf:resource="http://www.metaclip.org/datasource/datasource.owl#Climatology"/>
+        <rdfs:range rdf:resource="http://www.metaclip.org/datasource/datasource.owl#Climatology"/>
+        <dc:description xml:lang="en">A delta change climatology is added to a climatological baseline to produce a future climate climatology</dc:description>
+        <rdfs:label>hadDeltaChange</rdfs:label>
+        <rdfs:seeAlso rdf:resource="http://www.metaclip.org/calibration/calibration.owl#DeltaChange"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.metaclip.org/calibration/calibration.owl#withCalibrationMethod -->
+
+    <owl:ObjectProperty rdf:about="http://www.metaclip.org/calibration/calibration.owl#withCalibrationMethod">
+        <rdfs:domain rdf:resource="http://www.metaclip.org/calibration/calibration.owl#Calibration"/>
+        <rdfs:range rdf:resource="http://www.metaclip.org/calibration/calibration.owl#CalibrationMethod"/>
+        <dc:description xml:lang="en">Object property linking a :Calibration step with the description of the :CalibrationMethod applied</dc:description>
+        <rdfs:label>withCalibrationMethod</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.metaclip.org/calibration/calibration.owl#withReferenceData -->
+
+    <owl:ObjectProperty rdf:about="http://www.metaclip.org/calibration/calibration.owl#withReferenceData">
+        <rdfs:domain rdf:resource="http://www.metaclip.org/calibration/calibration.owl#Calibration"/>
+        <rdfs:range rdf:resource="http://www.metaclip.org/datasource/datasource.owl#Step"/>
+        <dc:description xml:lang="en">This object property links a :Calibration step with the reference data (generally observations) used as predictand in the calibration stage</dc:description>
+        <rdfs:label>withReferenceData</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.metaclip.org/calibration/calibration.owl#withTrainingData -->
+
+    <owl:ObjectProperty rdf:about="http://www.metaclip.org/calibration/calibration.owl#withTrainingData">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+        <rdfs:domain rdf:resource="http://www.metaclip.org/calibration/calibration.owl#Calibration"/>
+        <rdfs:range rdf:resource="http://www.metaclip.org/datasource/datasource.owl#Step"/>
+        <dc:description xml:lang="en">This object property links a :Calibration step with the training data (predictor set) used in the calibration stage</dc:description>
+        <rdfs:label>withTrainingData</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.metaclip.org/datasource/datasource.owl#hasHorizontalExtent -->
+
+    <rdf:Description rdf:about="http://www.metaclip.org/datasource/datasource.owl#hasHorizontalExtent">
+        <rdfs:domain rdf:resource="http://www.metaclip.org/calibration/calibration.owl#Calibration"/>
+    </rdf:Description>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.metaclip.org/calibration/calibration.owl#hasProbCharacter -->
+
+    <owl:DatatypeProperty rdf:about="http://www.metaclip.org/calibration/calibration.owl#hasProbCharacter">
+        <rdfs:range>
+            <rdfs:Datatype>
+                <owl:oneOf>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                        <rdf:first>deterministic</rdf:first>
+                        <rdf:rest>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                                <rdf:first>stochastic</rdf:first>
+                                <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                            </rdf:Description>
+                        </rdf:rest>
+                    </rdf:Description>
+                </owl:oneOf>
+            </rdfs:Datatype>
+        </rdfs:range>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.metaclip.org/calibration/calibration.owl#hasSeasonality -->
+
+    <owl:DatatypeProperty rdf:about="http://www.metaclip.org/calibration/calibration.owl#hasSeasonality"/>
+    
+
+
+    <!-- http://www.metaclip.org/calibration/calibration.owl#isMultiSite -->
+
+    <owl:DatatypeProperty rdf:about="http://www.metaclip.org/calibration/calibration.owl#isMultiSite"/>
+    
+
+
+    <!-- http://www.metaclip.org/calibration/calibration.owl#isMultiVariable -->
+
+    <owl:DatatypeProperty rdf:about="http://www.metaclip.org/calibration/calibration.owl#isMultiVariable"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.metaclip.org/calibration/calibration.owl#BiasCorrection -->
+
+    <owl:Class rdf:about="http://www.metaclip.org/calibration/calibration.owl#BiasCorrection">
+        <rdfs:subClassOf rdf:resource="http://www.metaclip.org/calibration/calibration.owl#CalibrationMethod"/>
+        <dc:description xml:lang="en">Bias correction (or &apos;adjustment&apos;) techniques adjust the raw model output distribution towards the observed one to ensure distributional resemblance to the local climatology. The simplest techniques adjust the mean/variance of the distribution (e.g. :LinearScaling), while more complex (parametric or empirical) quantile mapping techniques adjust the whole distribution (e.g. :EQM).</dc:description>
+        <rdfs:comment xml:lang="en">The key difference of this class with ESD-MOS is that bias adjustment has a limited capability for downscaling (i.e., unsuitable to bring local scale variability into the adjusted results), as it does not establish a temporal connection between model variables and observations). The more specific subclasses should be asserted when relevant.</rdfs:comment>
+        <rdfs:label>BiasCorrection</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.metaclip.org/calibration/calibration.owl#CCA -->
+
+    <owl:Class rdf:about="http://www.metaclip.org/calibration/calibration.owl#CCA">
+        <rdfs:subClassOf rdf:resource="http://www.metaclip.org/calibration/calibration.owl#ESD-MOS"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.metaclip.org/calibration/calibration.owl#Calibration -->
+
+    <owl:Class rdf:about="http://www.metaclip.org/calibration/calibration.owl#Calibration">
+        <rdfs:subClassOf rdf:resource="http://www.metaclip.org/datasource/datasource.owl#Step"/>
+        <dc:description xml:lang="en">Adjustment techniques are a broad family of empirical methods aiming at the statistical transformation of a climate model output using as reference one or several variables from a second dataset.</dc:description>
+        <rdfs:label>Calibration</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.metaclip.org/calibration/calibration.owl#CalibrationMethod -->
+
+    <owl:Class rdf:about="http://www.metaclip.org/calibration/calibration.owl#CalibrationMethod">
+        <rdfs:subClassOf rdf:resource="http://www.w3.org/ns/prov#Entity"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.metaclip.org/calibration/calibration.owl#DeltaChange -->
+
+    <owl:Class rdf:about="http://www.metaclip.org/calibration/calibration.owl#DeltaChange">
+        <rdfs:subClassOf rdf:resource="http://www.metaclip.org/datasource/datasource.owl#Step"/>
+        <dc:description xml:lang="en">The delta method uses the difference (delta) between a historical period and a modeled value, providing the climate change &apos;signal&apos;. As it compares time slices of simulated future scenarios relative to a simulated historical scenario of the same model, the physics and parametrizations remain consistent. The resulting climate change signal is then added to a known historical baseline climatology.</dc:description>
+        <rdfs:label>Delta Change</rdfs:label>
+        <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://www.nature.com/doifinder/10.1038/nature09388</rdfs:seeAlso>
+    </owl:Class>
+    
+
+
+    <!-- http://www.metaclip.org/calibration/calibration.owl#ESD -->
+
+    <owl:Class rdf:about="http://www.metaclip.org/calibration/calibration.owl#ESD">
+        <rdfs:subClassOf rdf:resource="http://www.metaclip.org/calibration/calibration.owl#CalibrationMethod"/>
+        <dc:description xml:lang="en">A family of Model Output Adjustment techniques based on statistical models linking suitable informative model outputs (predictors, typically middle tropospheric variables) to the local observed predictand of interest over a particular domain, working at a daily to seasonal scale. These models are first trained using model and observed data for a representrative historical reanalysis/hindcast period, and later applied to new (e.g. predicted) GCM/RCM data to obtain the downscaled local predictions.</dc:description>
+        <rdfs:label>ESD</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.metaclip.org/calibration/calibration.owl#ESD-MOS -->
+
+    <owl:Class rdf:about="http://www.metaclip.org/calibration/calibration.owl#ESD-MOS">
+        <rdfs:subClassOf rdf:resource="http://www.metaclip.org/calibration/calibration.owl#ESD"/>
+        <owl:disjointWith rdf:resource="http://www.metaclip.org/calibration/calibration.owl#ESD-PP"/>
+        <dc:description xml:lang="en">Under the Model Output Statistics (MOS) approach, model outputs from the GCM/RCM are directly used for model calibration, thus correcting systematic biases against observations.</dc:description>
+        <rdfs:label xml:lang="en">Empirical Statistical Downscaling under the MOS approach</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.metaclip.org/calibration/calibration.owl#ESD-PP -->
+
+    <owl:Class rdf:about="http://www.metaclip.org/calibration/calibration.owl#ESD-PP">
+        <rdfs:subClassOf rdf:resource="http://www.metaclip.org/calibration/calibration.owl#ESD"/>
+        <dc:description xml:lang="en">Under the Perfect-prog (PP) approach, quasi-observations from a reanalysis are used in the model calibration phase based on their temporal (e.g. daily or seasonal) correspondence with observations in the historical trainig period.</dc:description>
+        <rdfs:label xml:lang="en">Empirical Statistical Downscaling under the Perfect Prog approach</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.metaclip.org/calibration/calibration.owl#EnsembleRecalibration -->
+
+    <owl:Class rdf:about="http://www.metaclip.org/calibration/calibration.owl#EnsembleRecalibration">
+        <rdfs:subClassOf rdf:resource="http://www.metaclip.org/calibration/calibration.owl#CalibrationMethod"/>
+        <dc:description xml:lang="en">Broadly speaking, the main goal of Ensemble Recalibration techniques is producing reliable probability forecasts by directly modifying the ensemble predictions (ensemble re-calibration) or derived products such as tercile probabilities (probability re-calibration).</dc:description>
+        <rdfs:label>EnsembleRecalibration</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.metaclip.org/calibration/calibration.owl#LinearScaling -->
+
+    <owl:Class rdf:about="http://www.metaclip.org/calibration/calibration.owl#LinearScaling">
+        <rdfs:subClassOf rdf:resource="http://www.metaclip.org/calibration/calibration.owl#ParametricBiasCorrection"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.metaclip.org/calibration/calibration.owl#MOS-Analogs -->
+
+    <owl:Class rdf:about="http://www.metaclip.org/calibration/calibration.owl#MOS-Analogs">
+        <rdfs:subClassOf rdf:resource="http://www.metaclip.org/calibration/calibration.owl#ESD-MOS"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.metaclip.org/calibration/calibration.owl#NPQuantileMapping -->
+
+    <owl:Class rdf:about="http://www.metaclip.org/calibration/calibration.owl#NPQuantileMapping">
+        <rdfs:subClassOf rdf:resource="http://www.metaclip.org/calibration/calibration.owl#NonParametricBiasCorrection"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.metaclip.org/calibration/calibration.owl#NonParametricBiasCorrection -->
+
+    <owl:Class rdf:about="http://www.metaclip.org/calibration/calibration.owl#NonParametricBiasCorrection">
+        <rdfs:subClassOf rdf:resource="http://www.metaclip.org/calibration/calibration.owl#BiasCorrection"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.metaclip.org/calibration/calibration.owl#PQuantileMapping -->
+
+    <owl:Class rdf:about="http://www.metaclip.org/calibration/calibration.owl#PQuantileMapping">
+        <rdfs:subClassOf rdf:resource="http://www.metaclip.org/calibration/calibration.owl#ParametricBiasCorrection"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.metaclip.org/calibration/calibration.owl#ParametricBiasCorrection -->
+
+    <owl:Class rdf:about="http://www.metaclip.org/calibration/calibration.owl#ParametricBiasCorrection">
+        <rdfs:subClassOf rdf:resource="http://www.metaclip.org/calibration/calibration.owl#BiasCorrection"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.metaclip.org/calibration/calibration.owl#ProbabilityScaling -->
+
+    <owl:Class rdf:about="http://www.metaclip.org/calibration/calibration.owl#ProbabilityScaling">
+        <rdfs:subClassOf rdf:resource="http://www.metaclip.org/calibration/calibration.owl#EnsembleRecalibration"/>
+        <owl:disjointWith rdf:resource="http://www.metaclip.org/calibration/calibration.owl#VarianceInflation"/>
+        <rdfs:label>ProbabilityScaling</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.metaclip.org/calibration/calibration.owl#TransferFunctions -->
+
+    <owl:Class rdf:about="http://www.metaclip.org/calibration/calibration.owl#TransferFunctions">
+        <rdfs:subClassOf rdf:resource="http://www.metaclip.org/calibration/calibration.owl#ESD-PP"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.metaclip.org/calibration/calibration.owl#VarianceInflation -->
+
+    <owl:Class rdf:about="http://www.metaclip.org/calibration/calibration.owl#VarianceInflation">
+        <rdfs:subClassOf rdf:resource="http://www.metaclip.org/calibration/calibration.owl#EnsembleRecalibration"/>
+        <rdfs:label>VarianceInflation</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.metaclip.org/calibration/calibration.owl#WeatherTyping -->
+
+    <owl:Class rdf:about="http://www.metaclip.org/calibration/calibration.owl#WeatherTyping">
+        <rdfs:subClassOf rdf:resource="http://www.metaclip.org/calibration/calibration.owl#ESD-PP"/>
+    </owl:Class>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.metaclip.org/calibration/calibration.owl#BC -->
+
+    <owl:NamedIndividual rdf:about="http://www.metaclip.org/calibration/calibration.owl#BC">
+        <rdf:type rdf:resource="http://www.metaclip.org/calibration/calibration.owl#ParametricBiasCorrection"/>
+        <dc:description xml:lang="en">Parametric bias correction method using the optimum among five theoretical distributions (Gamma, Weibull, classical Gumbel, reversed Gumbel and log-logistic, all of them with four parameters) for each station on a monthly basis (Monjo et al. 2014, &lt;https://doi.org/10.1007/s00704-013-1008-8&gt;).</dc:description>
+        <hasProbCharacter>deterministic</hasProbCharacter>
+        <isMultiSite rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</isMultiSite>
+        <isMultiVariable rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</isMultiVariable>
+        <rdfs:comment xml:lang="en">The method is described for precipitation only</rdfs:comment>
+        <rdfs:isDefinedBy rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">https://doi.org/10.1002/joc.5462</rdfs:isDefinedBy>
+        <rdfs:label>BC</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.metaclip.org/calibration/calibration.owl#CCR -->
+
+    <owl:NamedIndividual rdf:about="http://www.metaclip.org/calibration/calibration.owl#CCR">
+        <rdf:type rdf:resource="http://www.metaclip.org/calibration/calibration.owl#VarianceInflation"/>
+        <dc:description xml:lang="en">Also known as variance inflation, this method modifies the predictions to have the same interannual variance as the observational reference, while preserving their interannual correlation</dc:description>
+        <hasProbCharacter rdf:datatype="http://www.w3.org/2001/XMLSchema#string">deterministic</hasProbCharacter>
+        <isMultiSite rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</isMultiSite>
+        <isMultiVariable rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</isMultiVariable>
+        <rdfs:isDefinedBy>Doblas-Reyes FJ, Hagedorn R, Palmer TN (2005) The rationale behind the success of multi-model ensembles in seasonal forecasting II. Calibration and combination. Tellus A 57(3):234–252, DOI: 10.1111/j.1600-0870.2005.00104.x</rdfs:isDefinedBy>
+        <rdfs:label rdf:datatype="http://www.w3.org/2000/01/rdf-schema#Literal">Climate-conserving recalibration</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.metaclip.org/calibration/calibration.owl#CDFt -->
+
+    <owl:NamedIndividual rdf:about="http://www.metaclip.org/calibration/calibration.owl#CDFt">
+        <rdf:type rdf:resource="http://www.metaclip.org/calibration/calibration.owl#NPQuantileMapping"/>
+        <dc:description xml:lang="en">The CDFt approach links the local-scale CDF of the variable of interest to the associated large-scale CDF through a &apos;quantile–quantile&apos; approach performed between the future large- and local-scale CDFs (and not between present CDFs as in the classical :QuantileMapping methods. To do so, the future local-scale CDF is first estimated based on the assumption of a mathematical transformation to link the evolution of the large-scale CDF to the evolution of the local-scale one. Hence, CDFt is a variant of quantile–quantile but CDFt accounts for the CDF changes from the calibration to the projection (or future) time periods (Vrac et al. 2012, &lt;https://doi.org/10.5194/nhess-12-2769-2012&gt;).</dc:description>
+        <hasProbCharacter>deterministic</hasProbCharacter>
+        <hasSeasonality rdf:datatype="http://www.w3.org/2001/XMLSchema#string">none</hasSeasonality>
+        <isMultiSite rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</isMultiSite>
+        <isMultiVariable rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</isMultiVariable>
+        <rdfs:isDefinedBy rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">https://doi.org/10.1002/joc.5462</rdfs:isDefinedBy>
+        <rdfs:label>CDFt</rdfs:label>
+        <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">https://doi.org/10.5194/nhess-12-2769-2012</rdfs:seeAlso>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.metaclip.org/calibration/calibration.owl#EQM -->
+
+    <owl:NamedIndividual rdf:about="http://www.metaclip.org/calibration/calibration.owl#EQM">
+        <rdf:type rdf:resource="http://www.metaclip.org/calibration/calibration.owl#NPQuantileMapping"/>
+        <dc:description xml:lang="en">Implementation of empirical quantile mapping (:EQM) adjusting 99 percentiles and linearly interpolating inside this range every two consecutive percentiles; outside this range a constant extrapolation (using the correction obtained for the 1st or 99th percentile) is applied (Déqué et al. 2007 &lt;https://doi.org/10.1016/j.gloplacha.2006.11.030&gt;). In the case of the precipitation, when the predicted dry frequency is larger than the observed one the frequency adaptation proposed by &lt;Themeßl et al. 2010, https://doi.org/10.1007/s10584-011-0224-4&gt;.</dc:description>
+        <hasProbCharacter>deterministic</hasProbCharacter>
+        <hasSeasonality rdf:datatype="http://www.w3.org/2001/XMLSchema#string">none</hasSeasonality>
+        <isMultiSite rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</isMultiSite>
+        <isMultiVariable rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</isMultiVariable>
+        <rdfs:isDefinedBy xml:lang="en">https://doi.org/10.1002/joc.5462</rdfs:isDefinedBy>
+        <rdfs:label xml:lang="en">EQM</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.metaclip.org/calibration/calibration.owl#EQM-WIC658 -->
+
+    <owl:NamedIndividual rdf:about="http://www.metaclip.org/calibration/calibration.owl#EQM-WIC658">
+        <rdf:type rdf:resource="http://www.metaclip.org/calibration/calibration.owl#NPQuantileMapping"/>
+        <dc:description xml:lang="en">Implementation of the empirical quantile mapping method (Déqué, 2007 &lt;https://doi.org/10.1016/j.gloplacha.2006.11.030&gt;) sorting the values into bins with adjustable width (e.g.: 0.1) and applying a linear interpolation between two percentiles (bins); out of range values are adjusted using constant extrapolation (using the correction obtained for the minimum or maximum). In order to cope with the seasonal cycle, a 31-day moving window centred on every calendar day is used to calibrate the method &lt;see Wilcke et al. 2013, https://doi.org/10.1007/s10584-013-0845-x&gt;</dc:description>
+        <hasProbCharacter>deterministic</hasProbCharacter>
+        <isMultiSite rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</isMultiSite>
+        <isMultiVariable rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</isMultiVariable>
+        <rdfs:isDefinedBy rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">https://doi.org/10.1002/joc.5462</rdfs:isDefinedBy>
+        <rdfs:label>EQM-WIC658</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.metaclip.org/calibration/calibration.owl#EQMs -->
+
+    <owl:NamedIndividual rdf:about="http://www.metaclip.org/calibration/calibration.owl#EQMs">
+        <rdf:type rdf:resource="http://www.metaclip.org/calibration/calibration.owl#NPQuantileMapping"/>
+        <dc:description xml:lang="en">This method is similar to :EQM. However, In order to explicitly model the seasonal cycle, the variant EQMs considers a 31-day moving window centred on every calendar day to calibrate the method</dc:description>
+        <hasProbCharacter>deterministic</hasProbCharacter>
+        <hasSeasonality rdf:datatype="http://www.w3.org/2001/XMLSchema#string">31-day moving window</hasSeasonality>
+        <isMultiSite rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</isMultiSite>
+        <isMultiVariable rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</isMultiVariable>
+        <rdfs:isDefinedBy rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">https://doi.org/10.1002/joc.5462</rdfs:isDefinedBy>
+        <rdfs:label>EQMs</rdfs:label>
+        <prov:specializationOf rdf:resource="http://www.metaclip.org/calibration/calibration.owl#EQM"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.metaclip.org/calibration/calibration.owl#GPQM -->
+
+    <owl:NamedIndividual rdf:about="http://www.metaclip.org/calibration/calibration.owl#GPQM">
+        <rdf:type rdf:resource="http://www.metaclip.org/calibration/calibration.owl#PQuantileMapping"/>
+        <dc:description>GPQM</dc:description>
+        <dc:description xml:lang="en">Gamma/Gaussian parametric quantile mapping (GQM) to approximate the empirical distribution of precipitation intensity/temperature. In the case of the precipitation, the frequency adaptation proposed by Themeßl et al. 2012 &lt;https://doi.org/10.1007/s10584-011-0224-4&gt; is previously applied to calibrate precipitation occurrence (a 1 mm threshold is used). The generalized Pareto quantile mapping (GPQM) version considers a generalized Pareto to adjust separately the extremes values (over the 95th percentile) as in Gutjahr and Heinemann 2013 &lt;https://doi.org/10.1007/s00704-013-0834-z&gt;</dc:description>
+        <hasProbCharacter rdf:datatype="http://www.w3.org/2001/XMLSchema#string">deterministic</hasProbCharacter>
+        <hasSeasonality rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</hasSeasonality>
+        <isMultiSite rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</isMultiSite>
+        <isMultiVariable rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</isMultiVariable>
+        <rdfs:isDefinedBy rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">https://doi.org/10.1002/joc.5462</rdfs:isDefinedBy>
+        <rdfs:label>GPQM</rdfs:label>
+        <prov:sharesDefinitionWith rdf:resource="http://www.metaclip.org/calibration/calibration.owl#GQM"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.metaclip.org/calibration/calibration.owl#GQM -->
+
+    <owl:NamedIndividual rdf:about="http://www.metaclip.org/calibration/calibration.owl#GQM">
+        <rdf:type rdf:resource="http://www.metaclip.org/calibration/calibration.owl#PQuantileMapping"/>
+        <dc:description xml:lang="en">Gamma/Gaussian parametric quantile mapping (GQM) to approximate the empirical distribution of precipitation intensity/temperature. In the case of the precipitation, the frequency adaptation proposed by Themeßl et al. 2012 &lt;https://doi.org/10.1007/s10584-011-0224-4&gt; is previously applied to calibrate precipitation occurrence (a 1 mm threshold is used). The generalized Pareto quantile mapping (GPQM) version considers a generalized Pareto to adjust separately the extremes values (over the 95th percentile) as in Gutjahr and Heinemann 2013 &lt;https://doi.org/10.1007/s00704-013-0834-z&gt;</dc:description>
+        <hasProbCharacter xml:lang="en">deterministic</hasProbCharacter>
+        <hasSeasonality xml:lang="en">none</hasSeasonality>
+        <isMultiSite xml:lang="en">false</isMultiSite>
+        <isMultiVariable xml:lang="en"></isMultiVariable>
+        <rdfs:isDefinedBy xml:lang="en">https://doi.org/10.1002/joc.5462</rdfs:isDefinedBy>
+        <rdfs:label>GQM</rdfs:label>
+        <prov:sharesDefinitionWith rdf:resource="http://www.metaclip.org/calibration/calibration.owl#GPQM"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.metaclip.org/calibration/calibration.owl#ISI-MIP -->
+
+    <owl:NamedIndividual rdf:about="http://www.metaclip.org/calibration/calibration.owl#ISI-MIP">
+        <rdf:type rdf:resource="http://www.metaclip.org/calibration/calibration.owl#ParametricBiasCorrection"/>
+        <dc:description xml:lang="en">The trend preserving ISI-MIP method proposed by Hempel, Frieler, Warszawski, Schewe and Piontek (2013, &lt;https://doi.org/10.5194/esd-4-219-2013&gt;) in the framework of the Inter-Sectoral Impact Model Intercomparison Project (ISI-MIP). This method works in a two-step approach. First, the monthly mean is adjusted with a linear/multiplicative scaling and, then, the resulting daily anomalies are corrected by means of a parametric (Gaussian/exponential) quantile mapping, for temperatures/precipitation, respectively. In the case of precipitation also a frequency adjustment is included for both the monthly and daily components. This method has been designed to simultaneously adjust groups of variables (precipitation-snow, temperatures, wind speed and components).</dc:description>
+        <hasProbCharacter>deterministic</hasProbCharacter>
+        <isMultiSite rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</isMultiSite>
+        <isMultiVariable rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</isMultiVariable>
+        <rdfs:isDefinedBy xml:lang="en">https://doi.org/10.1002/joc.5462</rdfs:isDefinedBy>
+        <rdfs:label>ISI-MIP</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.metaclip.org/calibration/calibration.owl#MVA -->
+
+    <owl:NamedIndividual rdf:about="http://www.metaclip.org/calibration/calibration.owl#MVA">
+        <rdf:type rdf:resource="http://www.metaclip.org/calibration/calibration.owl#VarianceInflation"/>
+        <dc:description xml:lang="en">The method applies a correction factor on the predictions considering the observed mean and variance</dc:description>
+        <hasProbCharacter rdf:datatype="http://www.w3.org/2001/XMLSchema#string">deterministic</hasProbCharacter>
+        <isMultiSite rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</isMultiSite>
+        <isMultiVariable rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</isMultiVariable>
+        <rdfs:comment xml:lang="en">This is the simplest adjustment method, with a long tradition in the context of seasonal forecasting</rdfs:comment>
+        <rdfs:isDefinedBy>Leung LR, Hamlet AF, Lettenmaier DP, Kumar A (1999) Simulations of the ENSO hydroclimate signals in the Pacific Northwest Columbia river basin. Bulletin of the American Meteorological Society 80(11):2313–2330, DOI: 10.1175/1520-0477(1999)080h2313:SOTEHSi2.0.CO;2</rdfs:isDefinedBy>
+        <rdfs:label rdf:datatype="http://www.w3.org/2000/01/rdf-schema#Literal">Mean-Variance adjustment</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotations
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <rdf:Description rdf:about="http://www.metaclip.org/calibration/calibration.owl#hasProbCharacter">
+        <rdfs:comment xml:lang="en">Probabilistic nature of the adjustment approach. Two possible disjoint values: &apos;stochastic&apos; or &apos;deterministic&apos;</rdfs:comment>
+        <rdfs:label>hasProbCharacter</rdfs:label>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://www.metaclip.org/calibration/calibration.owl#hasSeasonality">
+        <rdfs:comment xml:lang="en">Describes the procedure followed to deal with the seasonal cycle. Typical values for this property are &quot;none&quot; (in case the seasnal cycle is not taken into account), &quot;n-day moving window&quot;, &quot;monthly&quot;,  &quot;seasonal&quot;.</rdfs:comment>
+        <rdfs:label>hasSeasonality</rdfs:label>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://www.metaclip.org/calibration/calibration.owl#isMultiSite">
+        <dc:description xml:lang="en">A data property of the downscaling method that determines whether the :CalibrationMethod is envisaged to reproduce the spatial structure of the observations in the downscaled model outputs</dc:description>
+        <rdfs:label>isMultiSite</rdfs:label>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://www.metaclip.org/calibration/calibration.owl#isMultiVariable">
+        <rdfs:label>isMultiVariable</rdfs:label>
+        <dc:description xml:lang="en">A data property of the downscaling method that determines whether the :CalibrationMethod is envisaged to reproduce the observed inter-variable coherence in the downscaled model outputs</dc:description>
+    </rdf:Description>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // General axioms
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.metaclip.org/calibration/calibration.owl#BiasCorrection"/>
+            <rdf:Description rdf:about="http://www.metaclip.org/calibration/calibration.owl#ESD-MOS"/>
+            <rdf:Description rdf:about="http://www.metaclip.org/calibration/calibration.owl#ESD-PP"/>
+            <rdf:Description rdf:about="http://www.metaclip.org/calibration/calibration.owl#EnsembleRecalibration"/>
+        </owl:members>
+    </rdf:Description>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi -->
+

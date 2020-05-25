@@ -1,0 +1,925 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://www.metaclip.org/graphical_output/graphical_output.owl#"
+     xml:base="http://www.metaclip.org/graphical_output/graphical_output.owl"
+     xmlns:dc="http://purl.org/dc/elements/1.1/"
+     xmlns:ds="http://www.metaclip.org/datasource/datasource.owl#"
+     xmlns:go="http://www.metaclip.org/graphical_output/graphical_output.owl#"
+     xmlns:cal="http://www.metaclip.org/calibration/calibration.owl#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:prov="http://www.w3.org/ns/prov#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+     xmlns:veri="http://www.metaclip.org/verification/verification.owl#"
+     xmlns:terms="http://purl.org/dc/terms/"
+     xmlns:clim_prov="http://www.semanticweb.org/predictia/ontologies/2017/5/clim_prov#"
+     xmlns:geosparql="http://www.opengis.net/ont/geosparql#"
+     xmlns:cpannotationschema="http://www.ontologydesignpatterns.org/schemas/cpannotationschema.owl#">
+    <owl:Ontology rdf:about="http://www.metaclip.org/graphical_output/graphical_output.owl">
+        <owl:versionIRI rdf:resource="http://www.metaclip.org/graphical_output/0.6/graphical_output.owl"/>
+        <owl:imports rdf:resource="http://www.metaclip.org/calibration/calibration.owl"/>
+        <owl:imports rdf:resource="http://www.metaclip.org/datasource/datasource.owl"/>
+        <owl:imports rdf:resource="http://www.metaclip.org/verification/0.1/verification.owl"/>
+        <dc:creator xml:lang="en">Santander Meteorology Group</dc:creator>
+        <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2020-02-08</dc:date>
+        <dc:description xml:lang="en">The Graphical Output Ontology provides a description of graphical climate products (charts, maps...), including a description of uncertainty communication. It has two main components: i) The graphical product description and ii) the description of the uncertainty types communicated by the different graphical elements of the product. There are specific concepts to describe the types of uncertainty and how this is communicated within the product. It extends the ds:Step class from METACLIP&apos;s Data Source Ontology introducing the generation of the graphical product as an additional step within the climate data workflow.</dc:description>
+        <dc:title xml:lang="en">The Graphical Product Vocabulary from METACLIP</dc:title>
+        <rdfs:seeAlso xml:lang="en">http://www.metaclip.org</rdfs:seeAlso>
+        <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">https://doi.org/10.1016/j.envsoft.2019.07.005</rdfs:seeAlso>
+        <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.6</owl:versionInfo>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://purl.org/dc/elements/1.1/creator -->
+
+    <owl:AnnotationProperty rdf:about="http://purl.org/dc/elements/1.1/creator"/>
+    
+
+
+    <!-- http://purl.org/dc/elements/1.1/date -->
+
+    <owl:AnnotationProperty rdf:about="http://purl.org/dc/elements/1.1/date"/>
+    
+
+
+    <!-- http://purl.org/dc/elements/1.1/description -->
+
+    <owl:AnnotationProperty rdf:about="http://purl.org/dc/elements/1.1/description"/>
+    
+
+
+    <!-- http://www.metaclip.org/graphical_output/graphical_output.owl#epsg_code -->
+
+    <owl:AnnotationProperty rdf:about="http://www.metaclip.org/graphical_output/graphical_output.owl#epsg_code">
+        <dc:description xml:lang="en">A numeric code that identifies a specific spatial reference system</dc:description>
+        <dc:title xml:lang="en">EPSG code</dc:title>
+        <rdfs:comment xml:lang="en">EPSG Geodetic Parameter Dataset (also EPSG registry) is a public registry of spatial reference systems, Earth ellipsoids, coordinate transformations and related units of measurement. Each entity is assigned an EPSG code between 1024-32767,</rdfs:comment>
+        <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">https://en.wikipedia.org/wiki/EPSG_Geodetic_Parameter_Dataset</rdfs:seeAlso>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdfs:domain rdf:resource="http://www.metaclip.org/graphical_output/graphical_output.owl#MapProjection"/>
+    </owl:AnnotationProperty>
+    
+
+
+    <!-- http://www.metaclip.org/graphical_output/graphical_output.owl#isConformal -->
+
+    <owl:AnnotationProperty rdf:about="http://www.metaclip.org/graphical_output/graphical_output.owl#isConformal">
+        <dc:description xml:lang="en">Boolean. A conformal map projection is one in which every angle between two curves that cross each other on Earth (a sphere or an ellipsoid) is preserved in the image of the projection, i.e. the projection is a conformal map in the mathematical sense.</dc:description>
+        <rdfs:label xml:lang="en">Conformal</rdfs:label>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+        <rdfs:domain rdf:resource="http://www.metaclip.org/graphical_output/graphical_output.owl#MapProjection"/>
+    </owl:AnnotationProperty>
+    
+
+
+    <!-- http://www.metaclip.org/graphical_output/graphical_output.owl#isEqualArea -->
+
+    <owl:AnnotationProperty rdf:about="http://www.metaclip.org/graphical_output/graphical_output.owl#isEqualArea">
+        <dc:description xml:lang="en">Boolean. Equal-area maps preserve area measure, generally distorting shapes in order to do that.</dc:description>
+        <rdfs:label xml:lang="en">Equal Area</rdfs:label>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+        <rdfs:domain rdf:resource="http://www.metaclip.org/graphical_output/graphical_output.owl#MapProjection"/>
+    </owl:AnnotationProperty>
+    
+
+
+    <!-- http://www.metaclip.org/graphical_output/graphical_output.owl#proj_string -->
+
+    <owl:AnnotationProperty rdf:about="http://www.metaclip.org/graphical_output/graphical_output.owl#proj_string">
+        <dc:description xml:lang="en">PROJ notation used to describe a certain Coordinate Reference System as a character string</dc:description>
+        <ds:referenceURL rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">https://proj.org/</ds:referenceURL>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdfs:domain rdf:resource="http://www.metaclip.org/graphical_output/graphical_output.owl#MapProjection"/>
+    </owl:AnnotationProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.metaclip.org/datasource/datasource.owl#hadDerivation -->
+
+    <owl:ObjectProperty rdf:about="http://www.metaclip.org/datasource/datasource.owl#hadDerivation"/>
+    
+
+
+    <!-- http://www.metaclip.org/graphical_output/graphical_output.owl#hadGraphicalRepresentation -->
+
+    <owl:ObjectProperty rdf:about="http://www.metaclip.org/graphical_output/graphical_output.owl#hadGraphicalRepresentation">
+        <rdfs:subPropertyOf rdf:resource="http://www.metaclip.org/datasource/datasource.owl#hadDerivation"/>
+        <rdfs:domain rdf:resource="http://www.metaclip.org/datasource/datasource.owl#DatasetSubset"/>
+        <rdfs:domain rdf:resource="http://www.metaclip.org/datasource/datasource.owl#Transformation"/>
+        <rdfs:range rdf:resource="http://www.metaclip.org/graphical_output/graphical_output.owl#Layer"/>
+        <dc:creator rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Predictia</dc:creator>
+        <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2018-04-04T15:35:28Z</dc:date>
+        <rdfs:comment xml:lang="en">The :hadGraphicalRepresentation property relates a given set of data, as produced by a ds:Step, with a :GraphicalProduct aimed at its visual representation</rdfs:comment>
+        <rdfs:isDefinedBy rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://www.metaclip.org/graphical_output/graphical_output.owl</rdfs:isDefinedBy>
+        <rdfs:label xml:lang="en">hadGraphicalRepresentation</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.metaclip.org/graphical_output/graphical_output.owl#hasChartAxis -->
+
+    <owl:ObjectProperty rdf:about="http://www.metaclip.org/graphical_output/graphical_output.owl#hasChartAxis">
+        <rdfs:domain rdf:resource="http://www.metaclip.org/graphical_output/graphical_output.owl#ChartLayer"/>
+        <rdfs:range rdf:resource="http://www.metaclip.org/graphical_output/graphical_output.owl#ChartAxis"/>
+        <rdfs:comment xml:lang="en">Object property linking a :Layer with a specific :ChartAxis</rdfs:comment>
+        <rdfs:label xml:lang="en">hasChartAxis</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.metaclip.org/graphical_output/graphical_output.owl#hasChartLayer -->
+
+    <owl:ObjectProperty rdf:about="http://www.metaclip.org/graphical_output/graphical_output.owl#hasChartLayer">
+        <rdfs:subPropertyOf rdf:resource="http://www.metaclip.org/graphical_output/graphical_output.owl#hasLayer"/>
+        <rdfs:domain rdf:resource="http://www.metaclip.org/graphical_output/graphical_output.owl#Chart"/>
+        <rdfs:range rdf:resource="http://www.metaclip.org/graphical_output/graphical_output.owl#ChartLayer"/>
+        <dc:creator rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Predictia</dc:creator>
+        <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2018-03-15T10:32:05Z</dc:date>
+        <rdfs:label>hasChartLayer</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.metaclip.org/graphical_output/graphical_output.owl#hasColorPalette -->
+
+    <owl:ObjectProperty rdf:about="http://www.metaclip.org/graphical_output/graphical_output.owl#hasColorPalette">
+        <rdfs:domain rdf:resource="http://www.metaclip.org/graphical_output/graphical_output.owl#ChartLayer"/>
+        <rdfs:domain rdf:resource="http://www.metaclip.org/graphical_output/graphical_output.owl#MapLines"/>
+        <rdfs:domain rdf:resource="http://www.metaclip.org/graphical_output/graphical_output.owl#MapPoints"/>
+        <rdfs:domain rdf:resource="http://www.metaclip.org/graphical_output/graphical_output.owl#MapPolygons"/>
+        <rdfs:domain rdf:resource="http://www.metaclip.org/graphical_output/graphical_output.owl#MapRaster"/>
+        <rdfs:range rdf:resource="http://www.metaclip.org/graphical_output/graphical_output.owl#ColorPalette"/>
+        <dc:description xml:lang="en">Object property linking an appropriate Layer with a specific :ColorPalette</dc:description>
+        <rdfs:label>hasColorPalette</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.metaclip.org/graphical_output/graphical_output.owl#hasLayer -->
+
+    <owl:ObjectProperty rdf:about="http://www.metaclip.org/graphical_output/graphical_output.owl#hasLayer">
+        <rdfs:domain rdf:resource="http://www.metaclip.org/graphical_output/graphical_output.owl#GraphicalProduct"/>
+        <rdfs:range rdf:resource="http://www.metaclip.org/graphical_output/graphical_output.owl#Layer"/>
+        <dc:creator rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Predictia</dc:creator>
+        <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2018-04-13T20:30:38Z</dc:date>
+        <rdfs:comment xml:lang="en">This object property links a :GraphicalProduct with the different :Layer entities that conform it. The more specific subclasses should be asserted when they apply.</rdfs:comment>
+        <rdfs:label>hasLayer</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.metaclip.org/graphical_output/graphical_output.owl#hasMapExtent -->
+
+    <owl:ObjectProperty rdf:about="http://www.metaclip.org/graphical_output/graphical_output.owl#hasMapExtent">
+        <rdfs:domain rdf:resource="http://www.metaclip.org/graphical_output/graphical_output.owl#Map"/>
+        <rdfs:range rdf:resource="http://www.metaclip.org/datasource/datasource.owl#HorizontalExtent"/>
+        <dc:creator>Predictia</dc:creator>
+        <rdfs:comment>This object property Links a :Map graphical product with the horizontal :SpatialExtent represented by the map.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://www.metaclip.org/graphical_output/graphical_output.owl</rdfs:isDefinedBy>
+        <rdfs:label>hasMapExtent</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.metaclip.org/graphical_output/graphical_output.owl#hasMapLayer -->
+
+    <owl:ObjectProperty rdf:about="http://www.metaclip.org/graphical_output/graphical_output.owl#hasMapLayer">
+        <rdfs:subPropertyOf rdf:resource="http://www.metaclip.org/graphical_output/graphical_output.owl#hasLayer"/>
+        <rdfs:domain rdf:resource="http://www.metaclip.org/graphical_output/graphical_output.owl#Map"/>
+        <rdfs:range rdf:resource="http://www.metaclip.org/graphical_output/graphical_output.owl#MapLayer"/>
+        <dc:creator>Predictia</dc:creator>
+        <rdfs:label>hasMapLayer</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.metaclip.org/graphical_output/graphical_output.owl#hasMapProjection -->
+
+    <owl:ObjectProperty rdf:about="http://www.metaclip.org/graphical_output/graphical_output.owl#hasMapProjection">
+        <rdfs:domain rdf:resource="http://www.metaclip.org/graphical_output/graphical_output.owl#Map"/>
+        <rdfs:range rdf:resource="http://www.metaclip.org/graphical_output/graphical_output.owl#MapProjection"/>
+        <dc:description xml:lang="en">Establishes the link between a map representation and its cartographical projection</dc:description>
+        <rdfs:label>hasMapProjection</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.metaclip.org/graphical_output/graphical_output.owl#hasMask -->
+
+    <owl:ObjectProperty rdf:about="http://www.metaclip.org/graphical_output/graphical_output.owl#hasMask">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+        <rdfs:domain rdf:resource="http://www.metaclip.org/graphical_output/graphical_output.owl#MapLayer"/>
+        <rdfs:range rdf:resource="http://www.metaclip.org/graphical_output/graphical_output.owl#Mask"/>
+        <dc:creator>Predictia</dc:creator>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.metaclip.org/graphical_output/graphical_output.owl#hasTextLayer -->
+
+    <owl:ObjectProperty rdf:about="http://www.metaclip.org/graphical_output/graphical_output.owl#hasTextLayer">
+        <rdfs:subPropertyOf rdf:resource="http://www.metaclip.org/graphical_output/graphical_output.owl#hasLayer"/>
+        <rdfs:domain rdf:resource="http://www.metaclip.org/graphical_output/graphical_output.owl#GraphicalProduct"/>
+        <rdfs:range rdf:resource="http://www.metaclip.org/graphical_output/graphical_output.owl#TextLayer"/>
+        <dc:creator>Predictia</dc:creator>
+        <rdfs:label>hasTextLayer</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.metaclip.org/graphical_output/graphical_output.owl#hasUncertainty -->
+
+    <owl:ObjectProperty rdf:about="http://www.metaclip.org/graphical_output/graphical_output.owl#hasUncertainty">
+        <rdfs:domain rdf:resource="http://www.metaclip.org/graphical_output/graphical_output.owl#Layer"/>
+        <rdfs:range rdf:resource="http://www.metaclip.org/graphical_output/graphical_output.owl#Uncertainty"/>
+        <dc:creator>Predictia</dc:creator>
+        <rdfs:comment xml:lang="en">This object property links a specific :Layer with an specific type of :Uncertainty that is visually communicated</rdfs:comment>
+        <rdfs:label>hasUncertainty</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.metaclip.org/graphical_output/graphical_output.owl#LineAngle -->
+
+    <owl:DatatypeProperty rdf:about="http://www.metaclip.org/graphical_output/graphical_output.owl#LineAngle">
+        <rdfs:domain rdf:resource="http://www.metaclip.org/graphical_output/graphical_output.owl#MapHatching"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
+        <dc:description xml:lang="en">Angle formed by a straight line measured on a 0-360 circunference</dc:description>
+        <rdfs:comment xml:lang="en">Used mainly to describe hatching patterns on a map</rdfs:comment>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.metaclip.org/graphical_output/graphical_output.owl#LineColor -->
+
+    <owl:DatatypeProperty rdf:about="http://www.metaclip.org/graphical_output/graphical_output.owl#LineColor">
+        <rdfs:domain rdf:resource="http://www.metaclip.org/graphical_output/graphical_output.owl#ChartLines"/>
+        <rdfs:domain rdf:resource="http://www.metaclip.org/graphical_output/graphical_output.owl#MapHatching"/>
+        <rdfs:domain rdf:resource="http://www.metaclip.org/graphical_output/graphical_output.owl#MapLines"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <dc:description xml:lang="en">Line color</dc:description>
+        <rdfs:comment xml:lang="en">Used to describe line features on maps and charts</rdfs:comment>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.metaclip.org/graphical_output/graphical_output.owl#LineType -->
+
+    <owl:DatatypeProperty rdf:about="http://www.metaclip.org/graphical_output/graphical_output.owl#LineType">
+        <rdfs:domain rdf:resource="http://www.metaclip.org/graphical_output/graphical_output.owl#ChartLines"/>
+        <rdfs:domain rdf:resource="http://www.metaclip.org/graphical_output/graphical_output.owl#MapHatching"/>
+        <rdfs:domain rdf:resource="http://www.metaclip.org/graphical_output/graphical_output.owl#MapLines"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <dc:description xml:lang="en">Line type (e.g.: dashed, solid etc.)</dc:description>
+        <rdfs:comment xml:lang="en">Used to describe line features on maps and charts</rdfs:comment>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.metaclip.org/graphical_output/graphical_output.owl#hasChartAxisMaxValue -->
+
+    <owl:DatatypeProperty rdf:about="http://www.metaclip.org/graphical_output/graphical_output.owl#hasChartAxisMaxValue">
+        <rdfs:domain rdf:resource="http://www.metaclip.org/graphical_output/graphical_output.owl#ChartAxis"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.metaclip.org/graphical_output/graphical_output.owl#hasChartAxisMinValue -->
+
+    <owl:DatatypeProperty rdf:about="http://www.metaclip.org/graphical_output/graphical_output.owl#hasChartAxisMinValue">
+        <rdfs:domain rdf:resource="http://www.metaclip.org/graphical_output/graphical_output.owl#ChartAxis"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <dc:creator rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Predictia</dc:creator>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.metaclip.org/graphical_output/graphical_output.owl#hasChartAxisScale -->
+
+    <owl:DatatypeProperty rdf:about="http://www.metaclip.org/graphical_output/graphical_output.owl#hasChartAxisScale">
+        <rdfs:domain rdf:resource="http://www.metaclip.org/graphical_output/graphical_output.owl#ChartAxis"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <dc:creator rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Predictia</dc:creator>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.metaclip.org/graphical_output/graphical_output.owl#hasChartAxisType -->
+
+    <owl:DatatypeProperty rdf:about="http://www.metaclip.org/graphical_output/graphical_output.owl#hasChartAxisType">
+        <rdfs:domain rdf:resource="http://www.metaclip.org/graphical_output/graphical_output.owl#ChartAxis"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <dc:creator rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Predictia</dc:creator>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.metaclip.org/graphical_output/graphical_output.owl#hasChartAxisUnits -->
+
+    <owl:DatatypeProperty rdf:about="http://www.metaclip.org/graphical_output/graphical_output.owl#hasChartAxisUnits">
+        <rdfs:domain rdf:resource="http://www.metaclip.org/graphical_output/graphical_output.owl#ChartAxis"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <dc:creator rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Predictia</dc:creator>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.metaclip.org/graphical_output/graphical_output.owl#hasColorSet -->
+
+    <owl:DatatypeProperty rdf:about="http://www.metaclip.org/graphical_output/graphical_output.owl#hasColorSet">
+        <rdfs:domain rdf:resource="http://www.metaclip.org/graphical_output/graphical_output.owl#ColorPalette"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <dc:description xml:lang="en">A character vector of comma-sepparated HEX colors forming the :ColorPalette</dc:description>
+        <rdfs:comment xml:lang="en">The colors should be provided in ascending order of magnitude in case of quantitative variables, or in the same order as categorical variables are indicated in the Legend</rdfs:comment>
+        <rdfs:isDefinedBy rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://www.metaclip.org/graphical_output/graphical_output.owl</rdfs:isDefinedBy>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.metaclip.org/graphical_output/graphical_output.owl#hasForecastSystemUncertaintyType -->
+
+    <owl:DatatypeProperty rdf:about="http://www.metaclip.org/graphical_output/graphical_output.owl#hasForecastSystemUncertaintyType">
+        <rdfs:domain rdf:resource="http://www.metaclip.org/graphical_output/graphical_output.owl#ForecastSystemUncertainty"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <dc:creator>Predictia</dc:creator>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.metaclip.org/graphical_output/graphical_output.owl#hasIneqOperator -->
+
+    <owl:DatatypeProperty rdf:about="http://www.metaclip.org/graphical_output/graphical_output.owl#hasIneqOperator">
+        <rdfs:domain rdf:resource="http://www.metaclip.org/graphical_output/graphical_output.owl#Mask"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <dc:creator>Predictia</dc:creator>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.metaclip.org/graphical_output/graphical_output.owl#hasLayerDescription -->
+
+    <owl:DatatypeProperty rdf:about="http://www.metaclip.org/graphical_output/graphical_output.owl#hasLayerDescription">
+        <rdfs:domain rdf:resource="http://www.metaclip.org/graphical_output/graphical_output.owl#Layer"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <dc:creator>Predictia</dc:creator>
+        <dc:description xml:lang="en">A generic description of the nature of the layer</dc:description>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.metaclip.org/graphical_output/graphical_output.owl#hasProductType -->
+
+    <owl:DatatypeProperty rdf:about="http://www.metaclip.org/graphical_output/graphical_output.owl#hasProductType">
+        <rdfs:domain rdf:resource="http://www.metaclip.org/graphical_output/graphical_output.owl#GraphicalProduct"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <dc:creator>Predictia</dc:creator>
+        <rdfs:comment xml:lang="en">Graphical Product Types are Defined in QA4Seas Milestone 4.3</rdfs:comment>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.metaclip.org/graphical_output/graphical_output.owl#hasProjection -->
+
+    <owl:DatatypeProperty rdf:about="http://www.metaclip.org/graphical_output/graphical_output.owl#hasProjection">
+        <rdfs:domain rdf:resource="http://www.metaclip.org/graphical_output/graphical_output.owl#Map"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdfs:comment xml:lang="en">Projection is given by EPSG code &lt;http://spatialreference.org/&gt;</rdfs:comment>
+        <rdfs:comment xml:lang="en">The use of this data property is deprecated. Using the object property hasMapProjection is recommended</rdfs:comment>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.metaclip.org/graphical_output/graphical_output.owl#hasTextAnnotationType -->
+
+    <owl:DatatypeProperty rdf:about="http://www.metaclip.org/graphical_output/graphical_output.owl#hasTextAnnotationType">
+        <rdfs:domain rdf:resource="http://www.metaclip.org/graphical_output/graphical_output.owl#TextLayer"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <dc:creator>Predictia</dc:creator>
+        <dc:description xml:lang="en">A generic description of the nature of the annotation</dc:description>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.metaclip.org/graphical_output/graphical_output.owl#hasThresholdValue -->
+
+    <owl:DatatypeProperty rdf:about="http://www.metaclip.org/graphical_output/graphical_output.owl#hasThresholdValue">
+        <rdfs:domain rdf:resource="http://www.metaclip.org/graphical_output/graphical_output.owl#Mask"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+        <dc:creator>Predictia</dc:creator>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.metaclip.org/graphical_output/graphical_output.owl#maxValue -->
+
+    <owl:DatatypeProperty rdf:about="http://www.metaclip.org/graphical_output/graphical_output.owl#maxValue">
+        <rdfs:domain rdf:resource="http://www.metaclip.org/graphical_output/graphical_output.owl#DivergingColorPalette"/>
+        <rdfs:domain rdf:resource="http://www.metaclip.org/graphical_output/graphical_output.owl#SequentialColorPalette"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+        <dc:description xml:lang="en">In a color palette representing a quantitative variable, this is the maximum value represented by the colors</dc:description>
+        <rdfs:isDefinedBy rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://www.metaclip.org/graphical_output/graphical_output.owl</rdfs:isDefinedBy>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.metaclip.org/graphical_output/graphical_output.owl#minValue -->
+
+    <owl:DatatypeProperty rdf:about="http://www.metaclip.org/graphical_output/graphical_output.owl#minValue">
+        <rdfs:domain rdf:resource="http://www.metaclip.org/graphical_output/graphical_output.owl#DivergingColorPalette"/>
+        <rdfs:domain rdf:resource="http://www.metaclip.org/graphical_output/graphical_output.owl#SequentialColorPalette"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+        <dc:description xml:lang="en">In a color palette representing a quantitative variable, this is the minimum value represented by the colors</dc:description>
+        <rdfs:isDefinedBy rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://www.metaclip.org/graphical_output/graphical_output.owl</rdfs:isDefinedBy>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.metaclip.org/datasource/datasource.owl#DatasetSubset -->
+
+    <owl:Class rdf:about="http://www.metaclip.org/datasource/datasource.owl#DatasetSubset"/>
+    
+
+
+    <!-- http://www.metaclip.org/datasource/datasource.owl#SpatialExtent -->
+
+    <owl:Class rdf:about="http://www.metaclip.org/datasource/datasource.owl#SpatialExtent"/>
+    
+
+
+    <!-- http://www.metaclip.org/datasource/datasource.owl#Step -->
+
+    <owl:Class rdf:about="http://www.metaclip.org/datasource/datasource.owl#Step"/>
+    
+
+
+    <!-- http://www.metaclip.org/datasource/datasource.owl#Transformation -->
+
+    <owl:Class rdf:about="http://www.metaclip.org/datasource/datasource.owl#Transformation"/>
+    
+
+
+    <!-- http://www.metaclip.org/graphical_output/graphical_output.owl#Chart -->
+
+    <owl:Class rdf:about="http://www.metaclip.org/graphical_output/graphical_output.owl#Chart">
+        <rdfs:subClassOf rdf:resource="http://www.metaclip.org/graphical_output/graphical_output.owl#GraphicalProduct"/>
+        <dc:creator>Predictia</dc:creator>
+        <rdfs:comment xml:lang="en">A graphical representation of the data. It usually involves the comparison of one variable or parameter against other variable(s), parameter(s) or dimensions (e.g., against time in time series plots)</rdfs:comment>
+        <rdfs:isDefinedBy rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://www.metaclip.org/graphical_output/graphical_output.owl</rdfs:isDefinedBy>
+    </owl:Class>
+    
+
+
+    <!-- http://www.metaclip.org/graphical_output/graphical_output.owl#ChartAxis -->
+
+    <owl:Class rdf:about="http://www.metaclip.org/graphical_output/graphical_output.owl#ChartAxis">
+        <rdfs:subClassOf rdf:resource="http://www.w3.org/ns/prov#Entity"/>
+        <dc:creator>Predictia</dc:creator>
+        <rdfs:comment xml:lang="en">Because :ChartAxis is a broad class, its most specific subclasses (e.g. :TimeChartAxis, :ProbabilityChartAxis, etc.) should be used when applicable.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://www.metaclip.org/graphical_output/graphical_output.owl</rdfs:isDefinedBy>
+    </owl:Class>
+    
+
+
+    <!-- http://www.metaclip.org/graphical_output/graphical_output.owl#ChartLayer -->
+
+    <owl:Class rdf:about="http://www.metaclip.org/graphical_output/graphical_output.owl#ChartLayer">
+        <rdfs:subClassOf rdf:resource="http://www.metaclip.org/graphical_output/graphical_output.owl#Layer"/>
+        <rdfs:comment xml:lang="en">Because :ChartLayer is a broad class, its most specific subclasses (e.g. :ChartLines, :ChartPolygons, etc.) should be used when applicable.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://www.metaclip.org/graphical_output/graphical_output.owl</rdfs:isDefinedBy>
+        <rdfs:label>ChartLayer</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.metaclip.org/graphical_output/graphical_output.owl#ChartLines -->
+
+    <owl:Class rdf:about="http://www.metaclip.org/graphical_output/graphical_output.owl#ChartLines">
+        <rdfs:subClassOf rdf:resource="http://www.metaclip.org/graphical_output/graphical_output.owl#ChartLayer"/>
+        <rdfs:isDefinedBy rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://www.metaclip.org/graphical_output/graphical_output.owl</rdfs:isDefinedBy>
+        <rdfs:label>ChartLines</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.metaclip.org/graphical_output/graphical_output.owl#ChartPoints -->
+
+    <owl:Class rdf:about="http://www.metaclip.org/graphical_output/graphical_output.owl#ChartPoints">
+        <rdfs:subClassOf rdf:resource="http://www.metaclip.org/graphical_output/graphical_output.owl#ChartLayer"/>
+        <rdfs:isDefinedBy rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://www.metaclip.org/graphical_output/graphical_output.owl</rdfs:isDefinedBy>
+        <rdfs:label>ChartPoints</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.metaclip.org/graphical_output/graphical_output.owl#ChartPolygons -->
+
+    <owl:Class rdf:about="http://www.metaclip.org/graphical_output/graphical_output.owl#ChartPolygons">
+        <rdfs:subClassOf rdf:resource="http://www.metaclip.org/graphical_output/graphical_output.owl#ChartLayer"/>
+        <rdfs:isDefinedBy rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://www.metaclip.org/graphical_output/graphical_output.owl</rdfs:isDefinedBy>
+        <rdfs:label>ChartPolygons</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.metaclip.org/graphical_output/graphical_output.owl#ChartRaster -->
+
+    <owl:Class rdf:about="http://www.metaclip.org/graphical_output/graphical_output.owl#ChartRaster">
+        <rdfs:subClassOf rdf:resource="http://www.metaclip.org/graphical_output/graphical_output.owl#ChartLayer"/>
+        <rdfs:isDefinedBy rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://www.metaclip.org/graphical_output/graphical_output.owl</rdfs:isDefinedBy>
+        <rdfs:label>ChartRaster</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.metaclip.org/graphical_output/graphical_output.owl#ColorPalette -->
+
+    <owl:Class rdf:about="http://www.metaclip.org/graphical_output/graphical_output.owl#ColorPalette">
+        <rdfs:subClassOf rdf:resource="http://www.w3.org/ns/prov#Entity"/>
+        <dc:description xml:lang="en">A color palette refers to the range of colors used to depict a certain magnitude or cualitative aspect in a graphical product. Most often, this class is used to indicate the color palette used in a heatmap, although it can be used to describe the colors used in any :Layer-class object</dc:description>
+        <rdfs:comment xml:lang="en">The use of its more specific subclasses is recommended when possible</rdfs:comment>
+        <rdfs:isDefinedBy rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://www.metaclip.org/graphical_output/graphical_output.owl</rdfs:isDefinedBy>
+        <rdfs:label>Color Palette</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.metaclip.org/graphical_output/graphical_output.owl#DivergingColorPalette -->
+
+    <owl:Class rdf:about="http://www.metaclip.org/graphical_output/graphical_output.owl#DivergingColorPalette">
+        <rdfs:subClassOf rdf:resource="http://www.metaclip.org/graphical_output/graphical_output.owl#ColorPalette"/>
+        <dc:description xml:lang="en">Diverging schemes put equal emphasis on mid-range critical values and extremes at both ends of the data range. The critical class or break in the middle of the legend is emphasized with light colors and low and high extremes are emphasized with dark colors that have contrasting hues.</dc:description>
+        <rdfs:comment xml:lang="en">In climate products, diverging schemes are usually used for visual representation of anomalies and delta changes</rdfs:comment>
+        <rdfs:isDefinedBy rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://www.metaclip.org/graphical_output/graphical_output.owl</rdfs:isDefinedBy>
+        <rdfs:label xml:lang="en">Diverging Color Palette</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.metaclip.org/graphical_output/graphical_output.owl#ForecastSystemUncertainty -->
+
+    <owl:Class rdf:about="http://www.metaclip.org/graphical_output/graphical_output.owl#ForecastSystemUncertainty">
+        <rdfs:subClassOf rdf:resource="http://www.metaclip.org/graphical_output/graphical_output.owl#Uncertainty"/>
+        <dc:creator>Predictia</dc:creator>
+        <rdfs:comment xml:lang="en">Due to the nonlinear character of the climatic system, seasonal forecasts 
+are produced following an ensemble approach, considering  a  number of simulations with, e.g. perturbed or lagged initial conditions. The result of this ensemble prediction approach (Palmer 2004 &lt;DOI:10.1175/BAMS-85-6-853&gt;, Doblas-Reyes et al. 2013 &lt;DOI:10.1002/wcc.217&gt;) is probabilistic in nature, and have an initial condition uncertainty. Furthermore, model predictions are not sensitive only to the initial conditions, but also to model formulations (Palmer and Anderson 1994 &lt;DOI:10.1002/qj.49712051802&gt;), and therefore model uncertainty is another source of uncertainty intrinsic to the forecasting system, stemming from internal parameterizations used to describe the effects of subgrid scale processes (Palmer 2001 &lt;DOI:10.1002/qj.49712757202&gt;). To date, model uncertainty cannot be  clearly  separated  from  the  initial condition uncertainty due to a lack of analytical solutions to this aim (Doblas-Reyes et al. 2013). The resulting uncertainty is typically presented as a model spread, either in graphical form (e.g., time series for different members) and/or presenting some form of summary statistic (range, interquartile range, variance...).</rdfs:comment>
+        <rdfs:isDefinedBy rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://www.metaclip.org/graphical_output/graphical_output.owl</rdfs:isDefinedBy>
+    </owl:Class>
+    
+
+
+    <!-- http://www.metaclip.org/graphical_output/graphical_output.owl#GraphicalProduct -->
+
+    <owl:Class rdf:about="http://www.metaclip.org/graphical_output/graphical_output.owl#GraphicalProduct">
+        <rdfs:subClassOf rdf:resource="http://www.metaclip.org/datasource/datasource.owl#Step"/>
+        <dc:creator rdf:datatype="http://www.w3.org/2000/01/rdf-schema#Literal">Predictia</dc:creator>
+        <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2017-09-25T15:50:12Z</dc:date>
+        <rdfs:comment xml:lang="en">A graphical product can be any form of graphical representation of the climate information derived from a ds:Step. This includes either plots showing the relation between two or more variables, or spatially explicit displays (maps). This class should not be explicitly instantiated, and the usage of its subclasses (:Chart, :Map) is recommended.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://www.metaclip.org/graphical_output/graphical_output.owl</rdfs:isDefinedBy>
+    </owl:Class>
+    
+
+
+    <!-- http://www.metaclip.org/graphical_output/graphical_output.owl#Layer -->
+
+    <owl:Class rdf:about="http://www.metaclip.org/graphical_output/graphical_output.owl#Layer">
+        <rdfs:subClassOf rdf:resource="http://www.w3.org/ns/prov#Entity"/>
+        <rdfs:comment xml:lang="en">A :GraphicalProduct entity is constituted by groups of layers. Layers are graphical or textual features (points, lines, polygons, legends, floating text, chart titles...) containing relevant information useful to understand the nature of the graphical product and/or its main characteristics.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://www.metaclip.org/graphical_output/graphical_output.owl</rdfs:isDefinedBy>
+        <rdfs:label>Layer</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.metaclip.org/graphical_output/graphical_output.owl#MagnitudeChartAxis -->
+
+    <owl:Class rdf:about="http://www.metaclip.org/graphical_output/graphical_output.owl#MagnitudeChartAxis">
+        <rdfs:subClassOf rdf:resource="http://www.metaclip.org/graphical_output/graphical_output.owl#ChartAxis"/>
+        <dc:creator>Predictia</dc:creator>
+        <rdfs:comment xml:lang="en">A :ChartAxis expressing the units of an (unspecified) magnitude, that is not spatial, neither temporal, nor a probability</rdfs:comment>
+        <rdfs:isDefinedBy rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://www.metaclip.org/graphical_output/graphical_output.owl</rdfs:isDefinedBy>
+        <rdfs:label>MagnitudeChartAxis</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.metaclip.org/graphical_output/graphical_output.owl#Map -->
+
+    <owl:Class rdf:about="http://www.metaclip.org/graphical_output/graphical_output.owl#Map">
+        <rdfs:subClassOf rdf:resource="http://www.metaclip.org/graphical_output/graphical_output.owl#GraphicalProduct"/>
+        <dc:creator>Predictia</dc:creator>
+        <rdfs:comment xml:lang="en">A geographically explicit graphical representation of the data</rdfs:comment>
+        <rdfs:isDefinedBy rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://www.metaclip.org/graphical_output/graphical_output.owl</rdfs:isDefinedBy>
+    </owl:Class>
+    
+
+
+    <!-- http://www.metaclip.org/graphical_output/graphical_output.owl#MapHatching -->
+
+    <owl:Class rdf:about="http://www.metaclip.org/graphical_output/graphical_output.owl#MapHatching">
+        <rdfs:subClassOf rdf:resource="http://www.metaclip.org/graphical_output/graphical_output.owl#MapLayer"/>
+        <dc:description xml:lang="en">Hatching is a map layer formed by regularly spaced parallel lines, usually depicting areas of the map with a special characteristic to be highlighted. Different hatching layers with different meanings can be superposed onto the same map, forming a cross-hatching.</dc:description>
+        <rdfs:label xml:lang="en">Map Hatching</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.metaclip.org/graphical_output/graphical_output.owl#MapLayer -->
+
+    <owl:Class rdf:about="http://www.metaclip.org/graphical_output/graphical_output.owl#MapLayer">
+        <rdfs:subClassOf rdf:resource="http://www.metaclip.org/graphical_output/graphical_output.owl#Layer"/>
+        <rdfs:comment xml:lang="en">Because :MapLayer is a broad class, its most specific subclasses (e.g. :MapLines, :MapPolygons, etc.) should be used when applicable.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://www.metaclip.org/graphical_output/graphical_output.owl</rdfs:isDefinedBy>
+        <rdfs:label>MapLayer</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.metaclip.org/graphical_output/graphical_output.owl#MapLines -->
+
+    <owl:Class rdf:about="http://www.metaclip.org/graphical_output/graphical_output.owl#MapLines">
+        <rdfs:subClassOf rdf:resource="http://www.metaclip.org/graphical_output/graphical_output.owl#MapLayer"/>
+        <rdfs:isDefinedBy rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://www.metaclip.org/graphical_output/graphical_output.owl</rdfs:isDefinedBy>
+        <rdfs:label xml:lang="en">Map lines layer</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.metaclip.org/graphical_output/graphical_output.owl#MapPoints -->
+
+    <owl:Class rdf:about="http://www.metaclip.org/graphical_output/graphical_output.owl#MapPoints">
+        <rdfs:subClassOf rdf:resource="http://www.metaclip.org/graphical_output/graphical_output.owl#MapLayer"/>
+        <rdfs:isDefinedBy rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://www.metaclip.org/graphical_output/graphical_output.owl</rdfs:isDefinedBy>
+        <rdfs:label xml:lang="en">Map points layer</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.metaclip.org/graphical_output/graphical_output.owl#MapPolygons -->
+
+    <owl:Class rdf:about="http://www.metaclip.org/graphical_output/graphical_output.owl#MapPolygons">
+        <rdfs:subClassOf rdf:resource="http://www.metaclip.org/graphical_output/graphical_output.owl#MapLayer"/>
+        <rdfs:isDefinedBy rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://www.metaclip.org/graphical_output/graphical_output.owl</rdfs:isDefinedBy>
+        <rdfs:label xml:lang="en">Map polygons layer</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.metaclip.org/graphical_output/graphical_output.owl#MapProjection -->
+
+    <owl:Class rdf:about="http://www.metaclip.org/graphical_output/graphical_output.owl#MapProjection">
+        <rdfs:subClassOf rdf:resource="http://www.w3.org/ns/prov#Entity"/>
+        <dc:description xml:lang="en">A map projection is a way to flatten a globe&apos;s surface into a plane in order to make a map. This requires a systematic transformation of the latitudes and longitudes of locations from the surface of the globe into locations on a plane</dc:description>
+        <rdfs:comment xml:lang="en">This is a broad class. The different individual instances should be used in order to unequivocally define the map projection at hand</rdfs:comment>
+        <rdfs:label>MapProjection</rdfs:label>
+        <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">https://spatialreference.org/</rdfs:seeAlso>
+    </owl:Class>
+    
+
+
+    <!-- http://www.metaclip.org/graphical_output/graphical_output.owl#MapRaster -->
+
+    <owl:Class rdf:about="http://www.metaclip.org/graphical_output/graphical_output.owl#MapRaster">
+        <rdfs:subClassOf rdf:resource="http://www.metaclip.org/graphical_output/graphical_output.owl#MapLayer"/>
+        <rdfs:isDefinedBy rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://www.metaclip.org/graphical_output/graphical_output.owl</rdfs:isDefinedBy>
+        <rdfs:label xml:lang="en">Map raster layer</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.metaclip.org/graphical_output/graphical_output.owl#Mask -->
+
+    <owl:Class rdf:about="http://www.metaclip.org/graphical_output/graphical_output.owl#Mask">
+        <rdfs:subClassOf rdf:resource="http://www.w3.org/ns/prov#Entity"/>
+        <dc:description xml:lang="en">Masks are layers whose aim is to hide (completely or partially) non-relevant information contained in other layers underneath.</dc:description>
+        <rdfs:isDefinedBy rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://www.metaclip.org/graphical_output/graphical_output.owl</rdfs:isDefinedBy>
+        <rdfs:label xml:lang="en">Mask</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.metaclip.org/graphical_output/graphical_output.owl#ObservationalUncertainty -->
+
+    <owl:Class rdf:about="http://www.metaclip.org/graphical_output/graphical_output.owl#ObservationalUncertainty">
+        <rdfs:subClassOf rdf:resource="http://www.metaclip.org/graphical_output/graphical_output.owl#Uncertainty"/>
+        <dc:creator>Predictia</dc:creator>
+        <rdfs:comment xml:lang="en">A source of uncertainty in the verification/validation EQC products arises from the reference observations used.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://www.metaclip.org/graphical_output/graphical_output.owl</rdfs:isDefinedBy>
+    </owl:Class>
+    
+
+
+    <!-- http://www.metaclip.org/graphical_output/graphical_output.owl#ProbabilityChartAxis -->
+
+    <owl:Class rdf:about="http://www.metaclip.org/graphical_output/graphical_output.owl#ProbabilityChartAxis">
+        <rdfs:subClassOf rdf:resource="http://www.metaclip.org/graphical_output/graphical_output.owl#ChartAxis"/>
+        <dc:creator>Predictia</dc:creator>
+        <rdfs:comment xml:lang="en">A :ChartAxis expressing probability</rdfs:comment>
+        <rdfs:isDefinedBy rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://www.metaclip.org/graphical_output/graphical_output.owl</rdfs:isDefinedBy>
+        <rdfs:label>ProbabilityChartAxis</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.metaclip.org/graphical_output/graphical_output.owl#QualitativeColorPalette -->
+
+    <owl:Class rdf:about="http://www.metaclip.org/graphical_output/graphical_output.owl#QualitativeColorPalette">
+        <rdfs:subClassOf rdf:resource="http://www.metaclip.org/graphical_output/graphical_output.owl#ColorPalette"/>
+        <dc:description xml:lang="en">Qualitative schemes do not imply magnitude differences between legend classes, and hues are used to create the primary visual differences between classes. Qualitative schemes are best suited to representing nominal or categorical data.</dc:description>
+        <rdfs:isDefinedBy rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://www.metaclip.org/graphical_output/graphical_output.owl</rdfs:isDefinedBy>
+        <rdfs:label xml:lang="en">Qualitative Color Palette</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.metaclip.org/graphical_output/graphical_output.owl#SamplingUncertainty -->
+
+    <owl:Class rdf:about="http://www.metaclip.org/graphical_output/graphical_output.owl#SamplingUncertainty">
+        <rdfs:subClassOf rdf:resource="http://www.metaclip.org/graphical_output/graphical_output.owl#Uncertainty"/>
+        <dc:creator>Predictia</dc:creator>
+        <rdfs:comment xml:lang="en">Sampling uncertainty is associated with EQC products. It appears when different members are sampled and is often represented by map stippling indicating significant points</rdfs:comment>
+        <rdfs:isDefinedBy rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://www.metaclip.org/graphical_output/graphical_output.owl</rdfs:isDefinedBy>
+    </owl:Class>
+    
+
+
+    <!-- http://www.metaclip.org/graphical_output/graphical_output.owl#SequentialColorPalette -->
+
+    <owl:Class rdf:about="http://www.metaclip.org/graphical_output/graphical_output.owl#SequentialColorPalette">
+        <rdfs:subClassOf rdf:resource="http://www.metaclip.org/graphical_output/graphical_output.owl#ColorPalette"/>
+        <dc:description xml:lang="en">Sequential schemes are suited to ordered data that progress from low to high. Lightness steps dominate the look of these schemes, with light colors for low data values to dark colors for high data values.</dc:description>
+        <rdfs:isDefinedBy rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://www.metaclip.org/graphical_output/graphical_output.owl</rdfs:isDefinedBy>
+        <rdfs:label xml:lang="en">Sequential Color Palette</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.metaclip.org/graphical_output/graphical_output.owl#SpatialChartAxis -->
+
+    <owl:Class rdf:about="http://www.metaclip.org/graphical_output/graphical_output.owl#SpatialChartAxis">
+        <rdfs:subClassOf rdf:resource="http://www.metaclip.org/graphical_output/graphical_output.owl#ChartAxis"/>
+        <dc:creator>Predictia</dc:creator>
+        <rdfs:comment xml:lang="en">A :ChartAxis with spatial/geographical units</rdfs:comment>
+        <rdfs:isDefinedBy rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://www.metaclip.org/graphical_output/graphical_output.owl</rdfs:isDefinedBy>
+        <rdfs:label>SpatialChartAxis</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.metaclip.org/graphical_output/graphical_output.owl#TextLayer -->
+
+    <owl:Class rdf:about="http://www.metaclip.org/graphical_output/graphical_output.owl#TextLayer">
+        <rdfs:subClassOf rdf:resource="http://www.metaclip.org/graphical_output/graphical_output.owl#Layer"/>
+        <dc:description xml:lang="en">Text annotations are textual elements in the graphical product. It can be a title, a subtitle, a legend, a number... or any other textual element within the plotting area not belonging to :ChartAxis</dc:description>
+        <rdfs:isDefinedBy rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://www.metaclip.org/graphical_output/graphical_output.owl</rdfs:isDefinedBy>
+        <rdfs:label xml:lang="en">Text layer</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.metaclip.org/graphical_output/graphical_output.owl#TimeChartAxis -->
+
+    <owl:Class rdf:about="http://www.metaclip.org/graphical_output/graphical_output.owl#TimeChartAxis">
+        <rdfs:subClassOf rdf:resource="http://www.metaclip.org/graphical_output/graphical_output.owl#ChartAxis"/>
+        <dc:creator>Predictia</dc:creator>
+        <rdfs:comment xml:lang="en">A :ChartAxis with time units</rdfs:comment>
+        <rdfs:isDefinedBy rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://www.metaclip.org/graphical_output/graphical_output.owl</rdfs:isDefinedBy>
+        <rdfs:label>TimeChartAxis</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.metaclip.org/graphical_output/graphical_output.owl#TransformationUncertainty -->
+
+    <owl:Class rdf:about="http://www.metaclip.org/graphical_output/graphical_output.owl#TransformationUncertainty">
+        <rdfs:subClassOf rdf:resource="http://www.metaclip.org/graphical_output/graphical_output.owl#Uncertainty"/>
+        <dc:creator>Predictia</dc:creator>
+        <rdfs:comment xml:lang="en">The most important data transformation that introduces another level of uncertainty in the uncertainty chain is the statistical post-processing  (adjustment/recalibration, statistcal downscaling) of the predictions.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://www.metaclip.org/graphical_output/graphical_output.owl</rdfs:isDefinedBy>
+    </owl:Class>
+    
+
+
+    <!-- http://www.metaclip.org/graphical_output/graphical_output.owl#Uncertainty -->
+
+    <owl:Class rdf:about="http://www.metaclip.org/graphical_output/graphical_output.owl#Uncertainty">
+        <rdfs:subClassOf rdf:resource="http://www.w3.org/ns/prov#Entity"/>
+        <dc:creator>Predictia</dc:creator>
+        <dc:description xml:lang="en">A state of incomplete knowledge that can result from a lack of information or from disagreement about what is known or even knowable. It may have many types of sources, from imprecision in the data to ambiguously defined concepts or terminology, or uncertain projections of human behaviour (IPCC 2014). The Uncertainty class aims at the description of uncertainty types in graphical climate  products and how it is communicated.</dc:description>
+        <rdfs:comment xml:lang="en">The different uncertainty types are defined in QA4Seas Milestone 4.3 &lt;https://earth.bsc.es/qa4seas/wiki/lib/exe/fetch.php?media=wiki:c3s_51_lot3_qa4seas_m4.3_strategies_communicating_uncertainty_v1.pdf&gt;, in the context of seasonal forecasting.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://www.metaclip.org/graphical_output/graphical_output.owl</rdfs:isDefinedBy>
+    </owl:Class>
+    
+
+
+    <!-- http://www.w3.org/ns/prov#Entity -->
+
+    <owl:Class rdf:about="http://www.w3.org/ns/prov#Entity"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.metaclip.org/graphical_output/graphical_output.owl#AntarcticPolarStereographic -->
+
+    <owl:NamedIndividual rdf:about="http://www.metaclip.org/graphical_output/graphical_output.owl#AntarcticPolarStereographic">
+        <rdf:type rdf:resource="http://www.metaclip.org/graphical_output/graphical_output.owl#MapProjection"/>
+        <dc:title xml:lang="en">WGS 84 / Antarctic Polar Stereographic</dc:title>
+        <ds:referenceURL rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">https://spatialreference.org/ref/epsg/3031/</ds:referenceURL>
+        <epsg_code rdf:datatype="http://www.w3.org/2001/XMLSchema#string">epsg:3031</epsg_code>
+        <isConformal rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</isConformal>
+        <isEqualArea rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</isEqualArea>
+        <proj_string rdf:datatype="http://www.w3.org/2001/XMLSchema#string">+proj=stere +lat_0=-90 +lat_ts=-71 +lon_0=0 +k=1 +x_0=0 +y_0=0 +ellps=WGS84 +datum=WGS84 +units=m +no_defs</proj_string>
+        <rdfs:comment xml:lang="en">Designed for the Antarctic Digital Database and small scale (&lt;1:1,000,000) studies and topographic mapping over the Antarctica.</rdfs:comment>
+        <rdfs:label xml:lang="en">Antarctic Polar Stereographic</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.metaclip.org/graphical_output/graphical_output.owl#ArcticPolarStereographic -->
+
+    <owl:NamedIndividual rdf:about="http://www.metaclip.org/graphical_output/graphical_output.owl#ArcticPolarStereographic">
+        <rdf:type rdf:resource="http://www.metaclip.org/graphical_output/graphical_output.owl#MapProjection"/>
+        <dc:title xml:lang="en">WGS84 / Arctic Polar Stereographic</dc:title>
+        <ds:referenceURL rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">https://spatialreference.org/ref/epsg/3995/</ds:referenceURL>
+        <epsg_code rdf:datatype="http://www.w3.org/2001/XMLSchema#string">epsg:3995</epsg_code>
+        <isConformal rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</isConformal>
+        <isEqualArea rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</isEqualArea>
+        <rdfs:label xml:lang="en">Arctic Polar Stereographic</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.metaclip.org/graphical_output/graphical_output.owl#Robin -->
+
+    <owl:NamedIndividual rdf:about="http://www.metaclip.org/graphical_output/graphical_output.owl#Robin">
+        <rdf:type rdf:resource="http://www.metaclip.org/graphical_output/graphical_output.owl#MapProjection"/>
+        <dc:title xml:lang="en">Robinson Projection</dc:title>
+        <ds:referenceURL rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">https://spatialreference.org/ref/sr-org/8511/</ds:referenceURL>
+        <isConformal rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</isConformal>
+        <isEqualArea rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</isEqualArea>
+        <proj_string rdf:datatype="http://www.w3.org/2001/XMLSchema#string">+proj=robin +lon_0=0 +x_0=0 +y_0=0 +ellps=WGS84 +datum=WGS84 +units=m +no_defs</proj_string>
+        <rdfs:comment xml:lang="en">The Robinson projection is a map projection of a world map which shows the entire world at once. It was specifically created in an attempt to find a good compromise to the problem of readily showing the whole globe as a flat image</rdfs:comment>
+    </owl:NamedIndividual>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi -->
+

@@ -1,0 +1,435 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://www.metaclip.org/verification/verification.owl#"
+     xml:base="http://www.metaclip.org/verification/verification.owl"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:clim_prov="http://www.semanticweb.org/predictia/ontologies/2017/5/clim_prov#"
+     xmlns:cpannotationschema="http://www.ontologydesignpatterns.org/schemas/cpannotationschema.owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:geosparql="http://www.opengis.net/ont/geosparql#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:terms="http://purl.org/dc/terms/"
+     xmlns:datasource="http://www.metaclip.org/datasource/datasource.owl#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:prov="http://www.w3.org/ns/prov#"
+     xmlns:calibration="http://www.metaclip.org/calibration/calibration.owl#"
+     xmlns:verification="http://www.metaclip.org/verification/verification.owl#"
+     xmlns:dc="http://purl.org/dc/elements/1.1/">
+    <owl:Ontology rdf:about="http://www.metaclip.org/verification/verification.owl">
+        <owl:versionIRI rdf:resource="http://www.metaclip.org/verification/0.2/verification.owl"/>
+        <owl:imports rdf:resource="http://www.metaclip.org/datasource/datasource.owl"/>
+        <owl:imports rdf:resource="http://www.metaclip.org/calibration/calibration.owl"/>
+        <owl:imports rdf:resource="http://www.w3.org/2004/02/skos/core"/>
+        <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.2</owl:versionInfo>
+        <dc:description xml:lang="en">The Verification Ontology is aimed at the description of the Validation/Verification of climate Projections/Predictions. It has a specialized set of concepts to describe provenance of probabilistic verification in the context of climate prediction, as well as validation of climate projections.</dc:description>
+        <dc:title xml:lang="en">The Verification Vocabulary from METACLIP</dc:title>
+        <dc:creator>Predictia</dc:creator>
+        <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2018-09-17</dc:date>
+        <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://www.metaclip.org</rdfs:seeAlso>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://purl.org/dc/elements/1.1/creator -->
+
+    <owl:AnnotationProperty rdf:about="http://purl.org/dc/elements/1.1/creator"/>
+    
+
+
+    <!-- http://purl.org/dc/elements/1.1/date -->
+
+    <owl:AnnotationProperty rdf:about="http://purl.org/dc/elements/1.1/date"/>
+    
+
+
+    <!-- http://purl.org/dc/elements/1.1/description -->
+
+    <owl:AnnotationProperty rdf:about="http://purl.org/dc/elements/1.1/description"/>
+    
+
+
+    <!-- http://www.semanticweb.org/predictia/ontologies/2017/5/clim_prov#hasName -->
+
+    <owl:AnnotationProperty rdf:about="http://www.semanticweb.org/predictia/ontologies/2017/5/clim_prov#hasName">
+        <rdfs:domain rdf:resource="https://raw.githubusercontent.com/Predictia/The_climate_ontology/master/verification/verification.owl#Verification"/>
+    </owl:AnnotationProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.metaclip.org/datasource/datasource.owl#hadDerivation -->
+
+    <owl:ObjectProperty rdf:about="http://www.metaclip.org/datasource/datasource.owl#hadDerivation"/>
+    
+
+
+    <!-- http://www.metaclip.org/verification/verification.owl#hadForecastVerification -->
+
+    <owl:ObjectProperty rdf:about="http://www.metaclip.org/verification/verification.owl#hadForecastVerification">
+        <rdfs:subPropertyOf rdf:resource="http://www.metaclip.org/verification/verification.owl#hadValidation"/>
+        <rdfs:domain rdf:resource="http://www.metaclip.org/datasource/datasource.owl#Step"/>
+        <rdfs:range rdf:resource="http://www.metaclip.org/verification/verification.owl#ForecastVerification"/>
+        <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2018-04-16T09:28:50Z</dc:date>
+        <rdfs:label>hadForecastVerification</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.metaclip.org/verification/verification.owl#hadValidation -->
+
+    <owl:ObjectProperty rdf:about="http://www.metaclip.org/verification/verification.owl#hadValidation">
+        <rdfs:subPropertyOf rdf:resource="http://www.metaclip.org/datasource/datasource.owl#hadDerivation"/>
+        <rdfs:domain rdf:resource="http://www.metaclip.org/datasource/datasource.owl#Step"/>
+        <rdfs:range rdf:resource="http://www.metaclip.org/verification/verification.owl#Validation"/>
+        <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2018-04-06T08:40:13Z</dc:date>
+        <rdfs:comment xml:lang="en">This is a subproperty of ds:hadDerivation, linking a generic ds:Step within the data workflow with a :Validation step</rdfs:comment>
+        <rdfs:isDefinedBy rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://www.metaclip.org/verification/verification.owl</rdfs:isDefinedBy>
+        <rdfs:label>hadValidation</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.metaclip.org/verification/verification.owl#withForecast -->
+
+    <owl:ObjectProperty rdf:about="http://www.metaclip.org/verification/verification.owl#withForecast">
+        <rdfs:domain rdf:resource="http://www.metaclip.org/verification/verification.owl#ForecastVerification"/>
+        <rdfs:range rdf:resource="http://www.metaclip.org/datasource/datasource.owl#Step"/>
+        <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2017-07-03T09:30:00Z</dc:date>
+        <rdfs:comment>Forecasting system to be verified</rdfs:comment>
+        <rdfs:label xml:lang="en">With forecast</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.metaclip.org/verification/verification.owl#withForecastRepresentation -->
+
+    <owl:ObjectProperty rdf:about="http://www.metaclip.org/verification/verification.owl#withForecastRepresentation">
+        <rdfs:domain rdf:resource="http://www.metaclip.org/verification/verification.owl#ForecastVerification"/>
+        <rdfs:range rdf:resource="http://www.metaclip.org/verification/verification.owl#ForecastRepresentation"/>
+        <rdfs:comment xml:lang="en">A property linking the forecast with the way it is represented</rdfs:comment>
+        <rdfs:isDefinedBy rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://www.metaclip.org/verification/verification.owl</rdfs:isDefinedBy>
+        <rdfs:label>withForecastRepresentation</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.metaclip.org/verification/verification.owl#withQualityAspect -->
+
+    <owl:ObjectProperty rdf:about="http://www.metaclip.org/verification/verification.owl#withQualityAspect">
+        <rdfs:domain rdf:resource="http://www.metaclip.org/verification/verification.owl#ForecastVerification"/>
+        <rdfs:range rdf:resource="http://www.metaclip.org/verification/verification.owl#QualityAspect"/>
+        <rdfs:comment xml:lang="en">A property of the Verification determining the Quality Aspect addressed</rdfs:comment>
+        <rdfs:isDefinedBy rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://www.metaclip.org/verification/verification.owl</rdfs:isDefinedBy>
+        <rdfs:label>withQualityAspect</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.metaclip.org/verification/verification.owl#withReference -->
+
+    <owl:ObjectProperty rdf:about="http://www.metaclip.org/verification/verification.owl#withReference">
+        <rdfs:domain rdf:resource="http://www.metaclip.org/verification/verification.owl#Validation"/>
+        <rdfs:range rdf:resource="http://www.metaclip.org/datasource/datasource.owl#Step"/>
+        <rdfs:comment xml:lang="en">A data porperty that links a :Validation with the reference data used (tipically observations)</rdfs:comment>
+        <rdfs:isDefinedBy rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://www.metaclip.org/verification/verification.owl</rdfs:isDefinedBy>
+        <rdfs:label>withReference</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.metaclip.org/verification/verification.owl#withReferenceForecast -->
+
+    <owl:ObjectProperty rdf:about="http://www.metaclip.org/verification/verification.owl#withReferenceForecast">
+        <rdfs:domain rdf:resource="http://www.metaclip.org/verification/verification.owl#ForecastVerification"/>
+        <rdfs:range rdf:resource="http://www.metaclip.org/datasource/datasource.owl#Step"/>
+        <dc:description xml:lang="en">Object property lthat links a :ForecastVerification with a reference benchmarking forecast, used in skill score calculations</dc:description>
+        <rdfs:isDefinedBy rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://www.metaclip.org/verification/verification.owl</rdfs:isDefinedBy>
+        <rdfs:label>WithReferenceForecast</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.metaclip.org/verification/verification.owl#hasAbsoluteThreshold -->
+
+    <owl:DatatypeProperty rdf:about="http://www.metaclip.org/verification/verification.owl#hasAbsoluteThreshold">
+        <rdfs:domain rdf:resource="http://www.metaclip.org/verification/verification.owl#BinaryProbability"/>
+        <rdfs:domain rdf:resource="http://www.metaclip.org/verification/verification.owl#MulticategoryProbability"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+        <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2017-07-03T15:17:32Z</dc:date>
+        <dc:description xml:lang="en">This data property specifies the absolute thresholds (i.e. in the units of the variable) used to convert the continuous forecasts into category forecasts.</dc:description>
+        <rdfs:label>HasAbsoluteThreshold</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.metaclip.org/verification/verification.owl#hasProbabilityThreshold -->
+
+    <owl:DatatypeProperty rdf:about="http://www.metaclip.org/verification/verification.owl#hasProbabilityThreshold">
+        <rdfs:domain rdf:resource="http://www.metaclip.org/verification/verification.owl#BinaryProbability"/>
+        <rdfs:domain rdf:resource="http://www.metaclip.org/verification/verification.owl#MulticategoryProbability"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+        <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2017-07-03T15:14:46Z</dc:date>
+        <dc:description xml:lang="en">This data property specifies the probability thresholds (i.e. in the range [0,1]) used to convert the continuous forecasts into category forecasts.</dc:description>
+        <rdfs:label>HasProbabilityThreshold</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.metaclip.org/verification/verification.owl#Accuracy -->
+
+    <owl:Class rdf:about="http://www.metaclip.org/verification/verification.owl#Accuracy">
+        <rdfs:subClassOf rdf:resource="http://www.metaclip.org/verification/verification.owl#QualityAspect"/>
+        <dc:description xml:lang="en">Accuracy is a measure of the average distance (e.g. squared difference/error) between forecasts and observations.</dc:description>
+        <rdfs:isDefinedBy rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://www.metaclip.org/verification/verification.owl</rdfs:isDefinedBy>
+        <rdfs:label xml:lang="en">Accuracy</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.metaclip.org/verification/verification.owl#Association -->
+
+    <owl:Class rdf:about="http://www.metaclip.org/verification/verification.owl#Association">
+        <rdfs:subClassOf rdf:resource="http://www.metaclip.org/verification/verification.owl#QualityAspect"/>
+        <dc:description xml:lang="en">Association is a measure of dependency between forecasts and observations (e.g.  linear association measured using the product moment correlation between ensemble mean forecast and corresponding observation)</dc:description>
+        <rdfs:isDefinedBy rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://www.metaclip.org/verification/verification.owl</rdfs:isDefinedBy>
+        <rdfs:label xml:lang="en">Association</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.metaclip.org/verification/verification.owl#Bias -->
+
+    <owl:Class rdf:about="http://www.metaclip.org/verification/verification.owl#Bias">
+        <rdfs:subClassOf rdf:resource="http://www.metaclip.org/verification/verification.owl#QualityAspect"/>
+        <dc:description xml:lang="en">The bias is a feature of a forecasting system whereby the mean state of the forecasted value differs from the mean reference observation. This difference (either negative or positive) is the bias.</dc:description>
+        <rdfs:isDefinedBy rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://www.metaclip.org/verification/verification.owl</rdfs:isDefinedBy>
+        <rdfs:label xml:lang="en">Bias</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.metaclip.org/verification/verification.owl#BinaryProbability -->
+
+    <owl:Class rdf:about="http://www.metaclip.org/verification/verification.owl#BinaryProbability">
+        <rdfs:subClassOf rdf:resource="http://www.metaclip.org/verification/verification.owl#ForecastRepresentation"/>
+        <rdfs:isDefinedBy rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://www.metaclip.org/verification/verification.owl</rdfs:isDefinedBy>
+        <rdfs:label>BinaryProbability</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.metaclip.org/verification/verification.owl#ContinuousProbability -->
+
+    <owl:Class rdf:about="http://www.metaclip.org/verification/verification.owl#ContinuousProbability">
+        <rdfs:subClassOf rdf:resource="http://www.metaclip.org/verification/verification.owl#ForecastRepresentation"/>
+        <rdfs:isDefinedBy rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://www.metaclip.org/verification/verification.owl</rdfs:isDefinedBy>
+        <rdfs:label>ContinuousProbability</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.metaclip.org/verification/verification.owl#DeterministicContinuous -->
+
+    <owl:Class rdf:about="http://www.metaclip.org/verification/verification.owl#DeterministicContinuous">
+        <rdfs:subClassOf rdf:resource="http://www.metaclip.org/verification/verification.owl#ForecastRepresentation"/>
+        <rdfs:isDefinedBy rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://www.metaclip.org/verification/verification.owl</rdfs:isDefinedBy>
+        <rdfs:label>DeterministicContinuous</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.metaclip.org/verification/verification.owl#Discrimination -->
+
+    <owl:Class rdf:about="http://www.metaclip.org/verification/verification.owl#Discrimination">
+        <rdfs:subClassOf rdf:resource="http://www.metaclip.org/verification/verification.owl#QualityAspect"/>
+        <dc:description xml:lang="en">Discrimination is a measure of how much forecasts vary for different observation values e.g. for deterministic forecasts of binary observations, the difference between the hit rate H and the false alarm rate F (i.e. how far the ROC curve deviates from H=F)</dc:description>
+        <rdfs:isDefinedBy rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://www.metaclip.org/verification/verification.owl</rdfs:isDefinedBy>
+        <rdfs:label xml:lang="en">Discrimination</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.metaclip.org/verification/verification.owl#EnsembleForecast -->
+
+    <owl:Class rdf:about="http://www.metaclip.org/verification/verification.owl#EnsembleForecast">
+        <rdfs:subClassOf rdf:resource="http://www.metaclip.org/verification/verification.owl#ForecastRepresentation"/>
+        <rdfs:isDefinedBy rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://www.metaclip.org/verification/verification.owl</rdfs:isDefinedBy>
+        <rdfs:label>EnsembleForecast</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.metaclip.org/verification/verification.owl#ForecastRepresentation -->
+
+    <owl:Class rdf:about="http://www.metaclip.org/verification/verification.owl#ForecastRepresentation">
+        <dc:description xml:lang="en">This class characterizes the way in which the forecast predictions are represented (e.g. binary probabilities, multi-category probabilities...). The different subclasses should be asserted when relevant (e.g. :ContinuousProbability, :DeterministicContinuous etc.)</dc:description>
+        <rdfs:isDefinedBy rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://www.metaclip.org/verification/verification.owl</rdfs:isDefinedBy>
+        <rdfs:label>ForecastRepresentation</rdfs:label>
+        <rdfs:seeAlso xml:lang="en">https://docs.google.com/spreadsheets/d/1RSnCmztS_TC54Wq-A6RMI_NDMY-p_z8q_u-Q7ougPj8/edit#gid=0</rdfs:seeAlso>
+    </owl:Class>
+    
+
+
+    <!-- http://www.metaclip.org/verification/verification.owl#ForecastVerification -->
+
+    <owl:Class rdf:about="http://www.metaclip.org/verification/verification.owl#ForecastVerification">
+        <rdfs:subClassOf rdf:resource="http://www.metaclip.org/verification/verification.owl#Validation"/>
+        <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2017-07-03T09:14:42Z</dc:date>
+        <dc:description xml:lang="en">Forecast verification is a subfield of the climate, atmospheric and ocean sciences dealing with validating, verifying and determining the predictive power of prognostic model forecasts. Because of the complexity of these models, forecast verification goes a good deal beyond simple measures of statistical association or mean error calculations</dc:description>
+        <rdfs:isDefinedBy rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://www.metaclip.org/verification/verification.owl</rdfs:isDefinedBy>
+        <rdfs:label>Verification</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.metaclip.org/verification/verification.owl#MulticategoryProbability -->
+
+    <owl:Class rdf:about="http://www.metaclip.org/verification/verification.owl#MulticategoryProbability">
+        <rdfs:subClassOf rdf:resource="http://www.metaclip.org/verification/verification.owl#ForecastRepresentation"/>
+        <rdfs:isDefinedBy rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://www.metaclip.org/verification/verification.owl</rdfs:isDefinedBy>
+        <rdfs:label>MulticategoryProbability</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.metaclip.org/verification/verification.owl#QualityAspect -->
+
+    <owl:Class rdf:about="http://www.metaclip.org/verification/verification.owl#QualityAspect">
+        <rdfs:subClassOf rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+        <dc:description xml:lang="en">Forecast Quality is a multidimensional concept described by several scalar attributes that provide useful information about the performance of a forecasting system. Therefore, no single measure is sufficient for judging and comparing forecast quality. Several Quality Aspects are introduced as subclasses</dc:description>
+        <rdfs:isDefinedBy rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://www.metaclip.org/verification/verification.owl</rdfs:isDefinedBy>
+        <rdfs:label xml:lang="en">Forecast Quality Aspect</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.metaclip.org/verification/verification.owl#Reliability -->
+
+    <owl:Class rdf:about="http://www.metaclip.org/verification/verification.owl#Reliability">
+        <rdfs:subClassOf rdf:resource="http://www.metaclip.org/verification/verification.owl#QualityAspect"/>
+        <dc:description xml:lang="en">Reliability is a measure of the conditional bias of the forecasts (i.e. difference between the conditional  expectation &apos;E(f|o)&apos; of the forecasts &apos;f&apos; for a given observation value &apos;o&apos; and the observation value &apos;o&apos;. In other words, the difference between the reliability curve &apos;E(f|o)&apos; and the line &apos;f=o&apos; when &apos;E(f|o)&apos; is plotted against &apos;f&apos; on a so-called reliability diagram</dc:description>
+        <rdfs:isDefinedBy rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://www.metaclip.org/verification/verification.owl</rdfs:isDefinedBy>
+        <rdfs:label xml:lang="en">Reliability</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.metaclip.org/verification/verification.owl#Resolution -->
+
+    <owl:Class rdf:about="http://www.metaclip.org/verification/verification.owl#Resolution">
+        <rdfs:subClassOf rdf:resource="http://www.metaclip.org/verification/verification.owl#QualityAspect"/>
+        <dc:description xml:lang="en">The resolution measures how much the conditional probabilities given the different forecasts differ from the climatic average.</dc:description>
+        <rdfs:isDefinedBy rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://www.metaclip.org/verification/verification.owl</rdfs:isDefinedBy>
+        <rdfs:label xml:lang="en">Resolution</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.metaclip.org/verification/verification.owl#SkillScore -->
+
+    <owl:Class rdf:about="http://www.metaclip.org/verification/verification.owl#SkillScore">
+        <rdfs:subClassOf rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+        <dc:description xml:lang="en">A skill score is a relative measure of the performance of a forecast relative to some reference (benchmark) forecast</dc:description>
+        <rdfs:isDefinedBy rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://www.metaclip.org/verification/verification.owl</rdfs:isDefinedBy>
+        <rdfs:label xml:lang="en">Skill score</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.metaclip.org/verification/verification.owl#Validation -->
+
+    <owl:Class rdf:about="http://www.metaclip.org/verification/verification.owl#Validation">
+        <rdfs:subClassOf rdf:resource="http://www.metaclip.org/datasource/datasource.owl#Step"/>
+        <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2018-04-06T08:42:25Z</dc:date>
+        <rdfs:comment xml:lang="en">For validation of probabilistic forecasts, the more specific :ForecastVerification subclass should be used</rdfs:comment>
+        <rdfs:isDefinedBy rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://www.metaclip.org/verification/verification.owl</rdfs:isDefinedBy>
+        <rdfs:label>Validation</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core#Concept -->
+
+    <owl:Class rdf:about="http://www.w3.org/2004/02/skos/core#Concept"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // General axioms
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.metaclip.org/verification/verification.owl#Accuracy"/>
+            <rdf:Description rdf:about="http://www.metaclip.org/verification/verification.owl#Association"/>
+            <rdf:Description rdf:about="http://www.metaclip.org/verification/verification.owl#Bias"/>
+            <rdf:Description rdf:about="http://www.metaclip.org/verification/verification.owl#Discrimination"/>
+            <rdf:Description rdf:about="http://www.metaclip.org/verification/verification.owl#Reliability"/>
+            <rdf:Description rdf:about="http://www.metaclip.org/verification/verification.owl#Resolution"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.metaclip.org/verification/verification.owl#BinaryProbability"/>
+            <rdf:Description rdf:about="http://www.metaclip.org/verification/verification.owl#ContinuousProbability"/>
+            <rdf:Description rdf:about="http://www.metaclip.org/verification/verification.owl#DeterministicContinuous"/>
+            <rdf:Description rdf:about="http://www.metaclip.org/verification/verification.owl#EnsembleForecast"/>
+            <rdf:Description rdf:about="http://www.metaclip.org/verification/verification.owl#MulticategoryProbability"/>
+        </owl:members>
+    </rdf:Description>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.2.8.20170104-2310) https://github.com/owlcs/owlapi -->
+
