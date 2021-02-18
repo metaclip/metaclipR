@@ -4,11 +4,19 @@
 \alias{metaclipR.ClimateIndex}
 \title{METACLIP description of climate index calculation steps}
 \usage{
-metaclipR.ClimateIndex(graph, package = "climate4R.climdex",
-  version = as.character(packageVersion(package)), output = NULL,
-  index.code, fun = "climdexGrid", arg.list = NULL,
-  new.time.res = NULL, time.step = NULL, cell.method = NULL,
-  disable.command = FALSE)
+metaclipR.ClimateIndex(
+  graph,
+  package = "climate4R.climdex",
+  version = as.character(packageVersion(package)),
+  output = NULL,
+  index.code,
+  fun = "climdexGrid",
+  arg.list = NULL,
+  new.time.res = NULL,
+  time.step = NULL,
+  cell.method = NULL,
+  disable.command = FALSE
+)
 }
 \arguments{
 \item{graph}{Output from previous metaclipR function. A list with an i-graph class object plus the name of the parent node 

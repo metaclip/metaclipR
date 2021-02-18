@@ -4,10 +4,16 @@
 \alias{metaclipR.AnomalyMap}
 \title{Directed metadata graph construction for Map graphical products}
 \usage{
-metaclipR.AnomalyMap(package = "visualizeR",
-  version = as.character(packageVersion(package)), graph = NULL,
-  input.grid = NULL, fun = "spatialPlot", arg.list = NULL,
-  withInput = NULL, epsg.code = "EPSG:4979")
+metaclipR.AnomalyMap(
+  package = "visualizeR",
+  version = as.character(packageVersion(package)),
+  graph = NULL,
+  input.grid = NULL,
+  fun = "spatialPlot",
+  arg.list = NULL,
+  withInput = NULL,
+  epsg.code = "EPSG:4979"
+)
 }
 \arguments{
 \item{package}{package}
@@ -59,9 +65,10 @@ by the user.
 }
 
 \seealso{
-Other graphical.products: \code{\link{metaclipR.EnsoPlume}},
-  \code{\link{metaclipR.SkillMap}},
-  \code{\link{metaclipR.SpatialPlot}}
+Other graphical.products: 
+\code{\link{metaclipR.EnsoPlume}()},
+\code{\link{metaclipR.SkillMap}()},
+\code{\link{metaclipR.SpatialPlot}()}
 }
 \author{
 D. San Martín, J. Bedia

@@ -40,8 +40,9 @@ by the user.
 }
 
 \seealso{
-Other getProperty.helpers: \code{\link{getHasAbsoluteThreshold}},
-  \code{\link{getHasTimeStep}}
+Other getProperty.helpers: 
+\code{\link{getHasAbsoluteThreshold}()},
+\code{\link{getHasTimeStep}()}
 }
 \author{
 J Bedia

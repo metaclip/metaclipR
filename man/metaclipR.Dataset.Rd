@@ -4,10 +4,17 @@
 \alias{metaclipR.Dataset}
 \title{Directed metadata graph construction for Data Sources}
 \usage{
-metaclipR.Dataset(Dataset.name = NULL, Dataset.subclass = NULL,
-  DataProvider = NULL, ModellingCenter = NULL,
-  DataProvider.URL = NULL, Project = NULL, RCM = NULL, GCM = NULL,
-  Run = NULL)
+metaclipR.Dataset(
+  Dataset.name = NULL,
+  Dataset.subclass = NULL,
+  DataProvider = NULL,
+  ModellingCenter = NULL,
+  DataProvider.URL = NULL,
+  Project = NULL,
+  RCM = NULL,
+  GCM = NULL,
+  Run = NULL
+)
 }
 \arguments{
 \item{Dataset.name}{Name (label) of the Dataset. There is a number of already known Datasets, pertaining to the User Data Gateway 
@@ -77,14 +84,15 @@ metadata <- metaclipR.Dataset(Dataset.name = "E-OBS_v14_0.25regular",
 plot(metadata$graph)
 }
 \seealso{
-Other transformation: \code{\link{metaclip.graph.Command}},
-  \code{\link{metaclipR.Aggregation}},
-  \code{\link{metaclipR.AnomalyCalculation}},
-  \code{\link{metaclipR.Binding}},
-  \code{\link{metaclipR.Climatology}},
-  \code{\link{metaclipR.Ensemble}},
-  \code{\link{metaclipR.Interpolation}},
-  \code{\link{metaclipR.etccdi}}
+Other transformation: 
+\code{\link{metaclip.graph.Command}()},
+\code{\link{metaclipR.Aggregation}()},
+\code{\link{metaclipR.AnomalyCalculation}()},
+\code{\link{metaclipR.Binding}()},
+\code{\link{metaclipR.Climatology}()},
+\code{\link{metaclipR.Ensemble}()},
+\code{\link{metaclipR.Interpolation}()},
+\code{\link{metaclipR.etccdi}()}
 }
 \author{
 D. San Martín, J. Bedia

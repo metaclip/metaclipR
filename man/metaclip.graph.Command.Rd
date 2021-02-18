@@ -4,8 +4,14 @@
 \alias{metaclip.graph.Command}
 \title{Directed metadata graph construction for Package/Command/Argument provenance description}
 \usage{
-metaclip.graph.Command(graph, package, version, fun, arg.list,
-  origin.node.name)
+metaclip.graph.Command(
+  graph,
+  package,
+  version,
+  fun,
+  arg.list,
+  origin.node.name
+)
 }
 \arguments{
 \item{graph}{An igraph-class graph}
@@ -50,14 +56,15 @@ by the user.
 }
 
 \seealso{
-Other transformation: \code{\link{metaclipR.Aggregation}},
-  \code{\link{metaclipR.AnomalyCalculation}},
-  \code{\link{metaclipR.Binding}},
-  \code{\link{metaclipR.Climatology}},
-  \code{\link{metaclipR.Dataset}},
-  \code{\link{metaclipR.Ensemble}},
-  \code{\link{metaclipR.Interpolation}},
-  \code{\link{metaclipR.etccdi}}
+Other transformation: 
+\code{\link{metaclipR.Aggregation}()},
+\code{\link{metaclipR.AnomalyCalculation}()},
+\code{\link{metaclipR.Binding}()},
+\code{\link{metaclipR.Climatology}()},
+\code{\link{metaclipR.Dataset}()},
+\code{\link{metaclipR.Ensemble}()},
+\code{\link{metaclipR.Interpolation}()},
+\code{\link{metaclipR.etccdi}()}
 }
 \author{
 D. San Martín, J. Bedia

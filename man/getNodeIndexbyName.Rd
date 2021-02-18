@@ -24,8 +24,9 @@ getNodeIndexbyName(graph, "Pepe")
 getNodeIndexbyName(graph, c("A","D","Pepe"))
 }
 \seealso{
-Other graph.helpers: \code{\link{getNodeAttributes}},
-  \code{\link{getPlainPropertyList}}
+Other graph.helpers: 
+\code{\link{getNodeAttributes}()},
+\code{\link{getPlainPropertyList}()}
 }
 \author{
 J Bedia

@@ -19,7 +19,8 @@ A character string of the QualityAspect Class
 Infer the Class inheriting from Abstract Class QualityAspect from the value of verifun argument
 }
 \seealso{
-Other getClass.helpers: \code{\link{getForecastRepresentation}}
+Other getClass.helpers: 
+\code{\link{getForecastRepresentation}()}
 }
 \author{
 J Bedia

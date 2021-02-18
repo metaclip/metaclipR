@@ -4,8 +4,14 @@
 \alias{my_add_vertices}
 \title{Internal helper for vertex addition}
 \usage{
-my_add_vertices(graph, name = NULL, nv = 1, label = NULL,
-  className = NULL, attr = NULL)
+my_add_vertices(
+  graph,
+  name = NULL,
+  nv = 1,
+  label = NULL,
+  className = NULL,
+  attr = NULL
+)
 }
 \arguments{
 \item{graph}{i-graph class graph on which the node is added (might be an empty graph if it is the initial Dataset node)}

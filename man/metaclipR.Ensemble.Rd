@@ -4,11 +4,17 @@
 \alias{metaclipR.Ensemble}
 \title{Construct a METACLIP representation of the ds:Ensemble class}
 \usage{
-metaclipR.Ensemble(package = "transformeR",
-  version = as.character(packageVersion(package)), output = NULL,
-  fun = "bindGrid.member", arg.list = NULL,
-  combination.method = NULL, graph.list, disable.command = FALSE,
-  dc.description = NULL)
+metaclipR.Ensemble(
+  package = "transformeR",
+  version = as.character(packageVersion(package)),
+  output = NULL,
+  fun = "bindGrid.member",
+  arg.list = NULL,
+  combination.method = NULL,
+  graph.list,
+  disable.command = FALSE,
+  dc.description = NULL
+)
 }
 \arguments{
 \item{package}{package name. Default to \code{"transformeR"}}
@@ -65,14 +71,15 @@ by the user.
 }
 
 \seealso{
-Other transformation: \code{\link{metaclip.graph.Command}},
-  \code{\link{metaclipR.Aggregation}},
-  \code{\link{metaclipR.AnomalyCalculation}},
-  \code{\link{metaclipR.Binding}},
-  \code{\link{metaclipR.Climatology}},
-  \code{\link{metaclipR.Dataset}},
-  \code{\link{metaclipR.Interpolation}},
-  \code{\link{metaclipR.etccdi}}
+Other transformation: 
+\code{\link{metaclip.graph.Command}()},
+\code{\link{metaclipR.Aggregation}()},
+\code{\link{metaclipR.AnomalyCalculation}()},
+\code{\link{metaclipR.Binding}()},
+\code{\link{metaclipR.Climatology}()},
+\code{\link{metaclipR.Dataset}()},
+\code{\link{metaclipR.Interpolation}()},
+\code{\link{metaclipR.etccdi}()}
 }
 \author{
 D. San Martín, J. Bedia

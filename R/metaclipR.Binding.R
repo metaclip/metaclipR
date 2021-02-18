@@ -65,8 +65,7 @@ metaclipR.Binding <- function(graph.list,
         graph <- my_add_vertices(graph,
                                  name = nodename,
                                  label = "Dataset Binding",
-                                 className = "ds:Binding",
-                                 attr = list("dc:description" = dc.description))    
+                                 className = "ds:Binding", attr = list("dc:description" = dc.description))    
     }
     graph <- add_edges(graph,
                        c(getNodeIndexbyName(graph, graph.list[[1]]$parentnodename),

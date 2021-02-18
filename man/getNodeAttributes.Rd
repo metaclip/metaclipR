@@ -23,8 +23,9 @@ Return a list of all (non-empty) node attributes
 \seealso{
 \code{\link{getNodeIndexbyName}}
 
-Other graph.helpers: \code{\link{getNodeIndexbyName}},
-  \code{\link{getPlainPropertyList}}
+Other graph.helpers: 
+\code{\link{getNodeIndexbyName}()},
+\code{\link{getPlainPropertyList}()}
 }
 \author{
 J Bedia

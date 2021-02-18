@@ -4,9 +4,15 @@
 \alias{metaclipR.etccdi}
 \title{Directed metadata graph construction for ETCDDI climate index transformations}
 \usage{
-metaclipR.etccdi(graph, package = "climate4R.climdex",
-  version = as.character(packageVersion(package)), output = NULL,
-  index.code, fun = "climdexGrid", arg.list = NULL)
+metaclipR.etccdi(
+  graph,
+  package = "climate4R.climdex",
+  version = as.character(packageVersion(package)),
+  output = NULL,
+  index.code,
+  fun = "climdexGrid",
+  arg.list = NULL
+)
 }
 \arguments{
 \item{graph}{Output from previous metaclipR function. A list with an i-graph class object plus the name of the parent node 
@@ -86,20 +92,21 @@ metadata <- metaclipR.etccdi(graph = a, index.code = "TX10p", arg.list = arg.lis
 plot(metadata$graph)
 
 # Alternatively, since metaclipR 1.1.0 the literal command call can be used:
-cc <- "tx10p <- climdexGrid(index.code = \\"TX10p\\", tx = tasmax.eobs, index.arg.list = list(freq = \\"annual\\"))"
+cc <- "tx10p <- climdexGrid(index.code = \"TX10p\", tx = tasmax.eobs, index.arg.list = list(freq = \"annual\"))"
 metadata2 <- metaclipR.etccdi(graph = a, index.code = "TX10p", arg.list = cc)            
 plot(metadata2$graph)
 }
 }
 \seealso{
-Other transformation: \code{\link{metaclip.graph.Command}},
-  \code{\link{metaclipR.Aggregation}},
-  \code{\link{metaclipR.AnomalyCalculation}},
-  \code{\link{metaclipR.Binding}},
-  \code{\link{metaclipR.Climatology}},
-  \code{\link{metaclipR.Dataset}},
-  \code{\link{metaclipR.Ensemble}},
-  \code{\link{metaclipR.Interpolation}}
+Other transformation: 
+\code{\link{metaclip.graph.Command}()},
+\code{\link{metaclipR.Aggregation}()},
+\code{\link{metaclipR.AnomalyCalculation}()},
+\code{\link{metaclipR.Binding}()},
+\code{\link{metaclipR.Climatology}()},
+\code{\link{metaclipR.Dataset}()},
+\code{\link{metaclipR.Ensemble}()},
+\code{\link{metaclipR.Interpolation}()}
 }
 \author{
 D. San Martín, J. Bedia

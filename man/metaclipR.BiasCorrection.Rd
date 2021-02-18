@@ -4,13 +4,26 @@
 \alias{metaclipR.BiasCorrection}
 \title{Directed metadata graph construction for bias correction steps}
 \usage{
-metaclipR.BiasCorrection(package = "downscaleR", version = "3.0.0",
-  fun = "biasCorrection", arg.list, graph, TrainingGraph, ReferenceGraph,
+metaclipR.BiasCorrection(
+  package = "downscaleR",
+  version = "3.0.0",
+  fun = "biasCorrection",
+  arg.list,
+  graph,
+  TrainingGraph,
+  ReferenceGraph,
   ReferenceGraphSpatialExtent = NULL,
-  ReferenceGraphRectangularGrid = NULL, BC.method,
-  BC.class = "BiasCorrection", isDefinedBy = NULL, comment = NULL,
-  hasProbCharacter = NULL, isMultivariable = NULL,
-  isMultisite = NULL, disable.command = FALSE, dc.description = NULL)
+  ReferenceGraphRectangularGrid = NULL,
+  BC.method,
+  BC.class = "BiasCorrection",
+  isDefinedBy = NULL,
+  comment = NULL,
+  hasProbCharacter = NULL,
+  isMultivariable = NULL,
+  isMultisite = NULL,
+  disable.command = FALSE,
+  dc.description = NULL
+)
 }
 \arguments{
 \item{package}{bias correction package. Default to \code{"downscaleR"}}

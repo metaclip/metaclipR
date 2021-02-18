@@ -4,10 +4,17 @@
 \alias{metaclipR.Anomaly}
 \title{Directed metadata graph construction for Anomaly transformations}
 \usage{
-metaclipR.Anomaly(graph, package = "transformeR", version = "1.4.4",
-  fun = "scaleGrid", time.frame = "seasonal", arg.list = NULL,
-  referenceGraph = NULL, clim.cell.method = "mean",
-  disable.command = FALSE)
+metaclipR.Anomaly(
+  graph,
+  package = "transformeR",
+  version = "1.4.4",
+  fun = "scaleGrid",
+  time.frame = "seasonal",
+  arg.list = NULL,
+  referenceGraph = NULL,
+  clim.cell.method = "mean",
+  disable.command = FALSE
+)
 }
 \arguments{
 \item{graph}{An output from a previous \pkg{metaclipR} function containing a list with the i-graph class object containing

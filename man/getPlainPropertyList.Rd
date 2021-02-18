@@ -18,8 +18,9 @@ A list of (non-empty) attributes belonging to the vertex (lists are vectorized)
 Return almost all node attributes, but the name, classname, etc...
 }
 \seealso{
-Other graph.helpers: \code{\link{getNodeAttributes}},
-  \code{\link{getNodeIndexbyName}}
+Other graph.helpers: 
+\code{\link{getNodeAttributes}()},
+\code{\link{getNodeIndexbyName}()}
 }
 \author{
 J Bedia

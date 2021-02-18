@@ -19,8 +19,9 @@ Maps the time resolution output of \code{\link[transformeR]{getTimeResolution}} 
 \url{https://en.wikipedia.org/wiki/ISO_8601#Durations}
 }
 \seealso{
-Other getProperty.helpers: \code{\link{getHasAbsoluteThreshold}},
-  \code{\link{getHasProbabilityThreshold}}
+Other getProperty.helpers: 
+\code{\link{getHasAbsoluteThreshold}()},
+\code{\link{getHasProbabilityThreshold}()}
 }
 \author{
 J Bedia

@@ -4,8 +4,12 @@
 \alias{knownClassIndividuals}
 \title{List all individuals from a class}
 \usage{
-knownClassIndividuals(classname, vocabulary = "datasource",
-  source.vocab = NULL, verbose = FALSE)
+knownClassIndividuals(
+  classname,
+  vocabulary = "datasource",
+  source.vocab = NULL,
+  verbose = FALSE
+)
 }
 \arguments{
 \item{classname}{The parent class from which the individual instances are queried}
@@ -42,7 +46,8 @@ knownClassIndividuals("ETCDDI")
 knownClassIndividuals("Dataset")
 }
 \seealso{
-Other ontology.helpers: \code{\link{getIndividualClass}}
+Other ontology.helpers: 
+\code{\link{getIndividualClass}()}
 }
 \author{
 J Bedia, D. San-Martín

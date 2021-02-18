@@ -4,10 +4,18 @@
 \alias{metaclipR.SpatialPlot}
 \title{Directed metadata graph construction for spatialPlot outputs}
 \usage{
-metaclipR.SpatialPlot(package = "visualizeR", version = "1.1.1", graph,
-  input.grid = NULL, type = "grid", fun = "spatialPlot",
-  arg.list = NULL, stipplingInputGraph = NULL,
-  epsg.code = "EPSG:4329", isBranchStep = FALSE)
+metaclipR.SpatialPlot(
+  package = "visualizeR",
+  version = "1.1.1",
+  graph,
+  input.grid = NULL,
+  type = "grid",
+  fun = "spatialPlot",
+  arg.list = NULL,
+  stipplingInputGraph = NULL,
+  epsg.code = "EPSG:4329",
+  isBranchStep = FALSE
+)
 }
 \arguments{
 \item{package}{package}
@@ -69,9 +77,10 @@ by the user.
 }
 
 \seealso{
-Other graphical.products: \code{\link{metaclipR.AnomalyMap}},
-  \code{\link{metaclipR.EnsoPlume}},
-  \code{\link{metaclipR.SkillMap}}
+Other graphical.products: 
+\code{\link{metaclipR.AnomalyMap}()},
+\code{\link{metaclipR.EnsoPlume}()},
+\code{\link{metaclipR.SkillMap}()}
 }
 \author{
 D. San Martín, J. Bedia

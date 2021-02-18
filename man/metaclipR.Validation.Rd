@@ -4,9 +4,18 @@
 \alias{metaclipR.Validation}
 \title{Directed metadata graph construction for validation steps}
 \usage{
-metaclipR.Validation(package, version, fun, measure.name = NULL,
-  type = c("validation", "verification"), QualityAspect, arg.list,
-  PredictionGraph, ReferenceGraph, disable.command = FALSE)
+metaclipR.Validation(
+  package,
+  version,
+  fun,
+  measure.name = NULL,
+  type = c("validation", "verification"),
+  QualityAspect,
+  arg.list,
+  PredictionGraph,
+  ReferenceGraph,
+  disable.command = FALSE
+)
 }
 \arguments{
 \item{package}{Validation package.}
@@ -68,7 +77,8 @@ by the user.
 }
 
 \seealso{
-Other validation: \code{\link{metaclipR.easyVerification}}
+Other validation: 
+\code{\link{metaclipR.easyVerification}()}
 }
 \author{
 D. San Martín, J. Bedia

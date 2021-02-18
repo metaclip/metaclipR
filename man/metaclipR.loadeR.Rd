@@ -4,9 +4,15 @@
 \alias{metaclipR.loadeR}
 \title{Directed metadata graph construction for loadeR outputs}
 \usage{
-metaclipR.loadeR(package = "loadeR",
-  version = as.character(packageVersion(package)), graph, fun = NULL,
-  arg.list = NULL, index.name = "none", output = NULL)
+metaclipR.loadeR(
+  package = "loadeR",
+  version = as.character(packageVersion(package)),
+  graph,
+  fun = NULL,
+  arg.list = NULL,
+  index.name = "none",
+  output = NULL
+)
 }
 \arguments{
 \item{package}{loading climate4R package. Default to \code{"loadeR"} (but see argument \code{fun})}
@@ -64,7 +70,8 @@ by the user.
 }
 
 \seealso{
-Other subsetting: \code{\link{metaclipR.DatasetSubset}}
+Other subsetting: 
+\code{\link{metaclipR.DatasetSubset}()}
 }
 \author{
 D. San Martín, J. Bedia
