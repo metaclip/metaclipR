@@ -78,6 +78,7 @@
 * Include ds:referenceURL annotation for grids
 * Other minor changes 
 
-## v1.3.1 (in devel)
+## v1.3.1 (26 Feb 2021)
 * Clean unused examples
+* Bug fix in attribute inheritance after succesive graph unions
 
