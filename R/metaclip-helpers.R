@@ -283,12 +283,13 @@ my_union <- function(g, g1, g2) {
             }
         }
     }
-    # Remove inherited attributes from joined graphs
+    # Remove inherited edge attribute names from joined graphs
     
     edge.names <- igraph::edge_attr_names(g)
     if (any(grepl("label_", edge.names))) {
-        rm.ind <- which(grepl("label_", edge.names))
-        for (i in rm.ind) {
+        while (isTRUE(any(grepl("label_",  igraph::edge_attr_names(g))))) {
+            edge.names <- igraph::edge_attr_names(g)
+            rm.ind <- which(grepl("label_", edge.names))[1]
             g <- igraph::delete_edge_attr(graph = g, name = edge.names[rm.ind])
         }
     }
