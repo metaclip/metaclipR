@@ -130,7 +130,7 @@ serializeVertex <- function(g, vertex, describedNodeNames, connection) {
     }
     # Arcos que parten de este nodo: E(g)[from(getNodeIndexbyName(g, vid))]
     # full.list <- vertex_attr(g, index = vertices[i])
-    arcs <- E(g)[from(node.index)]
+    arcs <- E(g)[.from(node.index)]
     if (length(arcs) > 0) { # El nodo tiene hijos
         cat("\n", file = z)
         classproperties <- edge_attr(g, name = "label", arcs)
