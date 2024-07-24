@@ -90,6 +90,7 @@ graph2json <- function(graph, output.file, template = FALSE) {
         }
     }
     cat("]}", file = z)
+    cat("\n", file = z)
     close(z)
     message("[", Sys.time(), "] The file '", output.file, "' was sucessfuly generated")    
 }
