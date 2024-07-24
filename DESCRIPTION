@@ -2,7 +2,7 @@ Package: metaclipR
 Depends:
     R(>= 3.1.0)
 Imports:
-    igraph,
+    igraph (>= 2.0.3),
     Rgraphviz,
     magrittr,
     utils,
