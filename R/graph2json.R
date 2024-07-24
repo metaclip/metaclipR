@@ -1,6 +1,6 @@
 ##     graph2json Serialize an i-graph containing METACLIP RDF definition
 ##
-##     Copyright (C) 2018 Predictia (http://www.predictia.es)
+##     Copyright (C) 2024 Santander Meteorology Group <https://github.com/SantanderMetGroup>
 ##
 ##     This program is free software: you can redistribute it and/or modify
 ##     it under the terms of the GNU General Public License as published by
@@ -19,6 +19,9 @@
 #' @description Takes an igraph-class RDF graph and write it in JSON-LD
 #' @param graph An i-graph class graph
 #' @param output.file Character string. Output path 
+#' @param template Logical. In this case, the ouput file is a user-defined JSON template
+#'  with a specific context and import definitions.
+#' Unused by default (FALSE) and imports the basic METACLIP ontologies.
 #' @return A JSON-LD representation of the metadata structure
 #' @importFrom igraph V vertex_attr E edge_attr head_of is_igraph
 #' @export
@@ -27,38 +30,47 @@
 #' @references A useful app to check/test JSON-LD mark <https://json-ld.org/playground/>  
 
 
-graph2json <- function(graph, output.file) {
+graph2json <- function(graph, output.file, template = FALSE) {
     if (!is_igraph(graph)) stop("'graph' is not an igraph-class object")
-    message("[", Sys.time(), "] Writing file...")    
-    f <- output.file    
+    stopifnot(is.logical(template))
+    message("[", Sys.time(), "] Writing file...") 
     g <- graph
-    z <- file(f, "w")
-    cat(c("{","\n"), sep = "", file = z)
-    cat(c("\t\"@context\": {", "\n"), sep = "", file = z)    
-    # Metaclip imports
-    cat(c("\t\t\"ds\": ", "\"http://www.metaclip.org/datasource/datasource.owl#\",\n"), 
-        sep = "", file = z)    
-    cat(c("\t\t\"ipcc\": ", "\"http://www.metaclip.org/ipcc_terms/ipcc_terms.owl#\",\n"), 
-        sep = "", file = z)    
-    cat(c("\t\t\"veri\": ", "\"http://www.metaclip.org/verification/verification.owl#\",\n"), 
-        sep = "", file = z)    
-    cat(c("\t\t\"cal\": ", "\"http://www.metaclip.org/calibration/calibration.owl#\",\n"), 
-        sep = "", file = z)    
-    cat(c("\t\t\"go\": ", "\"http://www.metaclip.org/graphical_output/graphical_output.owl#\",\n"), 
-        sep = "", file = z)    
-    # prov-o
-    cat(c("\t\t\"prov\": ", "\"http://www.w3.org/ns/prov#\",\n"),
-        sep = "", file = z)
-    # rdf schema
-    cat(c("\t\t\"rdfs\": ", "\"http://www.w3.org/2000/01/rdf-schema#\",\n"),
-        sep = "", file = z)    
-    # dublin core
-    cat(c("\t\t\"dc\": ", "\"http://www.w3.org/2002/07/owl\",\n"),
-        sep = "", file = z)   
-    # skos
-    cat(c("\t\t\"skos\": ", "\"http://www.w3.org/2004/02/skos/core#\"\n"),
-         sep = "", file = z)    
-    cat("\t},", file = z)
+    f <- output.file 
+    if (!template) {
+        
+        z <- file(f, "w")
+        
+        cat(c("{","\n"), sep = "", file = z)
+        cat(c("\t\"@context\": {", "\n"), sep = "", file = z)    
+        # Metaclip imports
+        cat(c("\t\t\"ds\": ", "\"http://www.metaclip.org/datasource/datasource.owl#\",\n"), 
+            sep = "", file = z)    
+        cat(c("\t\t\"ipcc\": ", "\"http://www.metaclip.org/ipcc_terms/ipcc_terms.owl#\",\n"), 
+            sep = "", file = z)    
+        cat(c("\t\t\"veri\": ", "\"http://www.metaclip.org/verification/verification.owl#\",\n"), 
+            sep = "", file = z)    
+        cat(c("\t\t\"cal\": ", "\"http://www.metaclip.org/calibration/calibration.owl#\",\n"), 
+            sep = "", file = z)    
+        cat(c("\t\t\"go\": ", "\"http://www.metaclip.org/graphical_output/graphical_output.owl#\",\n"), 
+            sep = "", file = z)    
+        # prov-o
+        cat(c("\t\t\"prov\": ", "\"http://www.w3.org/ns/prov#\",\n"),
+            sep = "", file = z)
+        # rdf schema
+        cat(c("\t\t\"rdfs\": ", "\"http://www.w3.org/2000/01/rdf-schema#\",\n"),
+            sep = "", file = z)    
+        # dublin core
+        cat(c("\t\t\"dc\": ", "\"http://www.w3.org/2002/07/owl\",\n"),
+            sep = "", file = z)   
+        # skos
+        cat(c("\t\t\"skos\": ", "\"http://www.w3.org/2004/02/skos/core#\"\n"),
+            sep = "", file = z)    
+        cat("\t},", file = z)
+        
+    } else {
+        z <- file(f, "a")
+    }
+    
     cat("\n\t\"@graph\":[", file = z)
     # Todos los vertices del grafo
     vertices <- V(g)

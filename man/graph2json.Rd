@@ -4,12 +4,16 @@
 \alias{graph2json}
 \title{RDF graph serialization to JSON-LD}
 \usage{
-graph2json(graph, output.file)
+graph2json(graph, output.file, template = FALSE)
 }
 \arguments{
 \item{graph}{An i-graph class graph}
 
 \item{output.file}{Character string. Output path}
+
+\item{template}{Logical. In this case, the ouput file is a user-defined JSON template
+ with a specific context and import definitions.
+Unused by default (FALSE) and imports the basic METACLIP ontologies.}
 }
 \value{
 A JSON-LD representation of the metadata structure
