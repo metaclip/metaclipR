@@ -84,3 +84,5 @@
 
 ## v1.4.0 (24 Jul 2024)
 * Allow for user-defined template JSON in `graph2json`
+* Replace deprecated internal igraph from --> .from
+
