@@ -194,6 +194,6 @@ serializeVertex <- function(g, vertex, describedNodeNames, connection) {
 #' @author J Bedia
 
 isIndividualInstance <- function(node.name) {
-    grepl("^ds\\:|^veri\\:|^go\\:|^cal\\:|^ipcc\\::|^c6i\\:|^c6d\\:|^c6m\\:|^c6v\\:",
+    grepl("^ds\\:|^veri\\:|^go\\:|^cal\\:|^ipcc\\:|^c6i\\:|^c6d\\:|^c6m\\:|^c6v\\:",
           node.name)
 }
