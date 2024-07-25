@@ -7,6 +7,7 @@
 #' @author juaco
 #' @seealso [graph2json()]
 #' @importFrom jsonlite prettify minify
+#' @export
 
 prettyJSON <- function(jsonfile, indent = 2, minify = FALSE) {
     stopifnot(is.logical(minify))
