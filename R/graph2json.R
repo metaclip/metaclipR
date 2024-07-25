@@ -69,6 +69,7 @@ graph2json <- function(graph, output.file, template = FALSE) {
         cat("\t},", file = z)
         
     } else {
+        message("Using template\nNOTE: Updating the `isIndividualInstance` prefix list might be needed to identify METACLIP Named Individuals")
         z <- file(f, "a")
     }
     
