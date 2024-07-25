@@ -21,7 +21,7 @@ Suggests:
     rmarkdown
 Type: Package
 Title: A climate4R package for METACLIP provenance description
-Version: 1.5.0
+Version: 1.5.1
 Date: 2024-07-25
 Authors@R: c(person("Bedia", "Joaquín", email = "bediaj@unican.es", role = c("aut","cre"), comment = c(ORCID = "0000-0001-6219-4312")),
              person("Daniel", "San Martín", email = "daniel@predictia.es", role = "aut"))
