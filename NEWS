@@ -93,3 +93,7 @@
 * Fixes export omission in previous release
 * Suppress onAttach remote ontology checks slowing package load
 
+## v1.5.2 (25 Jul 2024)
+* Add new prefixes to vocabularies containing METACLIP individual instances in `isIndividualInstance` internal helper
+
+
