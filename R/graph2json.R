@@ -27,6 +27,7 @@
 #' @export
 #' @family graphical.outputs
 #' @author J Bedia
+#' @seealso [prettyJSON()]
 #' @references A useful app to check/test JSON-LD mark <https://json-ld.org/playground/>  
 
 
