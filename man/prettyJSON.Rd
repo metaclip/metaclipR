@@ -4,14 +4,14 @@
 \alias{prettyJSON}
 \title{Prettify or minify a METACLIP JSON}
 \usage{
-prettyJSON(jsonfile, indent = 2, minify = FALSE)
+prettyJSON(jsonfile, indent = 4, minify = FALSE)
 }
 \arguments{
-\item{jsonfile}{Path to the JSON file}
-
 \item{indent}{Positive integer. Number of spaces for indentation (ignored when \code{minify = TRUE})}
 
 \item{minify}{Logical. If set to \code{TRUE}, removes all indentation and whitespaces to minimize the file size.}
+
+\item{file}{Path to the JSON file}
 }
 \value{
 The input file is overwritten by its prettyfied/minified version
