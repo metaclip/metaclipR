@@ -69,6 +69,7 @@ graph2json <- function(graph, output.file, template = FALSE) {
         cat("\t},", file = z)
         
     } else {
+        message("Using template\nNOTE: Updating the `isIndividualInstance` prefix list might be needed to identify METACLIP Named Individuals")
         z <- file(f, "a")
     }
     
@@ -192,5 +193,7 @@ serializeVertex <- function(g, vertex, describedNodeNames, connection) {
 #' @keywords internal
 #' @author J Bedia
 
-isIndividualInstance <- function(node.name) grepl("^ds\\:|^veri\\:|^go\\:|^cal\\:|^ipcc\\:", node.name)
-
+isIndividualInstance <- function(node.name) {
+    grepl("^ds\\:|^veri\\:|^go\\:|^cal\\:|^ipcc\\:|^c6i\\:|^c6d\\:|^c6m\\:|^c6v\\:",
+          node.name)
+}
