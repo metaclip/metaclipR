@@ -96,4 +96,6 @@
 ## v1.5.2 (26 Jul 2024)
 * Add new prefixes to vocabularies containing METACLIP individual instances in `isIndividualInstance` internal helper
 
+## v1.5.3 (in devel)
+* Add conda environment file
 
