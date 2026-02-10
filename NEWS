@@ -96,6 +96,7 @@
 ## v1.5.2 (26 Jul 2024)
 * Add new prefixes to vocabularies containing METACLIP individual instances in `isIndividualInstance` internal helper
 
-## v1.5.3 (in devel)
+## v1.6.0 (in devel)
 * Add conda environment file
+* Force prov:hadMember property for Ensemble membership definition
 
