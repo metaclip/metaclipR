@@ -75,13 +75,13 @@ metaclipR.Ensemble <- function(package = "transformeR",
     graph <- add_edges(graph,
                        c(getNodeIndexbyName(graph, graph.list[[1]]$parentnodename),
                          getNodeIndexbyName(graph, nodename)),
-                       label = "prov:hadMember")    
+                       label = "ds:isMemberOf")    
     for (i in 2:length(graph.list)) {
         graph <- my_union_graph(graph, graph.list[[i]]$graph)
         graph <- add_edges(graph,
                            c(getNodeIndexbyName(graph, graph.list[[i]]$parentnodename),
                              getNodeIndexbyName(graph, nodename)),
-                           label = "prov:hadMember")
+                           label = "ds:isMemberOf")
     }
     ## Combination method (if specified)
     if (!is.null(combination.method)) {
