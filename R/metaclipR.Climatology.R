@@ -48,7 +48,7 @@ metaclipR.Climatology <- function(package = "transformeR",
                                   dc.description = NULL) {
     orig.node <- graph$parentnodename
     graph <- graph$graph
-    if (class(graph) != "igraph") stop("Invalid input graph (not an 'igraph-class' object)")
+    if (!inherits(graph, "igraph")) stop("Invalid input graph (not an 'igraph-class' object)")
     # Climatology -----------------------------------------------
     clim.nodename <- paste("Climatology", randomName(), sep = ".")
     if (is.null(arg.list)) arg.list <- list(clim.fun = list(FUN = "mean", na.rm = TRUE), by.member = TRUE)

@@ -47,7 +47,7 @@ metaclipR.AnomalyMap <- function(package = "visualizeR",
                                  withInput = NULL,
                                  epsg.code = "EPSG:4979") {
     if (is.null(graph)) stop("An input graph is required")
-    if (class(graph) != "igraph") stop("Invalid input graph (not an 'igraph-class' object)")
+    if (!inherits(graph, "igraph")) stop("Invalid input graph (not an 'igraph-class' object)")
     if (is.null(withInput)) {
         stop("The 'withInput' property is required: enter the name of the parent node.")
     }

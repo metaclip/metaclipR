@@ -94,7 +94,7 @@ metaclipR.Aggregation <- function(package = "transformeR",
                                   dc.description = NULL) {
     orig.node <- graph$parentnodename
     graph <- graph$graph
-    if (class(graph) != "igraph") stop("Invalid input graph (not an 'igraph-class' object)")
+    if (!inherits(graph, "igraph")) stop("Invalid input graph (not an 'igraph-class' object)")
     # Aggregation -----------------------------------------------
     aggr.nodename <- paste("Aggregation", randomName(), sep = ".")
     orig.nodes.command <- c()

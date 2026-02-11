@@ -51,7 +51,7 @@ metaclipR.SkillMap <- function(graph,
                                arg.list = NULL,
                                StipplingInputGraph = NULL,
                                epsg.code = "EPSG:4979") {
-    if (class(graph$graph) != "igraph") stop("Invalid input graph (not an 'igraph-class' object)")
+    if (!inherits(graph$graph, "igraph")) stop("Invalid input graph (not an 'igraph-class' object)")
     withInput <- graph$parentnodename
     graph <- graph$graph
     epsg.code <- as.character(epsg.code)

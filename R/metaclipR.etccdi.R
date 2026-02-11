@@ -78,7 +78,7 @@ metaclipR.etccdi <- function(graph,
                              index.code,
                              fun = "climdexGrid",
                              arg.list = NULL) {
-    if (class(graph$graph) != "igraph") stop("Invalid input graph (not an 'igraph-class' object)")
+    if (!inherits(graph$graph, "igraph")) stop("Invalid input graph (not an 'igraph-class' object)")
     if (is.null(index.code)) {
         stop("The 'index.code' argument is missing in the argument list, with no default")
     }
@@ -185,7 +185,7 @@ metaclipR.ClimateIndex <- function(graph,
                                    time.step = NULL,
                                    cell.method = NULL,
                                    disable.command = FALSE) {
-    if (class(graph$graph) != "igraph") stop("Invalid input graph (not an 'igraph-class' object)")
+    if (!inherits(graph$graph, "igraph")) stop("Invalid input graph (not an 'igraph-class' object)")
     if (is.null(index.code)) {
         stop("The 'index.code' argument is missing in the argument list, with no default")
     }

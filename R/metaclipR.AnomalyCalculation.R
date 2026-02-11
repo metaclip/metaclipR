@@ -44,7 +44,7 @@ metaclipR.AnomalyCalculation <- function(graph,
                                          arg.list = NULL,
                                          referenceGraph = NULL,
                                          dc.description = NULL) {
-    if (class(graph$graph) != "igraph") stop("Invalid input graph (not an 'igraph-class' object)")
+    if (!inherits(graph$graph, "igraph")) stop("Invalid input graph (not an 'igraph-class' object)")
     withInput <- graph$parentnodename
     graph <- graph$graph
     if (is.null(withInput)) {
@@ -104,7 +104,7 @@ metaclipR.AnomalyCalculation <- function(graph,
             stop("A second graph containing the reference for anomaly calculation is required")
         }
         if (!is.null(referenceGraph)) {
-            if (class(referenceGraph$graph) != "igraph") stop("Invalid input graph (not an 'igraph-class' object)")
+            if (!inherits(referenceGraph$graph, "igraph")) stop("Invalid input graph (not an 'igraph-class' object)")
             # Graphs 1 and 2 are joined ----------------------
             uniongraph <- my_union_graph(graph, referenceGraph$graph)
             graph <- add_edges(uniongraph,
@@ -154,7 +154,7 @@ metaclipR.Anomaly <- function(graph,
                               referenceGraph = NULL,
                               clim.cell.method = "mean",
                               disable.command = FALSE) {
-    if (class(graph$graph) != "igraph") stop("Invalid input graph (not an 'igraph-class' object)")
+    if (!inherits(graph$graph, "igraph")) stop("Invalid input graph (not an 'igraph-class' object)")
     time.frame <- match.arg(time.frame, choices = c("monthly", "annual", "seasonal"))
     withInput <- graph$parentnodename
     graph <- graph$graph
@@ -176,7 +176,7 @@ metaclipR.Anomaly <- function(graph,
                          getNodeIndexbyName(graph, anom.nodename)),
                        label = "ds:hadAnomalyCalculation")
     if (!is.null(referenceGraph)) {
-        if (class(referenceGraph$graph) != "igraph") stop("Invalid input graph (not an 'igraph-class' object)")
+        if (!inherits(referenceGraph$graph, "igraph")) stop("Invalid input graph (not an 'igraph-class' object)")
         # Graphs 1 and 2 are joined ----------------------
         uniongraph <- my_union_graph(graph, referenceGraph$graph)
         graph <- add_edges(uniongraph,
