@@ -76,6 +76,7 @@ Other transformation:
 \code{\link{metaclipR.Binding}()},
 \code{\link{metaclipR.Dataset}()},
 \code{\link{metaclipR.Ensemble}()},
+\code{\link{metaclipR.Ensemble2}()},
 \code{\link{metaclipR.Interpolation}()},
 \code{\link{metaclipR.etccdi}()}
 }

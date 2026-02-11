@@ -31,5 +31,5 @@ Encoding: UTF-8
 Description: Encode climate product provenance according to the METACLIP semantic framework <http://www.metaclip.org>. 
 License: file LICENSE
 LazyData: true
-RoxygenNote: 7.3.2
+RoxygenNote: 7.3.3
 VignetteBuilder: knitr

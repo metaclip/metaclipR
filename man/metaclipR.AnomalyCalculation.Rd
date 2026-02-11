@@ -70,6 +70,7 @@ Other transformation:
 \code{\link{metaclipR.Climatology}()},
 \code{\link{metaclipR.Dataset}()},
 \code{\link{metaclipR.Ensemble}()},
+\code{\link{metaclipR.Ensemble2}()},
 \code{\link{metaclipR.Interpolation}()},
 \code{\link{metaclipR.etccdi}()}
 }
