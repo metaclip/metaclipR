@@ -56,6 +56,9 @@ metaclipR.Ensemble <- function(package = "transformeR",
         if (class(graph.list[[i]]$graph) != "igraph") stop("Invalid input graph (not an 'igraph-class' object)")    
     }
     stopifnot(is.logical(disable.command))
+
+    message("metaclipR.Ensemble is deprecated. Consider using metaclipR.Ensemble2 instead")
+
     # Ensemble node
     graph <- graph.list[[1]]$graph
     # graph <- make_empty_graph()
