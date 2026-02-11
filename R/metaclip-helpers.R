@@ -119,9 +119,10 @@ knownClassIndividuals <- function(classname, vocabulary = "datasource", source.v
 #' @export
 #' @author J Bedia, D. San-Martín
 #' @family ontology.helpers
-#' @examples
+#' @examples \dontrun{
 #' getIndividualClass("UDG") # The default vocabulary is datasource (can be omitted)
 #' getIndividualClass("EQM", vocabulary = "calibration")
+#' }
 
 getIndividualClass <- function(individual.name, vocabulary = "datasource") {
     vocabulary <- match.arg(vocabulary, choices = c("datasource",
@@ -172,7 +173,7 @@ my_add_vertices <- function(graph,
                             label = NULL,
                             className = NULL,
                             attr = NULL) {
-    if (class(graph) != "igraph") stop("The input graph has not a valid format")
+    if (!inherits(graph, "igraph")) stop("The input graph has not a valid format")
     if (is.null(name)) stop("The 'name' attribute is required", call. = FALSE)
     if (!name %in% vertex_attr(graph, name = "name")) {
         if (is.null(className)) stop("The 'className' attribute is required", call. = FALSE)
