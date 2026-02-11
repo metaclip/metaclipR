@@ -39,7 +39,7 @@ metaclipR.Binding <- function(graph.list,
         stop("The input must be a list of at least two metaclipR graphs", call. = FALSE)
     }
     for (i in 1:length(graph.list)) {
-        if (class(graph.list[[i]]$graph) != "igraph") stop("Invalid input graph (not an 'igraph-class' object)")    
+        if (!inherits(graph.list[[i]]$graph, "igraph")) stop("Invalid input graph (not an 'igraph-class' object)")    
     }
     dim.along <- match.arg(dim.along, choices = c("time", "lat", "lon"))
     if (dim.along == "time") {

@@ -85,7 +85,7 @@ metaclipR.Interpolation <- function(graph,
                                     arg.list = NULL,
                                     disable.command = FALSE,
                                     dc.description = NULL) {
-    if (class(graph$graph) != "igraph") stop("Invalid input graph (not an 'igraph-class' object)")
+    if (!inherits(graph$graph, "igraph")) stop("Invalid input graph (not an 'igraph-class' object)")
     # if (is.list(arg.list)) { 
     #     stop("The use of an argument list in this function has been deprecated since v1.1.0")
     # }
@@ -132,7 +132,7 @@ metaclipR.Interpolation <- function(graph,
                        label = "ds:hadInterpolationMethod")
     # Link SpatialExtent
     if (!is.null(RefSpatialExtent)) {
-        if (class(RefSpatialExtent$graph) != "igraph") stop("Invalid \'RefSpatialExtent\' structure")
+        if (!inherits(RefSpatialExtent$graph, "igraph")) stop("Invalid 'RefSpatialExtent' structure")
         spatextent.nodename <- RefSpatialExtent$parentnodename
         graph <- my_union_graph(graph, RefSpatialExtent$graph)
         graph <- add_edges(graph,
@@ -189,7 +189,7 @@ metaclipR.Regridding <- function(graph,
                                  fun = "interpGrid",
                                  arg.list = NULL) {
     .Deprecated(new = "metaclipR.Interpolation")
-    if (class(graph$graph) != "igraph") stop("Invalid input graph (not an 'igraph-class' object)")
+    if (!inherits(graph$graph, "igraph")) stop("Invalid input graph (not an 'igraph-class' object)")
     if (is.null(arg.list$new.coordinates)) {
         stop("The 'new.coordinates' argument is missing in the argument list, with no default")
     }

@@ -71,7 +71,7 @@ metaclipR.EnsoPlume <- function(package = "visualizeR",
                                 VerificationMetadata = NULL) {
     if (is.null(FcstMetadata$graph)) stop("The FcstMetadata input is required")
     graph <- FcstMetadata$graph
-    if (class(graph) != "igraph") stop("Invalid input graph (not an 'igraph-class' object)")
+    if (!inherits(graph, "igraph")) stop("Invalid input graph (not an 'igraph-class' object)")
     withInput <- FcstMetadata$parentnodename
     if (!is.null(ObsMetadata)) {
         withObsGraph <- ObsMetadata$graph

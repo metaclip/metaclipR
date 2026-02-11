@@ -43,7 +43,7 @@
 
 embedFig <- function(plot.fun, arg.list, full.metadata, format = "png", filename, ...) {
     opt.list <- list(...)
-    if (class(full.metadata) != "igraph") stop("'full.metadata' is not an igraph-class object")
+    if (!inherits(full.metadata, "igraph")) stop("'full.metadata' is not an igraph-class object")
     # opt.list <- list("width" = 950, "height" = 900, "res" = 150)
     ext <- paste0(".", format)
     # Create a temporary file

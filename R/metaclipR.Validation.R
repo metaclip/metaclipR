@@ -55,8 +55,8 @@ metaclipR.Validation <- function(package,
                                  PredictionGraph,
                                  ReferenceGraph,
                                  disable.command = FALSE) {
-    if (class(PredictionGraph$graph) != "igraph") stop("Invalid input PredictionGraph (not an 'igraph-class' object)")   
-    if (class(ReferenceGraph$graph) != "igraph") stop("Invalid input ReferenceGraph (not an 'igraph-class' object)")   
+    if (!inherits(PredictionGraph$graph, "igraph")) stop("Invalid input PredictionGraph (not an 'igraph-class' object)")   
+    if (!inherits(ReferenceGraph$graph, "igraph")) stop("Invalid input ReferenceGraph (not an 'igraph-class' object)")   
     type <- match.arg(type, choices = c("validation", "verification"))
     stopifnot(is.logical(disable.command))
     val.classname <- switch(type,

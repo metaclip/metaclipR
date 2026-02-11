@@ -104,7 +104,7 @@ metaclipR.DatasetSubset <- function(package = "transformeR",
     } else {
         parent.node <- graph$parentnodename
         graph <- graph$graph
-        if (class(graph) != "igraph") {
+        if (!inherits(graph, "igraph")) {
             stop("The input graph has not a valid format")
         }
         emptygraph <- FALSE
@@ -215,7 +215,7 @@ metaclipR.DatasetSubset <- function(package = "transformeR",
             RefSpatialExtent <- list("graph" = g.aux, "parentnodename" = spatextent.nodename)
         }
     }
-    if (class(RefSpatialExtent$graph) != "igraph") stop("Invalid \'RefSpatialExtent\' structure")
+    if (!inherits(RefSpatialExtent$graph, "igraph")) stop("Invalid 'RefSpatialExtent' structure")
     spatextent.nodename <- RefSpatialExtent$parentnodename
     spatextent.graph <- RefSpatialExtent$graph
     graph <- my_union_graph(graph, spatextent.graph)

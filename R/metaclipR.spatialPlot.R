@@ -58,7 +58,7 @@ metaclipR.SpatialPlot <- function(package = "visualizeR",
                                   stipplingInputGraph = NULL,
                                   epsg.code = "EPSG:4329",
                                   isBranchStep = FALSE) {
-    if (class(graph$graph) != "igraph") stop("Invalid input graph (not an 'igraph-class' object)")
+    if (!inherits(graph$graph, "igraph")) stop("Invalid input graph (not an 'igraph-class' object)")
     type <- match.arg(type, c("grid", "stations"))
     stopifnot(is.logical(isBranchStep))
     withInput <- graph$parentnodename

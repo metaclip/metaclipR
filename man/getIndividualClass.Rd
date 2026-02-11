@@ -27,8 +27,10 @@ The function won't work if there is no internet connection, or any other connect
  read access to the ontology file.
 }
 \examples{
+\dontrun{
 getIndividualClass("UDG") # The default vocabulary is datasource (can be omitted)
 getIndividualClass("EQM", vocabulary = "calibration")
+}
 }
 \seealso{
 Other ontology.helpers: 

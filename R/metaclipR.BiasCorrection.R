@@ -82,9 +82,9 @@ metaclipR.BiasCorrection <- function(package = "downscaleR",
                                      disable.command = FALSE,
                                      dc.description = NULL) {
     
-    if (class(graph$graph) != "igraph") stop("Invalid input graph (not an 'igraph-class' object)")
-    if (class(TrainingGraph$graph) != "igraph") stop("Invalid input TrainingGraph (not an 'igraph-class' object)")
-    if (class(ReferenceGraph$graph) != "igraph") stop("Invalid input ReferenceGraph (not an 'igraph-class' object)")
+    if (!inherits(graph$graph, "igraph")) stop("Invalid input graph (not an 'igraph-class' object)")
+    if (!inherits(TrainingGraph$graph, "igraph")) stop("Invalid input TrainingGraph (not an 'igraph-class' object)")
+    if (!inherits(ReferenceGraph$graph, "igraph")) stop("Invalid input ReferenceGraph (not an 'igraph-class' object)")
     stopifnot(is.logical(disable.command))
     pkgVersionCheck(package, version)
     bc.class <- getIndividualClass(BC.method, vocabulary = "calibration")
@@ -118,7 +118,7 @@ metaclipR.BiasCorrection <- function(package = "downscaleR",
                        label = "cal:hadCalibration")
     # Update spatial extent
     if (!is.null(ReferenceGraphSpatialExtent)) {
-        if (class(ReferenceGraphSpatialExtent$graph) != "igraph") stop("Invalid \'ReferenceGraphSpatialExtent\' structure")
+        if (!inherits(ReferenceGraphSpatialExtent$graph, "igraph")) stop("Invalid 'ReferenceGraphSpatialExtent' structure")
         spatextent.nodename <- ReferenceGraphSpatialExtent$parentnodename
         graph <- my_union_graph(graph, ReferenceGraphSpatialExtent$graph)
         graph <- add_edges(graph,
@@ -127,7 +127,7 @@ metaclipR.BiasCorrection <- function(package = "downscaleR",
                            label = "ds:hasHorizontalExtent")
     }
     if (!is.null(ReferenceGraphRectangularGrid)) {
-        if (class(ReferenceGraphRectangularGrid$graph) != "igraph") stop("Invalid \'ReferenceGraphRectangularGrid\' structure")
+        if (!inherits(ReferenceGraphRectangularGrid$graph, "igraph")) stop("Invalid 'ReferenceGraphRectangularGrid' structure")
         grid.nodename <- ReferenceGraphRectangularGrid$parentnodename
         graph <- my_union_graph(graph, ReferenceGraphRectangularGrid$graph)
         graph <- add_edges(graph,

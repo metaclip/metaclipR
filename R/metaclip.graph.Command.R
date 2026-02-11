@@ -34,7 +34,7 @@
 #' @author D. San Martín, J. Bedia
 
 metaclip.graph.Command <- function(graph, package, version, fun, arg.list, origin.node.name) {
-    if (class(graph) != "igraph") stop("Invalid input graph (not an 'igraph-class' object)")
+    if (!inherits(graph, "igraph")) stop("Invalid input graph (not an 'igraph-class' object)")
     pkgVersionCheck(package, version)
     if (!is.null(fun)) {
         cmd.node.name <- setNodeName(fun, node.class = "Command")
