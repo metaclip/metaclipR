@@ -102,3 +102,7 @@
 * New metaclipR.Ensemble2 for simplified ensemble building and GrandEnsemble construction
 * Other minor changes and documentation updates
 
+## v1.6.1 (12 Feb 2026)
+* Update list of known individuals for vertex serialization
+* Fix Dublin Core ontology IRI in context
+
