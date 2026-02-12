@@ -61,7 +61,7 @@ graph2json <- function(graph, output.file, template = FALSE) {
         cat(c("\t\t\"rdfs\": ", "\"http://www.w3.org/2000/01/rdf-schema#\",\n"),
             sep = "", file = z)    
         # dublin core
-        cat(c("\t\t\"dc\": ", "\"http://www.w3.org/2002/07/owl\",\n"),
+        cat(c("\t\t\"dc\": ", "\"http://purl.org/dc/elements/1.1\",\n"),
             sep = "", file = z)   
         # skos
         cat(c("\t\t\"skos\": ", "\"http://www.w3.org/2004/02/skos/core#\"\n"),
@@ -194,6 +194,5 @@ serializeVertex <- function(g, vertex, describedNodeNames, connection) {
 #' @author J Bedia
 
 isIndividualInstance <- function(node.name) {
-    grepl("^ds\\:|^veri\\:|^go\\:|^cal\\:|^ipcc\\:|^c6i\\:|^c6d\\:|^c6m\\:|^c6v\\:",
-          node.name)
+    grepl("^(ds|veri|go|cal|ipcc|c6[^:]*|cx5[^:]*)\\:", node.name, ignore.case = TRUE)
 }
